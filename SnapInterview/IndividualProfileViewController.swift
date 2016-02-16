@@ -57,6 +57,8 @@ class IndividualProfileViewController: UIViewController, UIImagePickerController
         })
     }
     
+    // Testing a change
+    
     override func viewDidAppear(animated: Bool) {
         
         // Check NSUserDefaults to see if the user is still logged in
