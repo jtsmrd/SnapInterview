@@ -3,7 +3,7 @@ TODO
 Done - Store profile data locally using CoreData.
 Done - Store profile image in a cache or to the file system.
         a. Reference stored profile image in the profile data object.
-- Store profile type
+Done - Store profile type
 - Build on to profile data, store with core data efficiently, and also store it in the cloud
 - Re-design storyboard to include the business profile
 - Implement editing for profile data

@@ -23,7 +23,54 @@ class IndividualSignupViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    // Save profile daat to cloud
+    // Save profile data to cloud
+    private func syncIndividualProfileToCloud() {
+        
+        let individualProfileRecord = CKRecord(recordType: "IndividualProfile")
+        individualProfileRecord.setValue(firstNameTextField.text, forKey: "firstName")
+        individualProfileRecord.setValue(lastNameTextField.text, forKey: "lastName")
+        individualProfileRecord.setValue(emailTextField.text, forKey: "email")
+        
+        let publicDatabase = CKContainer.defaultContainer().publicCloudDatabase
+        publicDatabase.saveRecord(individualProfileRecord, completionHandler: { (record, error) -> Void in
+            if let error = error {
+                print(error)
+            }
+        })
+    }
+    
+    // Save profile data to CoreData
+    private func saveIndividualProfile() {
+        
+        var individualProfile: IndividualProfile!
+        let coreDataStack = CoreDataStack(modelName: "SnapInterviewEntities")
+        let firstName = firstNameTextField.text!
+        let lastName = lastNameTextField.text!
+        let email = emailTextField.text!
+        
+        coreDataStack.privateQueueContext.performBlockAndWait() {
+            individualProfile = NSEntityDescription.insertNewObjectForEntityForName("IndividualProfile", inManagedObjectContext: coreDataStack.privateQueueContext) as! IndividualProfile
+            individualProfile.firstName = firstName
+            individualProfile.lastName = lastName
+            individualProfile.email = email
+        }
+        
+        do {
+            try coreDataStack.saveChanges()
+            //syncIndividualProfileToCloud()
+        }
+        catch let error {
+            print(error)
+        }
+    }
+    
+    // Send the user to the Profile screen
+    func showIndividualProfile() {
+        
+        let storyboard = UIStoryboard(name: "IndividualProfileStoryboard", bundle: nil)
+        let viewController = storyboard.instantiateViewControllerWithIdentifier("IndividualProfileTabBarController") as? UITabBarController
+        presentViewController(viewController!, animated: true, completion: nil)
+    }
     
     @IBAction func createAction() {
         
@@ -42,20 +89,13 @@ class IndividualSignupViewController: UIViewController {
             myKeychainWrapper.mySetObject(passwordTextField.text, forKey:kSecValueData)
             myKeychainWrapper.writeToKeychain()
             
-            let individualProfileRecord = CKRecord(recordType: "IndividualProfile")
-            individualProfileRecord.setValue(firstNameTextField.text, forKey: "firstName")
-            individualProfileRecord.setValue(lastNameTextField.text, forKey: "lastName")
-            individualProfileRecord.setValue(emailTextField.text, forKey: "email")
-            
-            let publicDatabase = CKContainer.defaultContainer().publicCloudDatabase
-            publicDatabase.saveRecord(individualProfileRecord, completionHandler: { (record, error) -> Void in
-                if let error = error {
-                    print(error)
-                }
-            })
+            saveIndividualProfile()
             
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: "isLoggedIn")
             NSUserDefaults.standardUserDefaults().synchronize()
+            
+            // Send to IndividualProfileStoryboard
+            showIndividualProfile()
         }
     }
     

@@ -22,42 +22,67 @@ class IndividualProfileViewController: UIViewController, UIImagePickerController
     var photoURL: NSURL?
     var currentRecord: CKRecord!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupView()
+        loadIndividualProfileData()
     }
     
     private func setupView() {
         
-        let userEmail = NSUserDefaults.standardUserDefaults().valueForKey("email") as? String
-        let predicate = NSPredicate(format: "email = %@", userEmail!)
-        let query = CKQuery(recordType: "IndividualProfile", predicate: predicate)
+        if individualProfile != nil {
+            firstNameLabel.text = individualProfile.firstName
+            lastNameLabel.text = individualProfile.lastName
+        }
         
-        CKContainer.defaultContainer().publicCloudDatabase.performQuery(query, inZoneWithID: nil, completionHandler: { (records, error) -> Void in
-            
-            if let error = error {
-                print(error)
-            }
-            else {
-                if records!.count > 0 {
-                    self.currentRecord = records![0]
-                    
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        self.firstNameLabel.text = self.currentRecord.objectForKey("firstName") as? String
-                        self.lastNameLabel.text = self.currentRecord.objectForKey("lastName") as? String
-                        
-                        if let photo = self.currentRecord.objectForKey("profileImage") as? CKAsset {
-                            let image = UIImage(contentsOfFile: photo.fileURL.path!)
-                            self.imageView.image = image
-                        }
-                    })
-                }
-            }
-        })
+//        let userEmail = NSUserDefaults.standardUserDefaults().valueForKey("email") as? String
+//        let predicate = NSPredicate(format: "email = %@", userEmail!)
+//        let query = CKQuery(recordType: "IndividualProfile", predicate: predicate)
+//        
+//        CKContainer.defaultContainer().publicCloudDatabase.performQuery(query, inZoneWithID: nil, completionHandler: { (records, error) -> Void in
+//            
+//            if let error = error {
+//                print(error)
+//            }
+//            else {
+//                if records!.count > 0 {
+//                    self.currentRecord = records![0]
+//                    
+//                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//                        self.firstNameLabel.text = self.currentRecord.objectForKey("firstName") as? String
+//                        self.lastNameLabel.text = self.currentRecord.objectForKey("lastName") as? String
+//                        
+//                        if let photo = self.currentRecord.objectForKey("profileImage") as? CKAsset {
+//                            let image = UIImage(contentsOfFile: photo.fileURL.path!)
+//                            self.imageView.image = image
+//                        }
+//                    })
+//                }
+//            }
+//        })
     }
     
-    // Testing a change
+    // Load from CoreData, return an IndividualProfile
+    private func loadIndividualProfileData() {
+        
+        let coreDataStack = CoreDataStack(modelName: "SnapInterviewEntities")
+        let userEmail = NSUserDefaults.standardUserDefaults().valueForKey("email") as? String
+        let fetchRequest = NSFetchRequest(entityName: "IndividualProfile")
+        fetchRequest.predicate = NSPredicate(format: "email = %@", userEmail!)
+        
+        coreDataStack.privateQueueContext.performBlockAndWait() {
+            do {
+                let records = try coreDataStack.privateQueueContext.executeFetchRequest(fetchRequest) as? [IndividualProfile]
+                
+                self.individualProfile = records!.first
+            }
+            catch let error {
+                print(error)
+            }
+        }
+        setupView()
+    }
     
     override func viewDidAppear(animated: Bool) {
         
@@ -82,15 +107,10 @@ class IndividualProfileViewController: UIViewController, UIImagePickerController
 //            }
 //        }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    // Present Login StoryBoard
     
     @IBAction func logoutAction() {
+        
+        // Show new Login Controller
         
         // Set the logged in status to false, then show the login screen
         NSUserDefaults.standardUserDefaults().setBool(false, forKey: "isLoggedIn")
@@ -118,7 +138,7 @@ class IndividualProfileViewController: UIViewController, UIImagePickerController
         
         if segue.identifier == "showEdit" {
             
-            let destinationVC = segue.destinationViewController as! EditViewController
+            let destinationVC = segue.destinationViewController as! IndividualProfileEditViewController
             destinationVC.individualProfile = self.individualProfile
         }
     }
@@ -161,7 +181,7 @@ class IndividualProfileViewController: UIViewController, UIImagePickerController
         let directoryPaths = fileManager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
         let filePath = directoryPaths[0].URLByAppendingPathComponent("currentImage.jpg").path
         UIImageJPEGRepresentation(image, 0.5)!.writeToFile(filePath!, atomically: true)
-        
+        print(filePath!)
         return NSURL.fileURLWithPath(filePath!)
     }
     

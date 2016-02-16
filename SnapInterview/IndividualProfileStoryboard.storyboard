@@ -79,10 +79,10 @@
             </objects>
             <point key="canvasLocation" x="475.5" y="537.5"/>
         </scene>
-        <!--Edit View Controller-->
+        <!--Individual Profile Edit View Controller-->
         <scene sceneID="y16-hw-Sm7">
             <objects>
-                <viewController id="1Yo-mA-lpx" customClass="EditViewController" customModule="SnapInterview" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="1Yo-mA-lpx" customClass="IndividualProfileEditViewController" customModule="SnapInterview" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Qdu-yH-6hm"/>
                         <viewControllerLayoutGuide type="bottom" id="5wm-z1-znB"/>

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F60109D41C739736007F8957 /* SnapInterviewEntities.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F60109D21C739736007F8957 /* SnapInterviewEntities.xcdatamodeld */; };
+		F60109D71C7397BD007F8957 /* IndividualProfile+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60109D51C7397BD007F8957 /* IndividualProfile+CoreDataProperties.swift */; };
+		F60109D81C7397BD007F8957 /* IndividualProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60109D61C7397BD007F8957 /* IndividualProfile.swift */; };
 		F62ED8DF1C5AD328000FB4FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62ED8DE1C5AD328000FB4FA /* AppDelegate.swift */; };
 		F62ED8E11C5AD328000FB4FA /* IndividualProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62ED8E01C5AD328000FB4FA /* IndividualProfileViewController.swift */; };
 		F62ED8E81C5AD328000FB4FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F62ED8E71C5AD328000FB4FA /* Assets.xcassets */; };
@@ -17,7 +20,6 @@
 		F67104381C729F36002C66BF /* IndividualProfileStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F67104371C729F36002C66BF /* IndividualProfileStoryboard.storyboard */; };
 		F671043C1C72A443002C66BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F671043B1C72A443002C66BF /* Main.storyboard */; };
 		F671043E1C72A6CB002C66BF /* BusinessProfileStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F671043D1C72A6CB002C66BF /* BusinessProfileStoryboard.storyboard */; };
-		F67104401C72AE7C002C66BF /* IndividualProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F671043F1C72AE7C002C66BF /* IndividualProfile.swift */; };
 		F696D5451C6C09B400E25E5A /* BusinessProfileRequirements in Resources */ = {isa = PBXBuildFile; fileRef = F696D5441C6C09B400E25E5A /* BusinessProfileRequirements */; };
 		F698000D1C60447500008CA9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F698000C1C60447500008CA9 /* LoginViewController.swift */; };
 		F698000F1C6156C200008CA9 /* IndividualSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F698000E1C6156C200008CA9 /* IndividualSignupViewController.swift */; };
@@ -25,7 +27,7 @@
 		F69800241C62846400008CA9 /* ImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69800231C62846400008CA9 /* ImageStore.swift */; };
 		F69800261C62955B00008CA9 /* Planning in Resources */ = {isa = PBXBuildFile; fileRef = F69800251C62955B00008CA9 /* Planning */; };
 		F698002A1C629AFC00008CA9 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69800291C629AFC00008CA9 /* CoreDataStack.swift */; };
-		F698002C1C63C28000008CA9 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F698002B1C63C28000008CA9 /* EditViewController.swift */; };
+		F698002C1C63C28000008CA9 /* IndividualProfileEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F698002B1C63C28000008CA9 /* IndividualProfileEditViewController.swift */; };
 		F6BAF80F1C6ADACF0057A649 /* VideoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BAF80E1C6ADACF0057A649 /* VideoStore.swift */; };
 		F6EAF4AB1C6A629C0056135C /* InterviewTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EAF4AA1C6A629C0056135C /* InterviewTableViewController.swift */; };
 		F6EAF4AD1C6A62E60056135C /* Interview.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EAF4AC1C6A62E60056135C /* Interview.swift */; };
@@ -34,6 +36,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F60109D31C739736007F8957 /* SnapInterviewEntities.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SnapInterviewEntities.xcdatamodel; sourceTree = "<group>"; };
+		F60109D51C7397BD007F8957 /* IndividualProfile+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IndividualProfile+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F60109D61C7397BD007F8957 /* IndividualProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndividualProfile.swift; sourceTree = "<group>"; };
 		F62ED8DB1C5AD328000FB4FA /* SnapInterview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SnapInterview.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F62ED8DE1C5AD328000FB4FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F62ED8E01C5AD328000FB4FA /* IndividualProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualProfileViewController.swift; sourceTree = "<group>"; };
@@ -47,7 +52,6 @@
 		F67104371C729F36002C66BF /* IndividualProfileStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = IndividualProfileStoryboard.storyboard; sourceTree = "<group>"; };
 		F671043B1C72A443002C66BF /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		F671043D1C72A6CB002C66BF /* BusinessProfileStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BusinessProfileStoryboard.storyboard; sourceTree = "<group>"; };
-		F671043F1C72AE7C002C66BF /* IndividualProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndividualProfile.swift; sourceTree = "<group>"; };
 		F696D5441C6C09B400E25E5A /* BusinessProfileRequirements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BusinessProfileRequirements; sourceTree = "<group>"; };
 		F698000C1C60447500008CA9 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F698000E1C6156C200008CA9 /* IndividualSignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndividualSignupViewController.swift; sourceTree = "<group>"; };
@@ -57,7 +61,7 @@
 		F69800231C62846400008CA9 /* ImageStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageStore.swift; sourceTree = "<group>"; };
 		F69800251C62955B00008CA9 /* Planning */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Planning; sourceTree = "<group>"; };
 		F69800291C629AFC00008CA9 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
-		F698002B1C63C28000008CA9 /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
+		F698002B1C63C28000008CA9 /* IndividualProfileEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndividualProfileEditViewController.swift; sourceTree = "<group>"; };
 		F6BAF80E1C6ADACF0057A649 /* VideoStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoStore.swift; sourceTree = "<group>"; };
 		F6EAF4AA1C6A629C0056135C /* InterviewTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterviewTableViewController.swift; sourceTree = "<group>"; };
 		F6EAF4AC1C6A62E60056135C /* Interview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interview.swift; sourceTree = "<group>"; };
@@ -129,7 +133,9 @@
 			children = (
 				F6EAF4AC1C6A62E60056135C /* Interview.swift */,
 				F6EAF4AE1C6A66F40056135C /* InterviewStore.swift */,
-				F671043F1C72AE7C002C66BF /* IndividualProfile.swift */,
+				F60109D21C739736007F8957 /* SnapInterviewEntities.xcdatamodeld */,
+				F60109D51C7397BD007F8957 /* IndividualProfile+CoreDataProperties.swift */,
+				F60109D61C7397BD007F8957 /* IndividualProfile.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -152,7 +158,7 @@
 				F62ED8E01C5AD328000FB4FA /* IndividualProfileViewController.swift */,
 				F698000E1C6156C200008CA9 /* IndividualSignupViewController.swift */,
 				F62ED8F21C5AE439000FB4FA /* VideosViewController.swift */,
-				F698002B1C63C28000008CA9 /* EditViewController.swift */,
+				F698002B1C63C28000008CA9 /* IndividualProfileEditViewController.swift */,
 				F6EAF4AA1C6A629C0056135C /* InterviewTableViewController.swift */,
 				F6EAF4B01C6A7E6A0056135C /* InterviewDetailViewController.swift */,
 				F655C0FF1C6EBB6D00053029 /* BusinessSignupViewController.swift */,
@@ -243,8 +249,9 @@
 			files = (
 				F6BAF80F1C6ADACF0057A649 /* VideoStore.swift in Sources */,
 				F6EAF4AB1C6A629C0056135C /* InterviewTableViewController.swift in Sources */,
+				F60109D41C739736007F8957 /* SnapInterviewEntities.xcdatamodeld in Sources */,
 				F655C1001C6EBB6D00053029 /* BusinessSignupViewController.swift in Sources */,
-				F698002C1C63C28000008CA9 /* EditViewController.swift in Sources */,
+				F698002C1C63C28000008CA9 /* IndividualProfileEditViewController.swift in Sources */,
 				F69800241C62846400008CA9 /* ImageStore.swift in Sources */,
 				F698000F1C6156C200008CA9 /* IndividualSignupViewController.swift in Sources */,
 				F6EAF4B11C6A7E6A0056135C /* InterviewDetailViewController.swift in Sources */,
@@ -252,10 +259,11 @@
 				F62ED8DF1C5AD328000FB4FA /* AppDelegate.swift in Sources */,
 				F62ED8F31C5AE439000FB4FA /* VideosViewController.swift in Sources */,
 				F6EAF4AF1C6A66F40056135C /* InterviewStore.swift in Sources */,
+				F60109D81C7397BD007F8957 /* IndividualProfile.swift in Sources */,
 				F69800131C61761F00008CA9 /* KeychainWrapper.m in Sources */,
-				F67104401C72AE7C002C66BF /* IndividualProfile.swift in Sources */,
 				F698000D1C60447500008CA9 /* LoginViewController.swift in Sources */,
 				F6EAF4AD1C6A62E60056135C /* Interview.swift in Sources */,
+				F60109D71C7397BD007F8957 /* IndividualProfile+CoreDataProperties.swift in Sources */,
 				F62ED8E11C5AD328000FB4FA /* IndividualProfileViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -414,6 +422,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F60109D21C739736007F8957 /* SnapInterviewEntities.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F60109D31C739736007F8957 /* SnapInterviewEntities.xcdatamodel */,
+			);
+			currentVersion = F60109D31C739736007F8957 /* SnapInterviewEntities.xcdatamodel */;
+			path = SnapInterviewEntities.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = F62ED8D31C5AD328000FB4FA /* Project object */;
 }
