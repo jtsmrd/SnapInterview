@@ -1,0 +1,419 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F62ED8DF1C5AD328000FB4FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62ED8DE1C5AD328000FB4FA /* AppDelegate.swift */; };
+		F62ED8E11C5AD328000FB4FA /* IndividualProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62ED8E01C5AD328000FB4FA /* IndividualProfileViewController.swift */; };
+		F62ED8E81C5AD328000FB4FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F62ED8E71C5AD328000FB4FA /* Assets.xcassets */; };
+		F62ED8EB1C5AD328000FB4FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F62ED8E91C5AD328000FB4FA /* LaunchScreen.storyboard */; };
+		F62ED8F31C5AE439000FB4FA /* VideosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62ED8F21C5AE439000FB4FA /* VideosViewController.swift */; };
+		F655C1001C6EBB6D00053029 /* BusinessSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F655C0FF1C6EBB6D00053029 /* BusinessSignupViewController.swift */; };
+		F655C1031C6EC42200053029 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F655C1021C6EC42200053029 /* CloudKit.framework */; };
+		F67104381C729F36002C66BF /* IndividualProfileStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F67104371C729F36002C66BF /* IndividualProfileStoryboard.storyboard */; };
+		F671043C1C72A443002C66BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F671043B1C72A443002C66BF /* Main.storyboard */; };
+		F671043E1C72A6CB002C66BF /* BusinessProfileStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F671043D1C72A6CB002C66BF /* BusinessProfileStoryboard.storyboard */; };
+		F67104401C72AE7C002C66BF /* IndividualProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F671043F1C72AE7C002C66BF /* IndividualProfile.swift */; };
+		F696D5451C6C09B400E25E5A /* BusinessProfileRequirements in Resources */ = {isa = PBXBuildFile; fileRef = F696D5441C6C09B400E25E5A /* BusinessProfileRequirements */; };
+		F698000D1C60447500008CA9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F698000C1C60447500008CA9 /* LoginViewController.swift */; };
+		F698000F1C6156C200008CA9 /* IndividualSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F698000E1C6156C200008CA9 /* IndividualSignupViewController.swift */; };
+		F69800131C61761F00008CA9 /* KeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = F69800121C61761F00008CA9 /* KeychainWrapper.m */; };
+		F69800241C62846400008CA9 /* ImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69800231C62846400008CA9 /* ImageStore.swift */; };
+		F69800261C62955B00008CA9 /* Planning in Resources */ = {isa = PBXBuildFile; fileRef = F69800251C62955B00008CA9 /* Planning */; };
+		F698002A1C629AFC00008CA9 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69800291C629AFC00008CA9 /* CoreDataStack.swift */; };
+		F698002C1C63C28000008CA9 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F698002B1C63C28000008CA9 /* EditViewController.swift */; };
+		F6BAF80F1C6ADACF0057A649 /* VideoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BAF80E1C6ADACF0057A649 /* VideoStore.swift */; };
+		F6EAF4AB1C6A629C0056135C /* InterviewTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EAF4AA1C6A629C0056135C /* InterviewTableViewController.swift */; };
+		F6EAF4AD1C6A62E60056135C /* Interview.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EAF4AC1C6A62E60056135C /* Interview.swift */; };
+		F6EAF4AF1C6A66F40056135C /* InterviewStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EAF4AE1C6A66F40056135C /* InterviewStore.swift */; };
+		F6EAF4B11C6A7E6A0056135C /* InterviewDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EAF4B01C6A7E6A0056135C /* InterviewDetailViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		F62ED8DB1C5AD328000FB4FA /* SnapInterview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SnapInterview.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F62ED8DE1C5AD328000FB4FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F62ED8E01C5AD328000FB4FA /* IndividualProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualProfileViewController.swift; sourceTree = "<group>"; };
+		F62ED8E71C5AD328000FB4FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F62ED8EA1C5AD328000FB4FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F62ED8EC1C5AD328000FB4FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F62ED8F21C5AE439000FB4FA /* VideosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideosViewController.swift; sourceTree = "<group>"; };
+		F655C0FF1C6EBB6D00053029 /* BusinessSignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessSignupViewController.swift; sourceTree = "<group>"; };
+		F655C1011C6EC41500053029 /* SnapInterview.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SnapInterview.entitlements; sourceTree = "<group>"; };
+		F655C1021C6EC42200053029 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		F67104371C729F36002C66BF /* IndividualProfileStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = IndividualProfileStoryboard.storyboard; sourceTree = "<group>"; };
+		F671043B1C72A443002C66BF /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		F671043D1C72A6CB002C66BF /* BusinessProfileStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BusinessProfileStoryboard.storyboard; sourceTree = "<group>"; };
+		F671043F1C72AE7C002C66BF /* IndividualProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndividualProfile.swift; sourceTree = "<group>"; };
+		F696D5441C6C09B400E25E5A /* BusinessProfileRequirements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BusinessProfileRequirements; sourceTree = "<group>"; };
+		F698000C1C60447500008CA9 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		F698000E1C6156C200008CA9 /* IndividualSignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndividualSignupViewController.swift; sourceTree = "<group>"; };
+		F69800101C61761E00008CA9 /* SnapInterview-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SnapInterview-Bridging-Header.h"; sourceTree = "<group>"; };
+		F69800111C61761F00008CA9 /* KeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainWrapper.h; sourceTree = "<group>"; };
+		F69800121C61761F00008CA9 /* KeychainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainWrapper.m; sourceTree = "<group>"; };
+		F69800231C62846400008CA9 /* ImageStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageStore.swift; sourceTree = "<group>"; };
+		F69800251C62955B00008CA9 /* Planning */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Planning; sourceTree = "<group>"; };
+		F69800291C629AFC00008CA9 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		F698002B1C63C28000008CA9 /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
+		F6BAF80E1C6ADACF0057A649 /* VideoStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoStore.swift; sourceTree = "<group>"; };
+		F6EAF4AA1C6A629C0056135C /* InterviewTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterviewTableViewController.swift; sourceTree = "<group>"; };
+		F6EAF4AC1C6A62E60056135C /* Interview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interview.swift; sourceTree = "<group>"; };
+		F6EAF4AE1C6A66F40056135C /* InterviewStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterviewStore.swift; sourceTree = "<group>"; };
+		F6EAF4B01C6A7E6A0056135C /* InterviewDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterviewDetailViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F62ED8D81C5AD328000FB4FA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F655C1031C6EC42200053029 /* CloudKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F62ED8D21C5AD328000FB4FA = {
+			isa = PBXGroup;
+			children = (
+				F655C1021C6EC42200053029 /* CloudKit.framework */,
+				F62ED8DD1C5AD328000FB4FA /* SnapInterview */,
+				F62ED8DC1C5AD328000FB4FA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F62ED8DC1C5AD328000FB4FA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F62ED8DB1C5AD328000FB4FA /* SnapInterview.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F62ED8DD1C5AD328000FB4FA /* SnapInterview */ = {
+			isa = PBXGroup;
+			children = (
+				F655C1011C6EC41500053029 /* SnapInterview.entitlements */,
+				F62ED8DE1C5AD328000FB4FA /* AppDelegate.swift */,
+				F69800231C62846400008CA9 /* ImageStore.swift */,
+				F6BAF80E1C6ADACF0057A649 /* VideoStore.swift */,
+				F69800221C627DB500008CA9 /* Controllers */,
+				F69800211C627D9500008CA9 /* Views */,
+				F69800201C627D6E00008CA9 /* Models */,
+				F698001F1C627CD700008CA9 /* Supporting Files */,
+				F69800251C62955B00008CA9 /* Planning */,
+				F696D5441C6C09B400E25E5A /* BusinessProfileRequirements */,
+			);
+			path = SnapInterview;
+			sourceTree = "<group>";
+		};
+		F698001F1C627CD700008CA9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F69800291C629AFC00008CA9 /* CoreDataStack.swift */,
+				F69800101C61761E00008CA9 /* SnapInterview-Bridging-Header.h */,
+				F69800121C61761F00008CA9 /* KeychainWrapper.m */,
+				F69800111C61761F00008CA9 /* KeychainWrapper.h */,
+				F62ED8EC1C5AD328000FB4FA /* Info.plist */,
+				F62ED8E71C5AD328000FB4FA /* Assets.xcassets */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F69800201C627D6E00008CA9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F6EAF4AC1C6A62E60056135C /* Interview.swift */,
+				F6EAF4AE1C6A66F40056135C /* InterviewStore.swift */,
+				F671043F1C72AE7C002C66BF /* IndividualProfile.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		F69800211C627D9500008CA9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F671043B1C72A443002C66BF /* Main.storyboard */,
+				F62ED8E91C5AD328000FB4FA /* LaunchScreen.storyboard */,
+				F67104371C729F36002C66BF /* IndividualProfileStoryboard.storyboard */,
+				F671043D1C72A6CB002C66BF /* BusinessProfileStoryboard.storyboard */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		F69800221C627DB500008CA9 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F698000C1C60447500008CA9 /* LoginViewController.swift */,
+				F62ED8E01C5AD328000FB4FA /* IndividualProfileViewController.swift */,
+				F698000E1C6156C200008CA9 /* IndividualSignupViewController.swift */,
+				F62ED8F21C5AE439000FB4FA /* VideosViewController.swift */,
+				F698002B1C63C28000008CA9 /* EditViewController.swift */,
+				F6EAF4AA1C6A629C0056135C /* InterviewTableViewController.swift */,
+				F6EAF4B01C6A7E6A0056135C /* InterviewDetailViewController.swift */,
+				F655C0FF1C6EBB6D00053029 /* BusinessSignupViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F62ED8DA1C5AD328000FB4FA /* SnapInterview */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F62ED8EF1C5AD328000FB4FA /* Build configuration list for PBXNativeTarget "SnapInterview" */;
+			buildPhases = (
+				F62ED8D71C5AD328000FB4FA /* Sources */,
+				F62ED8D81C5AD328000FB4FA /* Frameworks */,
+				F62ED8D91C5AD328000FB4FA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SnapInterview;
+			productName = SnapInterview;
+			productReference = F62ED8DB1C5AD328000FB4FA /* SnapInterview.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F62ED8D31C5AD328000FB4FA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = SmrdelJT;
+				TargetAttributes = {
+					F62ED8DA1C5AD328000FB4FA = {
+						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 7QJKRU58DK;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = F62ED8D61C5AD328000FB4FA /* Build configuration list for PBXProject "SnapInterview" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F62ED8D21C5AD328000FB4FA;
+			productRefGroup = F62ED8DC1C5AD328000FB4FA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F62ED8DA1C5AD328000FB4FA /* SnapInterview */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F62ED8D91C5AD328000FB4FA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F62ED8EB1C5AD328000FB4FA /* LaunchScreen.storyboard in Resources */,
+				F696D5451C6C09B400E25E5A /* BusinessProfileRequirements in Resources */,
+				F671043E1C72A6CB002C66BF /* BusinessProfileStoryboard.storyboard in Resources */,
+				F67104381C729F36002C66BF /* IndividualProfileStoryboard.storyboard in Resources */,
+				F671043C1C72A443002C66BF /* Main.storyboard in Resources */,
+				F62ED8E81C5AD328000FB4FA /* Assets.xcassets in Resources */,
+				F69800261C62955B00008CA9 /* Planning in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F62ED8D71C5AD328000FB4FA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F6BAF80F1C6ADACF0057A649 /* VideoStore.swift in Sources */,
+				F6EAF4AB1C6A629C0056135C /* InterviewTableViewController.swift in Sources */,
+				F655C1001C6EBB6D00053029 /* BusinessSignupViewController.swift in Sources */,
+				F698002C1C63C28000008CA9 /* EditViewController.swift in Sources */,
+				F69800241C62846400008CA9 /* ImageStore.swift in Sources */,
+				F698000F1C6156C200008CA9 /* IndividualSignupViewController.swift in Sources */,
+				F6EAF4B11C6A7E6A0056135C /* InterviewDetailViewController.swift in Sources */,
+				F698002A1C629AFC00008CA9 /* CoreDataStack.swift in Sources */,
+				F62ED8DF1C5AD328000FB4FA /* AppDelegate.swift in Sources */,
+				F62ED8F31C5AE439000FB4FA /* VideosViewController.swift in Sources */,
+				F6EAF4AF1C6A66F40056135C /* InterviewStore.swift in Sources */,
+				F69800131C61761F00008CA9 /* KeychainWrapper.m in Sources */,
+				F67104401C72AE7C002C66BF /* IndividualProfile.swift in Sources */,
+				F698000D1C60447500008CA9 /* LoginViewController.swift in Sources */,
+				F6EAF4AD1C6A62E60056135C /* Interview.swift in Sources */,
+				F62ED8E11C5AD328000FB4FA /* IndividualProfileViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		F62ED8E91C5AD328000FB4FA /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F62ED8EA1C5AD328000FB4FA /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F62ED8ED1C5AD328000FB4FA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F62ED8EE1C5AD328000FB4FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F62ED8F01C5AD328000FB4FA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = SnapInterview/SnapInterview.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = SnapInterview/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = SmrdelTechnologies.SnapInterview;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "SnapInterview/SnapInterview-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F62ED8F11C5AD328000FB4FA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = SnapInterview/SnapInterview.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = SnapInterview/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = SmrdelTechnologies.SnapInterview;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "SnapInterview/SnapInterview-Bridging-Header.h";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F62ED8D61C5AD328000FB4FA /* Build configuration list for PBXProject "SnapInterview" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F62ED8ED1C5AD328000FB4FA /* Debug */,
+				F62ED8EE1C5AD328000FB4FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F62ED8EF1C5AD328000FB4FA /* Build configuration list for PBXNativeTarget "SnapInterview" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F62ED8F01C5AD328000FB4FA /* Debug */,
+				F62ED8F11C5AD328000FB4FA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F62ED8D31C5AD328000FB4FA /* Project object */;
+}
