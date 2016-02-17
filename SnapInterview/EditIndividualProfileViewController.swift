@@ -8,8 +8,9 @@
 
 import UIKit
 import CoreData
+import CloudKit
 
-class EditIndividualProfileViewController: UIViewController {
+class EditIndividualProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
@@ -17,8 +18,8 @@ class EditIndividualProfileViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     
     var individualProfile: IndividualProfile!
-    var profileUpdated: Bool = false
-    let userEmail = NSUserDefaults.standardUserDefaults().valueForKey("email") as? String
+    var photoURL: NSURL?
+    var currentRecord: CKRecord!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,9 +29,23 @@ class EditIndividualProfileViewController: UIViewController {
     }
     
     @IBAction func saveAction(sender: UIButton) {
-        profileUpdated = true
         
         saveIndividualProfile()
+    }
+    
+    @IBAction func addEditImage(sender: UIButton) {
+        
+        let imagePicker = UIImagePickerController()
+        
+        if UIImagePickerController.isSourceTypeAvailable(.Camera) {
+            imagePicker.sourceType = .Camera
+        }
+        else {
+            imagePicker.sourceType = .PhotoLibrary
+        }
+        
+        imagePicker.delegate = self
+        presentViewController(imagePicker, animated: true, completion: nil)
     }
     
     // Save profile data to CoreData
@@ -40,21 +55,7 @@ class EditIndividualProfileViewController: UIViewController {
         let lastName = lastNameTextField.text!
         let title = titleTextField.text!
         
-        var individualProfile: IndividualProfile!
-        let coreDataStack = CoreDataStack(modelName: "SnapInterviewEntities")
-        let fetchRequest = NSFetchRequest(entityName: "IndividualProfile")
-        fetchRequest.predicate = NSPredicate(format: "email = %@", userEmail!)
-        
-        coreDataStack.mainQueueContext.performBlockAndWait() {
-            do {
-                let records = try coreDataStack.mainQueueContext.executeFetchRequest(fetchRequest) as? [IndividualProfile]
-                
-                individualProfile = records![0]
-            }
-            catch let error {
-                print(error)
-            }
-        }
+        let coreDataStack = (UIApplication.sharedApplication().delegate as! AppDelegate).coreDataStack
         
         individualProfile.firstName = firstName
         individualProfile.lastName = lastName
@@ -67,5 +68,51 @@ class EditIndividualProfileViewController: UIViewController {
         catch let error {
             print(error)
         }
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        
+        // Get the image, assign it an image id, add it to the object and save
+        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        imageView.image = image
+        
+        photoURL = saveImageToFile(image)
+        saveImageToCloud(photoURL!)
+        
+        //let imageKey = NSUUID().UUIDString
+        //self.individualProfile.profileImageKey = imageKey
+        
+        //imageStore.setImage(image, forKey: imageKey)
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func saveImageToCloud(photoURL: NSURL) {
+        
+        let imageAsset = CKAsset(fileURL: photoURL)
+        currentRecord.setValue(imageAsset, forKey: "profileImage")
+        
+        let publicDatabase = CKContainer.defaultContainer().publicCloudDatabase
+        publicDatabase.saveRecord(currentRecord, completionHandler: { (record, error) -> Void in
+            if let error = error {
+                print(error)
+            }
+            else {
+                print("Done")
+            }
+        })
+    }
+    
+    func saveImageToFile(image: UIImage) -> NSURL {
+        
+        let fileManager = NSFileManager.defaultManager()
+        let directoryPaths = fileManager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
+        let filePath = directoryPaths[0].URLByAppendingPathComponent("currentImage.jpg").path
+        UIImageJPEGRepresentation(image, 0.5)!.writeToFile(filePath!, atomically: true)
+        print(filePath!)
+        return NSURL.fileURLWithPath(filePath!)
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        dismissViewControllerAnimated(true, completion: nil)
     }
 }

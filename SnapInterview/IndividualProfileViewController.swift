@@ -19,12 +19,15 @@ class IndividualProfileViewController: UIViewController, UIImagePickerController
     
     var imageStore: ImageStore!
     var individualProfile: IndividualProfile!
-    var photoURL: NSURL?
-    var currentRecord: CKRecord!
     let userEmail = NSUserDefaults.standardUserDefaults().valueForKey("email") as? String
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
         setupView()
     }
@@ -47,7 +50,7 @@ class IndividualProfileViewController: UIViewController, UIImagePickerController
     private func fetchIndividualProfile() -> IndividualProfile {
         
         var individualProfile: IndividualProfile!
-        let coreDataStack = CoreDataStack(modelName: "SnapInterviewEntities")
+        let coreDataStack = (UIApplication.sharedApplication().delegate as! AppDelegate).coreDataStack
         let fetchRequest = NSFetchRequest(entityName: "IndividualProfile")
         fetchRequest.predicate = NSPredicate(format: "email = %@", userEmail!)
         
@@ -75,31 +78,9 @@ class IndividualProfileViewController: UIViewController, UIImagePickerController
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    // Display the image picker to select a profile image
-    @IBAction func addImage() {
-        
-        let imagePicker = UIImagePickerController()
-        
-        if UIImagePickerController.isSourceTypeAvailable(.Camera) {
-            imagePicker.sourceType = .Camera
-        }
-        else {
-            imagePicker.sourceType = .PhotoLibrary
-        }
-        
-        imagePicker.delegate = self
-        presentViewController(imagePicker, animated: true, completion: nil)
-    }
-    
     // Reload the InvidualProfile
     @IBAction func unwindAfterIndividualProfileEdit(segue: UIStoryboardSegue) {
-//        if let editViewController = segue.sourceViewController as? EditIndividualProfileViewController {
-//            if editViewController.profileUpdated {
-//                setupView()
-//            }
-//        }
-        
-        setupView()
+
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -107,52 +88,6 @@ class IndividualProfileViewController: UIViewController, UIImagePickerController
             let destinationVC = segue.destinationViewController as! EditIndividualProfileViewController
             destinationVC.individualProfile = fetchIndividualProfile()
         }
-    }
-    
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        
-        // Get the image, assign it an image id, add it to the object and save
-        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
-        imageView.image = image
-        
-        photoURL = saveImageToFile(image)
-        saveImageToCloud(photoURL!)
-        
-        //let imageKey = NSUUID().UUIDString
-        //self.individualProfile.profileImageKey = imageKey
-        
-        //imageStore.setImage(image, forKey: imageKey)
-        dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    func saveImageToCloud(photoURL: NSURL) {
-        
-        let imageAsset = CKAsset(fileURL: photoURL)
-        currentRecord.setValue(imageAsset, forKey: "profileImage")
-        
-        let publicDatabase = CKContainer.defaultContainer().publicCloudDatabase
-        publicDatabase.saveRecord(currentRecord, completionHandler: { (record, error) -> Void in
-            if let error = error {
-                print(error)
-            }
-            else {
-                print("Done")
-            }
-        })
-    }
-    
-    func saveImageToFile(image: UIImage) -> NSURL {
-        
-        let fileManager = NSFileManager.defaultManager()
-        let directoryPaths = fileManager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
-        let filePath = directoryPaths[0].URLByAppendingPathComponent("currentImage.jpg").path
-        UIImageJPEGRepresentation(image, 0.5)!.writeToFile(filePath!, atomically: true)
-        print(filePath!)
-        return NSURL.fileURLWithPath(filePath!)
-    }
-    
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        dismissViewControllerAnimated(true, completion: nil)
     }
 }
 

@@ -43,7 +43,7 @@ class IndividualSignupViewController: UIViewController {
     private func saveIndividualProfile() {
         
         var individualProfile: IndividualProfile!
-        let coreDataStack = CoreDataStack(modelName: "SnapInterviewEntities")
+        let coreDataStack = (UIApplication.sharedApplication().delegate as! AppDelegate).coreDataStack
         let firstName = firstNameTextField.text!
         let lastName = lastNameTextField.text!
         let email = emailTextField.text!

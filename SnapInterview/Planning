@@ -14,3 +14,5 @@ Done - Store profile type
 ** Update UI from viewDidLoad()
 ** Save objects fetched from the cloud locally. Check if they already exist before updating.
 ** Start interview recording from InterviewDetaiViewController. Save to doc dir
+** Move coredatastack context to appdelegate
+** Keep class level IndividualProfile variable in memory throughout the class.
