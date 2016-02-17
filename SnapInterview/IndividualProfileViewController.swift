@@ -21,91 +21,48 @@ class IndividualProfileViewController: UIViewController, UIImagePickerController
     var individualProfile: IndividualProfile!
     var photoURL: NSURL?
     var currentRecord: CKRecord!
-    
+    let userEmail = NSUserDefaults.standardUserDefaults().valueForKey("email") as? String
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadIndividualProfileData()
+        setupView()
     }
     
     private func setupView() {
         
-        if individualProfile != nil {
-            firstNameLabel.text = individualProfile.firstName
-            lastNameLabel.text = individualProfile.lastName
-        }
+        individualProfile = fetchIndividualProfile()
         
-//        let userEmail = NSUserDefaults.standardUserDefaults().valueForKey("email") as? String
-//        let predicate = NSPredicate(format: "email = %@", userEmail!)
-//        let query = CKQuery(recordType: "IndividualProfile", predicate: predicate)
-//        
-//        CKContainer.defaultContainer().publicCloudDatabase.performQuery(query, inZoneWithID: nil, completionHandler: { (records, error) -> Void in
-//            
-//            if let error = error {
-//                print(error)
-//            }
-//            else {
-//                if records!.count > 0 {
-//                    self.currentRecord = records![0]
-//                    
-//                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//                        self.firstNameLabel.text = self.currentRecord.objectForKey("firstName") as? String
-//                        self.lastNameLabel.text = self.currentRecord.objectForKey("lastName") as? String
-//                        
-//                        if let photo = self.currentRecord.objectForKey("profileImage") as? CKAsset {
-//                            let image = UIImage(contentsOfFile: photo.fileURL.path!)
-//                            self.imageView.image = image
-//                        }
-//                    })
-//                }
-//            }
-//        })
+        firstNameLabel.text = individualProfile.firstName
+        lastNameLabel.text = individualProfile.lastName
+        
+        
+        // If a profile picture exists, load it
+//        if let imageKey = individualProfile.profileImageKey {
+//            imageView.image = imageStore.imageForKey(imageKey)
+//        }
     }
     
     // Load from CoreData, return an IndividualProfile
-    private func loadIndividualProfileData() {
+    private func fetchIndividualProfile() -> IndividualProfile {
         
+        var individualProfile: IndividualProfile!
         let coreDataStack = CoreDataStack(modelName: "SnapInterviewEntities")
-        let userEmail = NSUserDefaults.standardUserDefaults().valueForKey("email") as? String
         let fetchRequest = NSFetchRequest(entityName: "IndividualProfile")
         fetchRequest.predicate = NSPredicate(format: "email = %@", userEmail!)
         
-        coreDataStack.privateQueueContext.performBlockAndWait() {
+        coreDataStack.mainQueueContext.performBlockAndWait() {
             do {
-                let records = try coreDataStack.privateQueueContext.executeFetchRequest(fetchRequest) as? [IndividualProfile]
+                let records = try coreDataStack.mainQueueContext.executeFetchRequest(fetchRequest) as? [IndividualProfile]
                 
-                self.individualProfile = records!.first
+                individualProfile = records![0]
             }
             catch let error {
                 print(error)
             }
         }
-        setupView()
-    }
-    
-    override func viewDidAppear(animated: Bool) {
         
-        // Check NSUserDefaults to see if the user is still logged in
-//        if !isLoggedIn() {
-//            self.performSegueWithIdentifier("showLogin", sender: self)
-//        }
-//        else {
-//            
-//            // If a new profile wasn't just created, load profile data
-//            if individualProfile == nil {
-//                email = NSUserDefaults.standardUserDefaults().valueForKey("email") as? String
-//                loadProfile(email)
-//            }
-//            
-//            firstNameLabel.text = individualProfile.firstName
-//            lastNameLabel.text = individualProfile.lastName
-//            
-//            // If a profile picture exists, load it
-//            if let imageKey = individualProfile.profileImageKey {
-//                imageView.image = imageStore.imageForKey(imageKey)
-//            }
-//        }
+        return individualProfile
     }
     
     @IBAction func logoutAction() {
@@ -134,12 +91,21 @@ class IndividualProfileViewController: UIViewController, UIImagePickerController
         presentViewController(imagePicker, animated: true, completion: nil)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    // Reload the InvidualProfile
+    @IBAction func unwindAfterIndividualProfileEdit(segue: UIStoryboardSegue) {
+//        if let editViewController = segue.sourceViewController as? EditIndividualProfileViewController {
+//            if editViewController.profileUpdated {
+//                setupView()
+//            }
+//        }
         
-        if segue.identifier == "showEdit" {
-            
-            let destinationVC = segue.destinationViewController as! IndividualProfileEditViewController
-            destinationVC.individualProfile = self.individualProfile
+        setupView()
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showEdit" {            
+            let destinationVC = segue.destinationViewController as! EditIndividualProfileViewController
+            destinationVC.individualProfile = fetchIndividualProfile()
         }
     }
     

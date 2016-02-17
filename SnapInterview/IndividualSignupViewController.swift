@@ -48,8 +48,8 @@ class IndividualSignupViewController: UIViewController {
         let lastName = lastNameTextField.text!
         let email = emailTextField.text!
         
-        coreDataStack.privateQueueContext.performBlockAndWait() {
-            individualProfile = NSEntityDescription.insertNewObjectForEntityForName("IndividualProfile", inManagedObjectContext: coreDataStack.privateQueueContext) as! IndividualProfile
+        coreDataStack.mainQueueContext.performBlockAndWait() {
+            individualProfile = NSEntityDescription.insertNewObjectForEntityForName("IndividualProfile", inManagedObjectContext: coreDataStack.mainQueueContext) as! IndividualProfile
             individualProfile.firstName = firstName
             individualProfile.lastName = lastName
             individualProfile.email = email
@@ -57,7 +57,7 @@ class IndividualSignupViewController: UIViewController {
         
         do {
             try coreDataStack.saveChanges()
-            //syncIndividualProfileToCloud()
+            syncIndividualProfileToCloud()
         }
         catch let error {
             print(error)
