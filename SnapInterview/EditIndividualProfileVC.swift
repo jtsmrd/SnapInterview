@@ -20,12 +20,18 @@ class EditIndividualProfileVC: UIViewController, UIImagePickerControllerDelegate
     var individualProfile: IndividualProfile!
     var photoURL: NSURL?
     var currentRecord: CKRecord!
+    var imageStore: ImageStore!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        imageStore = (UIApplication.sharedApplication().delegate as! AppDelegate).imageStore
+        
         firstNameTextField.text = individualProfile.firstName
         lastNameTextField.text = individualProfile.lastName
+        titleTextField.text = individualProfile.jobTitle
+        
+        loadProfileImage()
     }
     
     @IBAction func saveAction(sender: UIButton) {
@@ -48,6 +54,11 @@ class EditIndividualProfileVC: UIViewController, UIImagePickerControllerDelegate
         presentViewController(imagePicker, animated: true, completion: nil)
     }
     
+    private func loadProfileImage() {
+        
+        imageView.image = imageStore.imageForKey(individualProfile.profileImageKey!)
+    }
+    
     // Save profile data to CoreData
     private func saveIndividualProfile() {
         
@@ -63,11 +74,45 @@ class EditIndividualProfileVC: UIViewController, UIImagePickerControllerDelegate
         
         do {
             try coreDataStack.saveChanges()
-            //syncIndividualProfileToCloud()
+            syncIndividualProfileToCloud()
         }
         catch let error {
             print(error)
         }
+    }
+    
+    private func syncIndividualProfileToCloud() {
+        
+        var record: CKRecord!
+        let predicate = NSPredicate(format: "email = %@", individualProfile.email!)
+        let query = CKQuery(recordType: "IndividualProfile", predicate: predicate)
+        
+        CKContainer.defaultContainer().publicCloudDatabase.performQuery(query, inZoneWithID: nil, completionHandler: { (records, error) -> Void in
+            
+            if let error = error {
+                print(error)
+            }
+            else {
+                if records!.count > 0 {
+                    record = records![0]
+                    
+                    record.setValue(self.firstNameTextField.text, forKey: "firstName")
+                    record.setValue(self.lastNameTextField.text, forKey: "lastName")
+                    record.setValue(self.titleTextField.text, forKey: "jobTitle")
+                    
+                    if let imageID = self.individualProfile.profileImageKey {
+                        let imageAsset = CKAsset(fileURL: self.imageStore.imageURLForKey(imageID))
+                        record.setValue(imageAsset, forKey: "profileImage")
+                    }
+                    
+                    CKContainer.defaultContainer().publicCloudDatabase.saveRecord(record, completionHandler: { (record, error) -> Void in
+                        if let error = error {
+                            print(error)
+                        }
+                    })
+                }
+            }
+        })
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
@@ -76,40 +121,11 @@ class EditIndividualProfileVC: UIViewController, UIImagePickerControllerDelegate
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         imageView.image = image
         
-        photoURL = saveImageToFile(image)
-        saveImageToCloud(photoURL!)
+        let imageKey = NSUUID().UUIDString
+        individualProfile.profileImageKey = imageKey
+        imageStore.setImage(image, forKey: imageKey)
         
-        //let imageKey = NSUUID().UUIDString
-        //self.individualProfile.profileImageKey = imageKey
-        
-        //imageStore.setImage(image, forKey: imageKey)
         dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    func saveImageToCloud(photoURL: NSURL) {
-        
-        let imageAsset = CKAsset(fileURL: photoURL)
-        currentRecord.setValue(imageAsset, forKey: "profileImage")
-        
-        let publicDatabase = CKContainer.defaultContainer().publicCloudDatabase
-        publicDatabase.saveRecord(currentRecord, completionHandler: { (record, error) -> Void in
-            if let error = error {
-                print(error)
-            }
-            else {
-                print("Done")
-            }
-        })
-    }
-    
-    func saveImageToFile(image: UIImage) -> NSURL {
-        
-        let fileManager = NSFileManager.defaultManager()
-        let directoryPaths = fileManager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
-        let filePath = directoryPaths[0].URLByAppendingPathComponent("currentImage.jpg").path
-        UIImageJPEGRepresentation(image, 0.5)!.writeToFile(filePath!, atomically: true)
-        print(filePath!)
-        return NSURL.fileURLWithPath(filePath!)
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {

@@ -5,7 +5,7 @@
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="jobTitle" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="profileImageID" attributeType="String" syncable="YES"/>
+        <attribute name="profileImageKey" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
         <element name="IndividualProfile" positionX="-63" positionY="-18" width="128" height="120"/>

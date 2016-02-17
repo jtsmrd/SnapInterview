@@ -24,6 +24,7 @@ class IndividualProfileVC: UIViewController, UIImagePickerControllerDelegate, UI
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        imageStore = (UIApplication.sharedApplication().delegate as! AppDelegate).imageStore
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -38,12 +39,12 @@ class IndividualProfileVC: UIViewController, UIImagePickerControllerDelegate, UI
         
         firstNameLabel.text = individualProfile.firstName
         lastNameLabel.text = individualProfile.lastName
-        
+        titleLabel.text = individualProfile.jobTitle
         
         // If a profile picture exists, load it
-//        if let imageKey = individualProfile.profileImageKey {
-//            imageView.image = imageStore.imageForKey(imageKey)
-//        }
+        if let imageKey = individualProfile.profileImageKey {
+            imageView.image = imageStore.imageForKey(imageKey)
+        }
     }
     
     // Load from CoreData, return an IndividualProfile

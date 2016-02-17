@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		F60109D41C739736007F8957 /* SnapInterviewEntities.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F60109D21C739736007F8957 /* SnapInterviewEntities.xcdatamodeld */; };
-		F60109D71C7397BD007F8957 /* IndividualProfile+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60109D51C7397BD007F8957 /* IndividualProfile+CoreDataProperties.swift */; };
 		F60109D81C7397BD007F8957 /* IndividualProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60109D61C7397BD007F8957 /* IndividualProfile.swift */; };
 		F60109DA1C73E408007F8957 /* EditIndividualProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60109D91C73E408007F8957 /* EditIndividualProfileVC.swift */; };
 		F62ED8DF1C5AD328000FB4FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62ED8DE1C5AD328000FB4FA /* AppDelegate.swift */; };
@@ -17,6 +16,7 @@
 		F62ED8EB1C5AD328000FB4FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F62ED8E91C5AD328000FB4FA /* LaunchScreen.storyboard */; };
 		F655C1001C6EBB6D00053029 /* BusinessSignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F655C0FF1C6EBB6D00053029 /* BusinessSignupVC.swift */; };
 		F655C1031C6EC42200053029 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F655C1021C6EC42200053029 /* CloudKit.framework */; };
+		F65AC7C61C74F9F8000A94BF /* IndividualProfile+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65AC7C51C74F9F8000A94BF /* IndividualProfile+CoreDataProperties.swift */; };
 		F67104381C729F36002C66BF /* IndividualProfileStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F67104371C729F36002C66BF /* IndividualProfileStoryboard.storyboard */; };
 		F671043C1C72A443002C66BF /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F671043B1C72A443002C66BF /* Login.storyboard */; };
 		F671043E1C72A6CB002C66BF /* BusinessProfileStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F671043D1C72A6CB002C66BF /* BusinessProfileStoryboard.storyboard */; };
@@ -36,7 +36,6 @@
 
 /* Begin PBXFileReference section */
 		F60109D31C739736007F8957 /* SnapInterviewEntities.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SnapInterviewEntities.xcdatamodel; sourceTree = "<group>"; };
-		F60109D51C7397BD007F8957 /* IndividualProfile+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IndividualProfile+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F60109D61C7397BD007F8957 /* IndividualProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndividualProfile.swift; sourceTree = "<group>"; };
 		F60109D91C73E408007F8957 /* EditIndividualProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditIndividualProfileVC.swift; sourceTree = "<group>"; };
 		F62ED8DB1C5AD328000FB4FA /* SnapInterview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SnapInterview.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -48,6 +47,7 @@
 		F655C0FF1C6EBB6D00053029 /* BusinessSignupVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessSignupVC.swift; sourceTree = "<group>"; };
 		F655C1011C6EC41500053029 /* SnapInterview.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SnapInterview.entitlements; sourceTree = "<group>"; };
 		F655C1021C6EC42200053029 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		F65AC7C51C74F9F8000A94BF /* IndividualProfile+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IndividualProfile+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F67104371C729F36002C66BF /* IndividualProfileStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = IndividualProfileStoryboard.storyboard; sourceTree = "<group>"; };
 		F671043B1C72A443002C66BF /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		F671043D1C72A6CB002C66BF /* BusinessProfileStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BusinessProfileStoryboard.storyboard; sourceTree = "<group>"; };
@@ -179,8 +179,8 @@
 			children = (
 				F6EAF4AC1C6A62E60056135C /* Interview.swift */,
 				F6EAF4AE1C6A66F40056135C /* InterviewStore.swift */,
-				F60109D51C7397BD007F8957 /* IndividualProfile+CoreDataProperties.swift */,
 				F60109D61C7397BD007F8957 /* IndividualProfile.swift */,
+				F65AC7C51C74F9F8000A94BF /* IndividualProfile+CoreDataProperties.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -378,9 +378,9 @@
 				F69800131C61761F00008CA9 /* KeychainWrapper.m in Sources */,
 				F698000D1C60447500008CA9 /* LoginVC.swift in Sources */,
 				F6EAF4AD1C6A62E60056135C /* Interview.swift in Sources */,
-				F60109D71C7397BD007F8957 /* IndividualProfile+CoreDataProperties.swift in Sources */,
 				F60109DA1C73E408007F8957 /* EditIndividualProfileVC.swift in Sources */,
 				F62ED8E11C5AD328000FB4FA /* IndividualProfileVC.swift in Sources */,
+				F65AC7C61C74F9F8000A94BF /* IndividualProfile+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

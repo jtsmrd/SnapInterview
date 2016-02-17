@@ -19,6 +19,6 @@ class IndividualProfile: NSManagedObject {
         lastName = ""
         email = ""
         jobTitle = ""
-        profileImageID = ""
+        profileImageKey = ""
     }
 }
