@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BusinessSignupViewController: UIViewController {
+class BusinessSignupVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

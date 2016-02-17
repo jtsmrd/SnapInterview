@@ -8,7 +8,7 @@
         <!--Profile-->
         <scene sceneID="Bjz-he-tKW">
             <objects>
-                <viewController id="YRi-T8-Q8b" customClass="IndividualProfileViewController" customModule="SnapInterview" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="YRi-T8-Q8b" customClass="IndividualProfileVC" customModule="SnapInterview" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rCS-hC-IgP"/>
                         <viewControllerLayoutGuide type="bottom" id="lM7-nF-Uzn"/>
@@ -70,10 +70,10 @@
             </objects>
             <point key="canvasLocation" x="475.5" y="537.5"/>
         </scene>
-        <!--Edit Individual Profile View Controller-->
+        <!--Edit Individual ProfileVC-->
         <scene sceneID="oQO-gg-CPN">
             <objects>
-                <viewController id="74M-jI-Lgc" customClass="EditIndividualProfileViewController" customModule="SnapInterview" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="74M-jI-Lgc" customClass="EditIndividualProfileVC" customModule="SnapInterview" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="LVa-JL-oKm"/>
                         <viewControllerLayoutGuide type="bottom" id="wG5-xj-cvi"/>
@@ -147,7 +147,7 @@
         <!--Search-->
         <scene sceneID="0gt-Hx-6dl">
             <objects>
-                <viewController id="CxL-Sb-0FD" customClass="VideosViewController" customModule="SnapInterview" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="CxL-Sb-0FD" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xAR-TA-hBW"/>
                         <viewControllerLayoutGuide type="bottom" id="5dS-Up-8BY"/>
@@ -211,7 +211,7 @@
         <!--Interviews-->
         <scene sceneID="EI4-bS-o9q">
             <objects>
-                <tableViewController id="tYK-Nm-Zkx" customClass="InterviewTableViewController" customModule="SnapInterview" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="tYK-Nm-Zkx" customClass="IndividualInterviewTVC" customModule="SnapInterview" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="2Uc-xb-S9G">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -252,10 +252,10 @@
             </objects>
             <point key="canvasLocation" x="954.5" y="1290.5"/>
         </scene>
-        <!--Interview Detail View Controller-->
+        <!--Individual Interview DetailVC-->
         <scene sceneID="gYA-Go-t56">
             <objects>
-                <viewController id="zTA-GT-AWT" customClass="InterviewDetailViewController" customModule="SnapInterview" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="zTA-GT-AWT" customClass="IndividualInterviewDetailVC" customModule="SnapInterview" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="WUd-8M-sWG"/>
                         <viewControllerLayoutGuide type="bottom" id="mMn-IB-1K6"/>

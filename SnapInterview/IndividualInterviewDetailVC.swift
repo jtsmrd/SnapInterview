@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 import AVKit
 
-class InterviewDetailViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class IndividualInterviewDetailVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var interviewTitleLabel: UILabel!
     @IBOutlet weak var interviewDescriptionLabel: UILabel!

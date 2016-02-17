@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 import CloudKit
 
-class IndividualSignupViewController: UIViewController {
+class IndividualSignupVC: UIViewController {
     
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!

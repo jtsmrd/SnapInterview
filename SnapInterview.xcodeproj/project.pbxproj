@@ -10,52 +10,50 @@
 		F60109D41C739736007F8957 /* SnapInterviewEntities.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F60109D21C739736007F8957 /* SnapInterviewEntities.xcdatamodeld */; };
 		F60109D71C7397BD007F8957 /* IndividualProfile+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60109D51C7397BD007F8957 /* IndividualProfile+CoreDataProperties.swift */; };
 		F60109D81C7397BD007F8957 /* IndividualProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60109D61C7397BD007F8957 /* IndividualProfile.swift */; };
-		F60109DA1C73E408007F8957 /* EditIndividualProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60109D91C73E408007F8957 /* EditIndividualProfileViewController.swift */; };
+		F60109DA1C73E408007F8957 /* EditIndividualProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60109D91C73E408007F8957 /* EditIndividualProfileVC.swift */; };
 		F62ED8DF1C5AD328000FB4FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62ED8DE1C5AD328000FB4FA /* AppDelegate.swift */; };
-		F62ED8E11C5AD328000FB4FA /* IndividualProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62ED8E01C5AD328000FB4FA /* IndividualProfileViewController.swift */; };
+		F62ED8E11C5AD328000FB4FA /* IndividualProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62ED8E01C5AD328000FB4FA /* IndividualProfileVC.swift */; };
 		F62ED8E81C5AD328000FB4FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F62ED8E71C5AD328000FB4FA /* Assets.xcassets */; };
 		F62ED8EB1C5AD328000FB4FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F62ED8E91C5AD328000FB4FA /* LaunchScreen.storyboard */; };
-		F62ED8F31C5AE439000FB4FA /* VideosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62ED8F21C5AE439000FB4FA /* VideosViewController.swift */; };
-		F655C1001C6EBB6D00053029 /* BusinessSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F655C0FF1C6EBB6D00053029 /* BusinessSignupViewController.swift */; };
+		F655C1001C6EBB6D00053029 /* BusinessSignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F655C0FF1C6EBB6D00053029 /* BusinessSignupVC.swift */; };
 		F655C1031C6EC42200053029 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F655C1021C6EC42200053029 /* CloudKit.framework */; };
 		F67104381C729F36002C66BF /* IndividualProfileStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F67104371C729F36002C66BF /* IndividualProfileStoryboard.storyboard */; };
-		F671043C1C72A443002C66BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F671043B1C72A443002C66BF /* Main.storyboard */; };
+		F671043C1C72A443002C66BF /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F671043B1C72A443002C66BF /* Login.storyboard */; };
 		F671043E1C72A6CB002C66BF /* BusinessProfileStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F671043D1C72A6CB002C66BF /* BusinessProfileStoryboard.storyboard */; };
 		F696D5451C6C09B400E25E5A /* BusinessProfileRequirements in Resources */ = {isa = PBXBuildFile; fileRef = F696D5441C6C09B400E25E5A /* BusinessProfileRequirements */; };
-		F698000D1C60447500008CA9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F698000C1C60447500008CA9 /* LoginViewController.swift */; };
-		F698000F1C6156C200008CA9 /* IndividualSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F698000E1C6156C200008CA9 /* IndividualSignupViewController.swift */; };
+		F698000D1C60447500008CA9 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F698000C1C60447500008CA9 /* LoginVC.swift */; };
+		F698000F1C6156C200008CA9 /* IndividualSignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F698000E1C6156C200008CA9 /* IndividualSignupVC.swift */; };
 		F69800131C61761F00008CA9 /* KeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = F69800121C61761F00008CA9 /* KeychainWrapper.m */; };
 		F69800241C62846400008CA9 /* ImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69800231C62846400008CA9 /* ImageStore.swift */; };
 		F69800261C62955B00008CA9 /* Planning in Resources */ = {isa = PBXBuildFile; fileRef = F69800251C62955B00008CA9 /* Planning */; };
 		F698002A1C629AFC00008CA9 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69800291C629AFC00008CA9 /* CoreDataStack.swift */; };
 		F6BAF80F1C6ADACF0057A649 /* VideoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6BAF80E1C6ADACF0057A649 /* VideoStore.swift */; };
-		F6EAF4AB1C6A629C0056135C /* InterviewTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EAF4AA1C6A629C0056135C /* InterviewTableViewController.swift */; };
+		F6EAF4AB1C6A629C0056135C /* IndividualInterviewTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EAF4AA1C6A629C0056135C /* IndividualInterviewTVC.swift */; };
 		F6EAF4AD1C6A62E60056135C /* Interview.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EAF4AC1C6A62E60056135C /* Interview.swift */; };
 		F6EAF4AF1C6A66F40056135C /* InterviewStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EAF4AE1C6A66F40056135C /* InterviewStore.swift */; };
-		F6EAF4B11C6A7E6A0056135C /* InterviewDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EAF4B01C6A7E6A0056135C /* InterviewDetailViewController.swift */; };
+		F6EAF4B11C6A7E6A0056135C /* IndividualInterviewDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6EAF4B01C6A7E6A0056135C /* IndividualInterviewDetailVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		F60109D31C739736007F8957 /* SnapInterviewEntities.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SnapInterviewEntities.xcdatamodel; sourceTree = "<group>"; };
 		F60109D51C7397BD007F8957 /* IndividualProfile+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IndividualProfile+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F60109D61C7397BD007F8957 /* IndividualProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndividualProfile.swift; sourceTree = "<group>"; };
-		F60109D91C73E408007F8957 /* EditIndividualProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditIndividualProfileViewController.swift; sourceTree = "<group>"; };
+		F60109D91C73E408007F8957 /* EditIndividualProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditIndividualProfileVC.swift; sourceTree = "<group>"; };
 		F62ED8DB1C5AD328000FB4FA /* SnapInterview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SnapInterview.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F62ED8DE1C5AD328000FB4FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F62ED8E01C5AD328000FB4FA /* IndividualProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualProfileViewController.swift; sourceTree = "<group>"; };
+		F62ED8E01C5AD328000FB4FA /* IndividualProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualProfileVC.swift; sourceTree = "<group>"; };
 		F62ED8E71C5AD328000FB4FA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F62ED8EA1C5AD328000FB4FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F62ED8EC1C5AD328000FB4FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F62ED8F21C5AE439000FB4FA /* VideosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideosViewController.swift; sourceTree = "<group>"; };
-		F655C0FF1C6EBB6D00053029 /* BusinessSignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessSignupViewController.swift; sourceTree = "<group>"; };
+		F655C0FF1C6EBB6D00053029 /* BusinessSignupVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessSignupVC.swift; sourceTree = "<group>"; };
 		F655C1011C6EC41500053029 /* SnapInterview.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SnapInterview.entitlements; sourceTree = "<group>"; };
 		F655C1021C6EC42200053029 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		F67104371C729F36002C66BF /* IndividualProfileStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = IndividualProfileStoryboard.storyboard; sourceTree = "<group>"; };
-		F671043B1C72A443002C66BF /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		F671043B1C72A443002C66BF /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		F671043D1C72A6CB002C66BF /* BusinessProfileStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BusinessProfileStoryboard.storyboard; sourceTree = "<group>"; };
 		F696D5441C6C09B400E25E5A /* BusinessProfileRequirements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BusinessProfileRequirements; sourceTree = "<group>"; };
-		F698000C1C60447500008CA9 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		F698000E1C6156C200008CA9 /* IndividualSignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndividualSignupViewController.swift; sourceTree = "<group>"; };
+		F698000C1C60447500008CA9 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		F698000E1C6156C200008CA9 /* IndividualSignupVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndividualSignupVC.swift; sourceTree = "<group>"; };
 		F69800101C61761E00008CA9 /* SnapInterview-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SnapInterview-Bridging-Header.h"; sourceTree = "<group>"; };
 		F69800111C61761F00008CA9 /* KeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainWrapper.h; sourceTree = "<group>"; };
 		F69800121C61761F00008CA9 /* KeychainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainWrapper.m; sourceTree = "<group>"; };
@@ -63,10 +61,10 @@
 		F69800251C62955B00008CA9 /* Planning */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Planning; sourceTree = "<group>"; };
 		F69800291C629AFC00008CA9 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		F6BAF80E1C6ADACF0057A649 /* VideoStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoStore.swift; sourceTree = "<group>"; };
-		F6EAF4AA1C6A629C0056135C /* InterviewTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterviewTableViewController.swift; sourceTree = "<group>"; };
+		F6EAF4AA1C6A629C0056135C /* IndividualInterviewTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndividualInterviewTVC.swift; sourceTree = "<group>"; };
 		F6EAF4AC1C6A62E60056135C /* Interview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interview.swift; sourceTree = "<group>"; };
 		F6EAF4AE1C6A66F40056135C /* InterviewStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterviewStore.swift; sourceTree = "<group>"; };
-		F6EAF4B01C6A7E6A0056135C /* InterviewDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterviewDetailViewController.swift; sourceTree = "<group>"; };
+		F6EAF4B01C6A7E6A0056135C /* IndividualInterviewDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndividualInterviewDetailVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,13 +99,7 @@
 		F62ED8DD1C5AD328000FB4FA /* SnapInterview */ = {
 			isa = PBXGroup;
 			children = (
-				F655C1011C6EC41500053029 /* SnapInterview.entitlements */,
-				F62ED8DE1C5AD328000FB4FA /* AppDelegate.swift */,
-				F69800231C62846400008CA9 /* ImageStore.swift */,
-				F6BAF80E1C6ADACF0057A649 /* VideoStore.swift */,
-				F69800221C627DB500008CA9 /* Controllers */,
-				F69800211C627D9500008CA9 /* Views */,
-				F69800201C627D6E00008CA9 /* Models */,
+				F65AC7B11C74D0C6000A94BF /* Modules */,
 				F698001F1C627CD700008CA9 /* Supporting Files */,
 				F69800251C62955B00008CA9 /* Planning */,
 				F696D5441C6C09B400E25E5A /* BusinessProfileRequirements */,
@@ -115,55 +107,180 @@
 			path = SnapInterview;
 			sourceTree = "<group>";
 		};
-		F698001F1C627CD700008CA9 /* Supporting Files */ = {
+		F65AC7B11C74D0C6000A94BF /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				F69800291C629AFC00008CA9 /* CoreDataStack.swift */,
-				F69800101C61761E00008CA9 /* SnapInterview-Bridging-Header.h */,
-				F69800121C61761F00008CA9 /* KeychainWrapper.m */,
-				F69800111C61761F00008CA9 /* KeychainWrapper.h */,
-				F62ED8EC1C5AD328000FB4FA /* Info.plist */,
-				F62ED8E71C5AD328000FB4FA /* Assets.xcassets */,
+				F65AC7BA1C74D348000A94BF /* BusinessProfile */,
+				F65AC7B61C74D2EE000A94BF /* IndividualProfile */,
+				F65AC7BE1C74D42D000A94BF /* LaunchScreen */,
+				F65AC7B21C74D0E8000A94BF /* Login */,
 			);
-			name = "Supporting Files";
+			name = Modules;
 			sourceTree = "<group>";
 		};
-		F69800201C627D6E00008CA9 /* Models */ = {
+		F65AC7B21C74D0E8000A94BF /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				F65AC7B31C74D259000A94BF /* Controllers */,
+				F65AC7B41C74D26B000A94BF /* Models */,
+				F65AC7B51C74D276000A94BF /* Views */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		F65AC7B31C74D259000A94BF /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F655C0FF1C6EBB6D00053029 /* BusinessSignupVC.swift */,
+				F698000E1C6156C200008CA9 /* IndividualSignupVC.swift */,
+				F698000C1C60447500008CA9 /* LoginVC.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		F65AC7B41C74D26B000A94BF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		F65AC7B51C74D276000A94BF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F671043B1C72A443002C66BF /* Login.storyboard */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		F65AC7B61C74D2EE000A94BF /* IndividualProfile */ = {
+			isa = PBXGroup;
+			children = (
+				F65AC7B71C74D2FD000A94BF /* Controllers */,
+				F65AC7B81C74D30B000A94BF /* Models */,
+				F65AC7B91C74D318000A94BF /* Views */,
+			);
+			name = IndividualProfile;
+			sourceTree = "<group>";
+		};
+		F65AC7B71C74D2FD000A94BF /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F62ED8E01C5AD328000FB4FA /* IndividualProfileVC.swift */,
+				F6EAF4AA1C6A629C0056135C /* IndividualInterviewTVC.swift */,
+				F6EAF4B01C6A7E6A0056135C /* IndividualInterviewDetailVC.swift */,
+				F60109D91C73E408007F8957 /* EditIndividualProfileVC.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		F65AC7B81C74D30B000A94BF /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				F6EAF4AC1C6A62E60056135C /* Interview.swift */,
 				F6EAF4AE1C6A66F40056135C /* InterviewStore.swift */,
-				F60109D21C739736007F8957 /* SnapInterviewEntities.xcdatamodeld */,
 				F60109D51C7397BD007F8957 /* IndividualProfile+CoreDataProperties.swift */,
 				F60109D61C7397BD007F8957 /* IndividualProfile.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
 		};
-		F69800211C627D9500008CA9 /* Views */ = {
+		F65AC7B91C74D318000A94BF /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F671043B1C72A443002C66BF /* Main.storyboard */,
-				F62ED8E91C5AD328000FB4FA /* LaunchScreen.storyboard */,
 				F67104371C729F36002C66BF /* IndividualProfileStoryboard.storyboard */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		F65AC7BA1C74D348000A94BF /* BusinessProfile */ = {
+			isa = PBXGroup;
+			children = (
+				F65AC7BD1C74D366000A94BF /* Controllers */,
+				F65AC7BB1C74D358000A94BF /* Models */,
+				F65AC7BC1C74D360000A94BF /* Views */,
+			);
+			name = BusinessProfile;
+			sourceTree = "<group>";
+		};
+		F65AC7BB1C74D358000A94BF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		F65AC7BC1C74D360000A94BF /* Views */ = {
+			isa = PBXGroup;
+			children = (
 				F671043D1C72A6CB002C66BF /* BusinessProfileStoryboard.storyboard */,
 			);
 			name = Views;
 			sourceTree = "<group>";
 		};
-		F69800221C627DB500008CA9 /* Controllers */ = {
+		F65AC7BD1C74D366000A94BF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				F698000C1C60447500008CA9 /* LoginViewController.swift */,
-				F62ED8E01C5AD328000FB4FA /* IndividualProfileViewController.swift */,
-				F698000E1C6156C200008CA9 /* IndividualSignupViewController.swift */,
-				F62ED8F21C5AE439000FB4FA /* VideosViewController.swift */,
-				F6EAF4AA1C6A629C0056135C /* InterviewTableViewController.swift */,
-				F6EAF4B01C6A7E6A0056135C /* InterviewDetailViewController.swift */,
-				F655C0FF1C6EBB6D00053029 /* BusinessSignupViewController.swift */,
-				F60109D91C73E408007F8957 /* EditIndividualProfileViewController.swift */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		F65AC7BE1C74D42D000A94BF /* LaunchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				F65AC7C11C74D448000A94BF /* Controllers */,
+				F65AC7BF1C74D439000A94BF /* Models */,
+				F65AC7C01C74D441000A94BF /* Views */,
+			);
+			name = LaunchScreen;
+			sourceTree = "<group>";
+		};
+		F65AC7BF1C74D439000A94BF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		F65AC7C01C74D441000A94BF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F62ED8E91C5AD328000FB4FA /* LaunchScreen.storyboard */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		F65AC7C11C74D448000A94BF /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		F65AC7C21C74D55D000A94BF /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				F69800291C629AFC00008CA9 /* CoreDataStack.swift */,
+				F69800231C62846400008CA9 /* ImageStore.swift */,
+				F60109D21C739736007F8957 /* SnapInterviewEntities.xcdatamodeld */,
+				F6BAF80E1C6ADACF0057A649 /* VideoStore.swift */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		F698001F1C627CD700008CA9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F62ED8DE1C5AD328000FB4FA /* AppDelegate.swift */,
+				F62ED8E71C5AD328000FB4FA /* Assets.xcassets */,
+				F65AC7C21C74D55D000A94BF /* Data */,
+				F62ED8EC1C5AD328000FB4FA /* Info.plist */,
+				F69800111C61761F00008CA9 /* KeychainWrapper.h */,
+				F69800121C61761F00008CA9 /* KeychainWrapper.m */,
+				F69800101C61761E00008CA9 /* SnapInterview-Bridging-Header.h */,
+				F655C1011C6EC41500053029 /* SnapInterview.entitlements */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,7 +351,7 @@
 				F696D5451C6C09B400E25E5A /* BusinessProfileRequirements in Resources */,
 				F671043E1C72A6CB002C66BF /* BusinessProfileStoryboard.storyboard in Resources */,
 				F67104381C729F36002C66BF /* IndividualProfileStoryboard.storyboard in Resources */,
-				F671043C1C72A443002C66BF /* Main.storyboard in Resources */,
+				F671043C1C72A443002C66BF /* Login.storyboard in Resources */,
 				F62ED8E81C5AD328000FB4FA /* Assets.xcassets in Resources */,
 				F69800261C62955B00008CA9 /* Planning in Resources */,
 			);
@@ -248,23 +365,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				F6BAF80F1C6ADACF0057A649 /* VideoStore.swift in Sources */,
-				F6EAF4AB1C6A629C0056135C /* InterviewTableViewController.swift in Sources */,
+				F6EAF4AB1C6A629C0056135C /* IndividualInterviewTVC.swift in Sources */,
 				F60109D41C739736007F8957 /* SnapInterviewEntities.xcdatamodeld in Sources */,
-				F655C1001C6EBB6D00053029 /* BusinessSignupViewController.swift in Sources */,
+				F655C1001C6EBB6D00053029 /* BusinessSignupVC.swift in Sources */,
 				F69800241C62846400008CA9 /* ImageStore.swift in Sources */,
-				F698000F1C6156C200008CA9 /* IndividualSignupViewController.swift in Sources */,
-				F6EAF4B11C6A7E6A0056135C /* InterviewDetailViewController.swift in Sources */,
+				F698000F1C6156C200008CA9 /* IndividualSignupVC.swift in Sources */,
+				F6EAF4B11C6A7E6A0056135C /* IndividualInterviewDetailVC.swift in Sources */,
 				F698002A1C629AFC00008CA9 /* CoreDataStack.swift in Sources */,
 				F62ED8DF1C5AD328000FB4FA /* AppDelegate.swift in Sources */,
-				F62ED8F31C5AE439000FB4FA /* VideosViewController.swift in Sources */,
 				F6EAF4AF1C6A66F40056135C /* InterviewStore.swift in Sources */,
 				F60109D81C7397BD007F8957 /* IndividualProfile.swift in Sources */,
 				F69800131C61761F00008CA9 /* KeychainWrapper.m in Sources */,
-				F698000D1C60447500008CA9 /* LoginViewController.swift in Sources */,
+				F698000D1C60447500008CA9 /* LoginVC.swift in Sources */,
 				F6EAF4AD1C6A62E60056135C /* Interview.swift in Sources */,
 				F60109D71C7397BD007F8957 /* IndividualProfile+CoreDataProperties.swift in Sources */,
-				F60109DA1C73E408007F8957 /* EditIndividualProfileViewController.swift in Sources */,
-				F62ED8E11C5AD328000FB4FA /* IndividualProfileViewController.swift in Sources */,
+				F60109DA1C73E408007F8957 /* EditIndividualProfileVC.swift in Sources */,
+				F62ED8E11C5AD328000FB4FA /* IndividualProfileVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

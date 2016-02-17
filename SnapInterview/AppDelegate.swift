@@ -17,19 +17,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-        // Create an ImageStore
+//        // Create an ImageStore
 //        let imageStore = ImageStore()
 //        
 //        // Create an InterviewStore
 //        let interviewStore = InterviewStore()
 //        
 //        let tabBarController = window!.rootViewController as! UITabBarController
-//        let profileController = tabBarController.viewControllers!.first as! ProfileViewController
+//        let profileController = tabBarController.viewControllers!.first as! IndividualProfileVC
 //        profileController.imageStore = imageStore
 //        
 //        let interviewNavigationController = tabBarController.viewControllers?[1] as! UINavigationController
 //        
-//        let interviewTableViewController = interviewNavigationController.topViewController as! InterviewTableViewController
+//        let interviewTableViewController = interviewNavigationController.topViewController as! IndividualInterviewTVC
 //        
 //        interviewTableViewController.interviewStore = interviewStore
         

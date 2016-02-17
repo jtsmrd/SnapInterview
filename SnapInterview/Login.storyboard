@@ -9,7 +9,7 @@
         <!--Login-->
         <scene sceneID="gfD-MY-hfE">
             <objects>
-                <viewController id="EjH-md-Ooz" customClass="LoginViewController" customModule="SnapInterview" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="EjH-md-Ooz" customClass="LoginVC" customModule="SnapInterview" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cbP-ts-GVI"/>
                         <viewControllerLayoutGuide type="bottom" id="6sj-53-e0W"/>
@@ -118,7 +118,7 @@
         <!--Sign Up-->
         <scene sceneID="fiA-me-CCa">
             <objects>
-                <viewController id="tUS-FP-gW6" customClass="BusinessSignupViewController" customModule="SnapInterview" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="tUS-FP-gW6" customClass="BusinessSignupVC" customModule="SnapInterview" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="VMS-Tu-DzI"/>
                         <viewControllerLayoutGuide type="bottom" id="SSY-m5-Pmn"/>
@@ -173,7 +173,7 @@
         <!--Sign Up-->
         <scene sceneID="4jp-dj-i9y">
             <objects>
-                <viewController id="gwG-Ob-UeL" customClass="IndividualSignupViewController" customModule="SnapInterview" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="gwG-Ob-UeL" customClass="IndividualSignupVC" customModule="SnapInterview" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Jyr-TT-ace"/>
                         <viewControllerLayoutGuide type="bottom" id="cCS-GX-mVM"/>

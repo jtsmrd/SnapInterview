@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 import CloudKit
 
-class IndividualProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class IndividualProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var firstNameLabel: UILabel!
@@ -85,7 +85,7 @@ class IndividualProfileViewController: UIViewController, UIImagePickerController
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showEdit" {            
-            let destinationVC = segue.destinationViewController as! EditIndividualProfileViewController
+            let destinationVC = segue.destinationViewController as! EditIndividualProfileVC
             destinationVC.individualProfile = fetchIndividualProfile()
         }
     }

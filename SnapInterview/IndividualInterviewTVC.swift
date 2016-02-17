@@ -8,7 +8,7 @@
 
 import UIKit
 
-class InterviewTableViewController: UITableViewController {
+class IndividualInterviewTVC: UITableViewController {
 
     var interviewStore: InterviewStore!
     
@@ -100,7 +100,7 @@ class InterviewTableViewController: UITableViewController {
         if segue.identifier == "showInterviewDetail" {
             if let rowIndex = tableView.indexPathForSelectedRow?.row {
                 let interview = interviewStore.allInterviews[rowIndex]
-                let interviewDetailViewController = segue.destinationViewController as! InterviewDetailViewController
+                let interviewDetailViewController = segue.destinationViewController as! IndividualInterviewDetailVC
                 interviewDetailViewController.interview = interview
             }
         }
