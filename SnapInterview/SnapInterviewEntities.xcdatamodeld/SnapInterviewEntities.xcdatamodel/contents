@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15D21" minimumToolsVersion="Xcode 7.0">
+    <entity name="BusinessProfile" representedClassName=".BusinessProfile" syncable="YES">
+        <attribute name="businessName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="profileImageKey" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="IndividualProfile" representedClassName=".IndividualProfile" syncable="YES">
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
@@ -9,5 +16,6 @@
     </entity>
     <elements>
         <element name="IndividualProfile" positionX="-63" positionY="-18" width="128" height="120"/>
+        <element name="BusinessProfile" positionX="-63" positionY="18" width="128" height="120"/>
     </elements>
 </model>

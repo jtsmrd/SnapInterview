@@ -1,8 +1,8 @@
 //
-//  ProfileViewController.swift
+//  BusinessProfileVC.swift
 //  SnapInterview
 //
-//  Created by JT Smrdel on 1/28/16.
+//  Created by JT Smrdel on 2/18/16.
 //  Copyright © 2016 SmrdelJT. All rights reserved.
 //
 
@@ -10,15 +10,15 @@ import UIKit
 import CoreData
 import CloudKit
 
-class IndividualProfileVC: UIViewController {
-    
+class BusinessProfileVC: UIViewController {
+
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var businessNameLabel: UILabel!
     @IBOutlet weak var firstNameLabel: UILabel!
-    @IBOutlet weak var lastNameLabel: UILabel!    
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var lastNameLabel: UILabel!
     
     var imageStore: ImageStore!
-    var individualProfile: IndividualProfile!
+    var businessProfile: BusinessProfile!
     let userEmail = NSUserDefaults.standardUserDefaults().valueForKey("email") as? String
     
     override func viewDidLoad() {
@@ -35,41 +35,41 @@ class IndividualProfileVC: UIViewController {
     
     private func setupView() {
         
-        individualProfile = fetchIndividualProfile()
+        businessProfile = fetchBusinessProfile()
         
-        firstNameLabel.text = individualProfile.firstName
-        lastNameLabel.text = individualProfile.lastName
-        titleLabel.text = individualProfile.jobTitle
+        firstNameLabel.text = businessProfile.firstName
+        lastNameLabel.text = businessProfile.lastName
+        businessNameLabel.text = businessProfile.businessName
         
         // If a profile picture exists, load it
-        if let imageKey = individualProfile.profileImageKey {
+        if let imageKey = businessProfile.profileImageKey {
             imageView.image = imageStore.imageForKey(imageKey)
         }
     }
     
     // Load from CoreData, return an IndividualProfile
-    private func fetchIndividualProfile() -> IndividualProfile {
+    private func fetchBusinessProfile() -> BusinessProfile {
         
-        var individualProfile: IndividualProfile!
+        var businessProfile: BusinessProfile!
         let coreDataStack = (UIApplication.sharedApplication().delegate as! AppDelegate).coreDataStack
-        let fetchRequest = NSFetchRequest(entityName: "IndividualProfile")
+        let fetchRequest = NSFetchRequest(entityName: "BusinessProfile")
         fetchRequest.predicate = NSPredicate(format: "email = %@", userEmail!)
         
         coreDataStack.mainQueueContext.performBlockAndWait() {
             do {
-                let records = try coreDataStack.mainQueueContext.executeFetchRequest(fetchRequest) as? [IndividualProfile]
+                let records = try coreDataStack.mainQueueContext.executeFetchRequest(fetchRequest) as? [BusinessProfile]
                 
-                individualProfile = records![0]
+                businessProfile = records![0]
             }
             catch let error {
                 print(error)
             }
         }
         
-        return individualProfile
+        return businessProfile
     }
     
-    @IBAction func logoutAction() {
+    @IBAction func logoutAction(sender: UIButton) {
         
         // Show new Login Controller
         
@@ -79,16 +79,15 @@ class IndividualProfileVC: UIViewController {
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    // Reload the InvidualProfile
-    @IBAction func unwindAfterIndividualProfileEdit(segue: UIStoryboardSegue) {
-
+    // Reload the BusinessProfile
+    @IBAction func unwindAfterBusinessProfileEdit(segue: UIStoryboardSegue) {
+        
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "showEdit" {            
-            let destinationVC = segue.destinationViewController as! EditIndividualProfileVC
-            destinationVC.individualProfile = fetchIndividualProfile()
+        if segue.identifier == "showEdit" {
+            let destinationVC = segue.destinationViewController as! EditBusinessProfileVC
+            destinationVC.businessProfile = fetchBusinessProfile()
         }
     }
 }
-

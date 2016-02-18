@@ -22,16 +22,24 @@ class LoginVC: UIViewController {
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: "isLoggedIn")
             NSUserDefaults.standardUserDefaults().synchronize()
             
-            let profileType = NSUserDefaults.standardUserDefaults().valueForKey("profileType") as? String
-            
-            if profileType == "individual" {
-                
-                // Show IndividualProfile StoryBoard
-                showIndividualProfile()
-            }            
+            showProfile()
         }
         else {
             alert("Login Failed", message: "Incorrect email/password combination")
+        }
+    }
+    
+    private func showProfile() {
+        
+        let profileType = NSUserDefaults.standardUserDefaults().valueForKey("profileType") as? String
+        
+        if profileType == "individual" {
+            // Show IndividualProfile Storyboard
+            showIndividualProfile()
+        }
+        else if profileType == "business" {
+            // Show BusinessProfile Storyboard
+            showBusinessProfile()
         }
     }
     
@@ -43,7 +51,7 @@ class LoginVC: UIViewController {
         super.viewDidLoad()
         
         if isLoggedIn() {
-            showIndividualProfile()
+            showProfile()
         }
     }
     
@@ -62,6 +70,13 @@ class LoginVC: UIViewController {
         
         let storyboard = UIStoryboard(name: "IndividualProfileStoryboard", bundle: nil)
         let viewController = storyboard.instantiateViewControllerWithIdentifier("IndividualProfileTabBarController") as? UITabBarController
+        presentViewController(viewController!, animated: true, completion: nil)
+    }
+    
+    func showBusinessProfile() {
+        
+        let storyboard = UIStoryboard(name: "BusinessProfileStoryboard", bundle: nil)
+        let viewController = storyboard.instantiateViewControllerWithIdentifier("BusinessProfileTabBarController") as? UITabBarController
         presentViewController(viewController!, animated: true, completion: nil)
     }
     

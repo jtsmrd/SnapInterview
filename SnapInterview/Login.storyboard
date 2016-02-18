@@ -153,6 +153,7 @@
                                 <state key="normal" title="Create"/>
                                 <connections>
                                     <action selector="createAction" destination="gwG-Ob-UeL" eventType="touchUpInside" id="U9F-Li-MAf"/>
+                                    <action selector="createAction:" destination="tUS-FP-gW6" eventType="touchUpInside" id="gvH-Mp-Qd8"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Business Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6gs-lu-7JO">
@@ -165,6 +166,13 @@
                     </view>
                     <navigationItem key="navigationItem" title="Sign Up" id="zbR-va-u1E"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="businessNameTextField" destination="6gs-lu-7JO" id="vbk-wQ-4gL"/>
+                        <outlet property="emailTextField" destination="jsB-xk-2Ru" id="qbe-fQ-58n"/>
+                        <outlet property="firstNameTextField" destination="mH4-CO-Nvw" id="PHe-hl-KfP"/>
+                        <outlet property="lastNameTextField" destination="aPa-39-bWC" id="7AJ-ZD-uHk"/>
+                        <outlet property="passwordTextField" destination="drA-n6-eaC" id="gAj-Fk-Tf5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xgh-hi-dd0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

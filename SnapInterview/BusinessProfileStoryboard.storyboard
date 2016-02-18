@@ -5,30 +5,42 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
-        <!--Item 2-->
-        <scene sceneID="mfo-X8-YuQ">
+        <!--Interviews-->
+        <scene sceneID="5PC-sS-gCP">
             <objects>
-                <viewController id="qEK-RR-25x" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="hRf-4W-KsK"/>
-                        <viewControllerLayoutGuide type="bottom" id="oRV-4w-kWh"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Xtc-tz-Bbq">
+                <tableViewController id="FH8-0c-W7a" customClass="BusinessInterviewTVC" customModule="SnapInterview" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="aFC-4J-p2h">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="Jtc-im-suu"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="InterviewCell" id="kkm-8U-x45">
+                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kkm-8U-x45" id="PGr-Ki-fZe">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="FH8-0c-W7a" id="c6y-dF-BcV"/>
+                            <outlet property="delegate" destination="FH8-0c-W7a" id="Y45-bh-39G"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Interviews" id="ORN-Dv-ojo">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="9gR-AV-RcL"/>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="aNg-7d-fjy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yWy-7T-oix" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="541.5" y="422.5"/>
+            <point key="canvasLocation" x="1060.5" y="428.5"/>
         </scene>
-        <!--Item 1-->
+        <!--Profile-->
         <scene sceneID="djy-iA-oJC">
             <objects>
-                <viewController id="ngS-gp-d1d" sceneMemberID="viewController">
+                <viewController id="ngS-gp-d1d" customClass="BusinessProfileVC" customModule="SnapInterview" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jff-hF-BFG"/>
                         <viewControllerLayoutGuide type="bottom" id="iGw-5y-xai"/>
@@ -36,19 +48,62 @@
                     <view key="view" contentMode="scaleToFill" id="GRX-uw-6XX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BJO-r6-GJ7">
+                                <rect key="frame" x="20" y="20" width="48" height="30"/>
+                                <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="logoutAction:" destination="ngS-gp-d1d" eventType="touchUpInside" id="Ufu-hB-ncI"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GSy-lE-4W4">
+                                <rect key="frame" x="20" y="66" width="178" height="128"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Business Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ax0-B9-Rci">
+                                <rect key="frame" x="20" y="221" width="335" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="First Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GrU-LX-NVn">
+                                <rect key="frame" x="20" y="250" width="335" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Last Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dsv-k0-DDf">
+                                <rect key="frame" x="20" y="279" width="335" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4gd-1b-SsO">
+                                <rect key="frame" x="325" y="20" width="30" height="30"/>
+                                <state key="normal" title="Edit"/>
+                                <connections>
+                                    <segue destination="0Un-mS-XuK" kind="show" identifier="showEdit" id="t7e-jU-TF0"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.59999999999999998" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="agt-8M-GPq"/>
+                    <tabBarItem key="tabBarItem" title="Profile" id="agt-8M-GPq"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="businessNameLabel" destination="ax0-B9-Rci" id="8q2-XD-mci"/>
+                        <outlet property="firstNameLabel" destination="GrU-LX-NVn" id="MtD-CX-zcr"/>
+                        <outlet property="imageView" destination="GSy-lE-4W4" id="HrI-CX-vgT"/>
+                        <outlet property="lastNameLabel" destination="dsv-k0-DDf" id="1Z1-fy-slh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5ej-mf-LYI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="541.5" y="-335.5"/>
+            <point key="canvasLocation" x="556.5" y="-329.5"/>
         </scene>
         <!--BusinessProfileTabBarController-->
         <scene sceneID="4Eh-nw-pMk">
             <objects>
-                <tabBarController title="BusinessProfileTabBarController" id="PII-4O-lmK" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="BusinessProfileTabBarController" title="BusinessProfileTabBarController" id="PII-4O-lmK" sceneMemberID="viewController">
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="E43-Lz-hSl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -57,12 +112,105 @@
                     </tabBar>
                     <connections>
                         <segue destination="ngS-gp-d1d" kind="relationship" relationship="viewControllers" id="okn-F2-3vN"/>
-                        <segue destination="qEK-RR-25x" kind="relationship" relationship="viewControllers" id="3o7-0J-8UK"/>
+                        <segue destination="mSf-XO-Scm" kind="relationship" relationship="viewControllers" id="SvA-9R-li3"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9BJ-ME-MNq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-191" y="61"/>
+        </scene>
+        <!--Edit Business ProfileVC-->
+        <scene sceneID="a14-kL-OEX">
+            <objects>
+                <viewController id="0Un-mS-XuK" customClass="EditBusinessProfileVC" customModule="SnapInterview" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Nb7-DJ-Tm4"/>
+                        <viewControllerLayoutGuide type="bottom" id="WX4-Tv-TtV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Y5r-PR-Bfc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5qT-Uv-yTP">
+                                <rect key="frame" x="20" y="20" width="48" height="30"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <segue destination="CEc-Lf-68Y" kind="unwind" unwindAction="unwindAfterBusinessProfileEdit:" id="bJW-GF-pBK"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Edit Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x8k-gS-nZs">
+                                <rect key="frame" x="146" y="29" width="83" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Zu-9G-ZiP">
+                                <rect key="frame" x="315" y="20" width="40" height="30"/>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="saveAction:" destination="0Un-mS-XuK" eventType="touchUpInside" id="ViY-3a-I8B"/>
+                                    <segue destination="CEc-Lf-68Y" kind="unwind" unwindAction="unwindAfterBusinessProfileEdit:" id="UrA-R2-0jD"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qAX-Gf-cxc">
+                                <rect key="frame" x="20" y="85" width="180" height="128"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Axt-4O-HHC">
+                                <rect key="frame" x="208" y="134" width="62" height="30"/>
+                                <state key="normal" title="Add/Edit"/>
+                                <connections>
+                                    <action selector="addEditImageAction:" destination="0Un-mS-XuK" eventType="touchUpInside" id="hVD-AJ-CF5"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Business Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vLa-iP-CO0">
+                                <rect key="frame" x="20" y="239" width="180" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fia-BT-bVi">
+                                <rect key="frame" x="20" y="277" width="180" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6dw-a1-k2w">
+                                <rect key="frame" x="20" y="315" width="180" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" red="0.59999999999999998" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="businessNameTextField" destination="vLa-iP-CO0" id="X29-DZ-Rif"/>
+                        <outlet property="firstNameTextField" destination="fia-BT-bVi" id="kds-VS-gcA"/>
+                        <outlet property="imageView" destination="qAX-Gf-cxc" id="zYr-xQ-Wcv"/>
+                        <outlet property="lastNameTextField" destination="6dw-a1-k2w" id="wcB-fC-djC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="71p-ej-N8X" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="CEc-Lf-68Y" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1048.5" y="-329.5"/>
+        </scene>
+        <!--Interviews-->
+        <scene sceneID="NoY-pg-qfP">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mSf-XO-Scm" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Interviews" id="rbR-sf-Bpp"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Uol-Vi-wGx">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="FH8-0c-W7a" kind="relationship" relationship="rootViewController" id="V05-Z7-iGK"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eHb-Hz-763" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="556.5" y="428.5"/>
         </scene>
     </scenes>
 </document>

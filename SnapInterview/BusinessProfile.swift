@@ -1,15 +1,16 @@
 //
-//  IndividualProfile.swift
+//  BusinessProfile.swift
 //  SnapInterview
 //
-//  Created by JT Smrdel on 2/16/16.
+//  Created by JT Smrdel on 2/18/16.
 //  Copyright © 2016 SmrdelJT. All rights reserved.
 //
 
 import Foundation
 import CoreData
 
-class IndividualProfile: NSManagedObject {
+
+class BusinessProfile: NSManagedObject {
 
     override func awakeFromInsert() {
         super.awakeFromInsert()
@@ -17,7 +18,7 @@ class IndividualProfile: NSManagedObject {
         firstName = ""
         lastName = ""
         email = ""
-        jobTitle = ""
+        businessName = ""
         profileImageKey = ""
     }
 }
