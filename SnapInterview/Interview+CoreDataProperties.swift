@@ -1,5 +1,5 @@
 //
-//  BusinessProfile+CoreDataProperties.swift
+//  Interview+CoreDataProperties.swift
 //  SnapInterview
 //
 //  Created by JT Smrdel on 2/19/16.
@@ -12,13 +12,11 @@
 import Foundation
 import CoreData
 
-extension BusinessProfile {
+extension Interview {
 
-    @NSManaged var businessName: String?
-    @NSManaged var email: String?
-    @NSManaged var firstName: String?
-    @NSManaged var lastName: String?
-    @NSManaged var profileImageKey: String?
-    @NSManaged var interviews: NSSet?
+    @NSManaged var createDate: NSDate?
+    @NSManaged var desc: String?
+    @NSManaged var title: String?
+    @NSManaged var businessProfile: BusinessProfile?
 
 }

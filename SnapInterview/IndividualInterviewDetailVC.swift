@@ -16,7 +16,7 @@ class IndividualInterviewDetailVC: UIViewController, UIImagePickerControllerDele
     @IBOutlet weak var interviewDescriptionLabel: UILabel!
     @IBOutlet weak var dateCreatedLabel: UILabel!
     
-    var interview: Interview!
+    var interview: TestInterview!
     var videoStore = VideoStore()
     
     let dateFormatter: NSDateFormatter = {

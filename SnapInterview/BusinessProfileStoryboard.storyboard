@@ -29,13 +29,65 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Interviews" id="ORN-Dv-ojo">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="9gR-AV-RcL"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="9gR-AV-RcL">
+                            <connections>
+                                <segue destination="F4j-l8-wwB" kind="show" identifier="createInterview" id="sru-XH-4wL"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yWy-7T-oix" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1060.5" y="428.5"/>
+        </scene>
+        <!--Create Interview-->
+        <scene sceneID="fsg-fH-Ttt">
+            <objects>
+                <viewController id="F4j-l8-wwB" customClass="CreateInterviewVC" customModule="SnapInterview" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ovU-dw-BBw"/>
+                        <viewControllerLayoutGuide type="bottom" id="j4C-Jx-Of3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="e2u-Hq-H9y">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YHJ-QP-2nD">
+                                <rect key="frame" x="20" y="88" width="335" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Description" translatesAutoresizingMaskIntoConstraints="NO" id="S8s-bG-h4G">
+                                <rect key="frame" x="20" y="143" width="335" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.59999999999999998" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Create Interview" id="q7f-QQ-vdF">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="hYT-P1-Fs8">
+                            <connections>
+                                <action selector="cancelAction:" destination="F4j-l8-wwB" id="5Xn-yQ-W8M"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="vbu-TN-29f">
+                            <connections>
+                                <action selector="saveAction:" destination="F4j-l8-wwB" id="k7S-he-Zeo"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="descriptionTextView" destination="S8s-bG-h4G" id="fy3-x4-dAS"/>
+                        <outlet property="titleTextField" destination="YHJ-QP-2nD" id="TSV-Sw-rd1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EeK-ca-STS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1559.5" y="428.5"/>
         </scene>
         <!--Profile-->
         <scene sceneID="djy-iA-oJC">

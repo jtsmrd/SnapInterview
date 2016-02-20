@@ -74,7 +74,7 @@ class EditBusinessProfileVC: UIViewController, UIImagePickerControllerDelegate, 
         
         do {
             try coreDataStack.saveChanges()
-            //syncBusinessProfileToCloud()
+            syncBusinessProfileToCloud()
         }
         catch let error {
             print(error)

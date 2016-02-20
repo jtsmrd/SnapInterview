@@ -5,7 +5,7 @@ Done - Store profile image in a cache or to the file system.
         a. Reference stored profile image in the profile data object.
 Done - Store profile type
 Done - Build on to profile data, store with core data efficiently, and also store it in the cloud
-- Re-design storyboard to include the business profile
+Done - Re-design storyboard to include the business profile
 Done - Implement editing for profile data
 Done - Create the Interview object
 - Implement the interview scene using a table view
@@ -13,3 +13,8 @@ Done - Create the Interview object
 - Start interview recording from InterviewDetaiViewController. Save to doc dir
 Done - Move coredatastack context to appdelegate
 ** Keep class level IndividualProfile variable in memory throughout the class.
+
+TODAY:
+
+Add ability to create interviews from business profile - core data and cloud
+Add ability to show/edit interview details

@@ -59,7 +59,7 @@ class BusinessProfileVC: UIViewController {
             do {
                 let records = try coreDataStack.mainQueueContext.executeFetchRequest(fetchRequest) as? [BusinessProfile]
                 
-                businessProfile = records![0]
+                businessProfile = records![0]                
             }
             catch let error {
                 print(error)

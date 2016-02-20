@@ -6,6 +6,7 @@
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="profileImageKey" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="interviews" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Interview" inverseName="businessProfile" inverseEntity="Interview" syncable="YES"/>
     </entity>
     <entity name="IndividualProfile" representedClassName=".IndividualProfile" syncable="YES">
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
@@ -14,8 +15,15 @@
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="profileImageKey" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="Interview" representedClassName=".Interview" syncable="YES">
+        <attribute name="createDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="desc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="businessProfile" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BusinessProfile" inverseName="interviews" inverseEntity="BusinessProfile" syncable="YES"/>
+    </entity>
     <elements>
+        <element name="BusinessProfile" positionX="-63" positionY="18" width="128" height="135"/>
         <element name="IndividualProfile" positionX="-63" positionY="-18" width="128" height="120"/>
-        <element name="BusinessProfile" positionX="-63" positionY="18" width="128" height="120"/>
+        <element name="Interview" positionX="-54" positionY="45" width="128" height="105"/>
     </elements>
 </model>

@@ -11,7 +11,7 @@ import UIKit
 
 class InterviewStore {
     
-    var allInterviews = [Interview]()
+    var allInterviews = [TestInterview]()
     
     init() {
         for _ in 0..<5 {
@@ -19,13 +19,13 @@ class InterviewStore {
         }
     }
     
-    func createInterview() -> Interview {
-        let newInterview = Interview(random: true)
+    func createInterview() -> TestInterview {
+        let newInterview = TestInterview(random: true)
         allInterviews.append(newInterview)
         return newInterview
     }
     
-    func removeItem(interview: Interview) {
+    func removeItem(interview: TestInterview) {
         if let index = allInterviews.indexOf(interview) {
             allInterviews.removeAtIndex(index)
         }
