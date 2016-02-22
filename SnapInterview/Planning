@@ -1,3 +1,11 @@
+// MARK: - Variables, Outlets, and Constants
+// MARK: - View Life Cycle Methods
+// MARK: - Actions
+// MARK: - Private Methods
+// MARK: - Delegate Methods
+// MARK: - Datasource Methods
+// MARK: - Navigation Methods
+
 TODO
 
 Done - Store profile data locally using CoreData.

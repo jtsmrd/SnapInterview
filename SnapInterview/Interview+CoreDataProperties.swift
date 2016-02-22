@@ -18,5 +18,5 @@ extension Interview {
     @NSManaged var desc: String?
     @NSManaged var title: String?
     @NSManaged var businessProfile: BusinessProfile?
-    @NSManaged var questions: NSSet?
+    @NSManaged var interviewQuestions: NSSet?
 }

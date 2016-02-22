@@ -16,4 +16,5 @@ extension InterviewQuestion {
 
     @NSManaged var question: String?
     @NSManaged var timeLimitInSeconds: NSNumber?
+    @NSManaged var interview: Interview?
 }

@@ -19,7 +19,6 @@ class BusinessSignupVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    
     let myKeychainWrapper = KeychainWrapper()
     
     // MARK: - View Life Cycle
@@ -45,7 +44,7 @@ class BusinessSignupVC: UIViewController, UITextFieldDelegate {
         view.endEditing(true)
     }
     
-    // MARK: TextField Delegate Methods
+    // MARK: - TextField Delegate Methods
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -56,7 +55,7 @@ class BusinessSignupVC: UIViewController, UITextFieldDelegate {
         textField.becomeFirstResponder()
     }
     
-    // MARK: Private Methods
+    // MARK: - Private Methods
     
     // Validate and create a BusinessProfile
     private func createProfile() {

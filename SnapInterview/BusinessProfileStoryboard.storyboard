@@ -60,12 +60,18 @@
                                 <rect key="frame" x="20" y="88" width="335" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="F4j-l8-wwB" id="dhG-LM-o90"/>
+                                </connections>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Description" translatesAutoresizingMaskIntoConstraints="NO" id="S8s-bG-h4G">
                                 <rect key="frame" x="20" y="143" width="335" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="F4j-l8-wwB" id="18D-IU-sKx"/>
+                                </connections>
                             </textView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uOJ-o4-7sm">
                                 <rect key="frame" x="0.0" y="352" width="375" height="266"/>
@@ -96,6 +102,10 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.59999999999999998" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="AOX-fr-NJc" appends="YES" id="iB2-Cc-rQi"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Create Interview" id="q7f-QQ-vdF">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="hYT-P1-Fs8">
@@ -117,6 +127,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EeK-ca-STS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="AOX-fr-NJc">
+                    <connections>
+                        <action selector="backgroundTapped:" destination="F4j-l8-wwB" id="Bpv-85-wDh"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1559.5" y="428.5"/>
         </scene>
@@ -235,6 +250,10 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.59999999999999998" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="pVc-X7-q9p" appends="YES" id="gMy-pU-OVN"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Interview" id="OPs-zf-ssW"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
@@ -245,6 +264,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rgv-GO-s8s" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="pVc-X7-q9p">
+                    <connections>
+                        <action selector="backgroundTapped:" destination="IVM-bU-lix" id="q4a-dw-LJd"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1559.5" y="1169.5"/>
         </scene>
@@ -346,6 +370,7 @@
                                 <rect key="frame" x="20" y="20" width="48" height="30"/>
                                 <state key="normal" title="Cancel"/>
                                 <connections>
+                                    <action selector="cancelAction:" destination="0Un-mS-XuK" eventType="touchUpInside" id="8Is-mN-JOT"/>
                                     <segue destination="CEc-Lf-68Y" kind="unwind" unwindAction="unwindAfterBusinessProfileEdit:" id="bJW-GF-pBK"/>
                                 </connections>
                             </button>
@@ -377,19 +402,32 @@
                                 <rect key="frame" x="20" y="239" width="180" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="0Un-mS-XuK" id="hwx-WC-dB4"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fia-BT-bVi">
                                 <rect key="frame" x="20" y="277" width="180" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="0Un-mS-XuK" id="2YK-09-pLw"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6dw-a1-k2w">
                                 <rect key="frame" x="20" y="315" width="180" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="0Un-mS-XuK" id="YT8-UB-EYx"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.59999999999999998" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="iPx-Fx-IG7" appends="YES" id="B6h-5c-77L"/>
+                        </connections>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
@@ -401,6 +439,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="71p-ej-N8X" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="CEc-Lf-68Y" userLabel="Exit" sceneMemberID="exit"/>
+                <tapGestureRecognizer id="iPx-Fx-IG7">
+                    <connections>
+                        <action selector="backgroundTapped:" destination="0Un-mS-XuK" id="hSs-MD-eyY"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1048.5" y="-329.5"/>
         </scene>
