@@ -9,12 +9,10 @@
 import Foundation
 import CoreData
 
-
 class BusinessProfile: NSManagedObject {
 
     override func awakeFromInsert() {
-        super.awakeFromInsert()
-        
+        super.awakeFromInsert()        
         firstName = ""
         lastName = ""
         email = ""

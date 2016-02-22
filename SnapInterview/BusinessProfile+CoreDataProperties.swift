@@ -20,5 +20,4 @@ extension BusinessProfile {
     @NSManaged var lastName: String?
     @NSManaged var profileImageKey: String?
     @NSManaged var interviews: NSSet?
-
 }

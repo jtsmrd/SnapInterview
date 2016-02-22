@@ -9,12 +9,10 @@
 import Foundation
 import CoreData
 
-
 class Interview: NSManagedObject {
 
     override func awakeFromInsert() {
-        super.awakeFromInsert()
-        
+        super.awakeFromInsert()        
         title = ""
         desc = ""
         createDate = NSDate()

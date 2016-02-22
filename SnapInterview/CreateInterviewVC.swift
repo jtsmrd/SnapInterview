@@ -10,16 +10,21 @@ import UIKit
 import CoreData
 import CloudKit
 
-class CreateInterviewVC: UIViewController {
+class CreateInterviewVC: UIViewController, UITableViewDelegate, UITableViewDataSource, CreateQuestionVCDelegate {
 
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var descriptionTextView: UITextView!
+    @IBOutlet weak var tableView: UITableView!    
     
     var businessProfile: BusinessProfile!
+    var interviewStore = InterviewStore()
+    var interviewQuestions: [InterviewQuestion] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.delegate = self
+        tableView.dataSource = self
     }
     
     @IBAction func saveAction(sender: UIBarButtonItem) {
@@ -32,12 +37,12 @@ class CreateInterviewVC: UIViewController {
         }
         else {
             saveInterview()
-            dismissViewControllerAnimated(true, completion: nil)
+            navigationController?.popViewControllerAnimated(true)
         }
     }
     
     @IBAction func cancelAction(sender: UIBarButtonItem) {
-        dismissViewControllerAnimated(true, completion: nil)
+        navigationController?.popViewControllerAnimated(true)
     }
     
     private func saveInterview() {
@@ -52,6 +57,7 @@ class CreateInterviewVC: UIViewController {
             interview.title = title
             interview.desc = description
             interview.businessProfile = self.businessProfile
+            interview.questions = NSSet.init(array: self.interviewQuestions)
         }
         
         do {
@@ -74,5 +80,36 @@ class CreateInterviewVC: UIViewController {
         }
         
         return errorMessage
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        return interviewQuestions.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("QuestionCell", forIndexPath: indexPath)
+        
+        let item = interviewQuestions[indexPath.row]
+        cell.textLabel?.text = item.question
+        
+        return cell
+    }
+    
+    func controller(controller: CreateQuestionVC, AddedQuestion question: InterviewQuestion) {
+        interviewQuestions.append(question)
+        tableView.reloadData()
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "addQuestion" {
+            let createQuestionVC = segue.destinationViewController as! CreateQuestionVC
+            createQuestionVC.delegate = self
+        }
     }
 }

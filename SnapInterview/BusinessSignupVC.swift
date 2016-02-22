@@ -10,8 +10,10 @@ import UIKit
 import CoreData
 import CloudKit
 
-class BusinessSignupVC: UIViewController {
+class BusinessSignupVC: UIViewController, UITextFieldDelegate {
 
+    // MARK: - Variables and Constants
+    
     @IBOutlet weak var businessNameTextField: UITextField!
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
@@ -20,54 +22,72 @@ class BusinessSignupVC: UIViewController {
     
     let myKeychainWrapper = KeychainWrapper()
     
+    // MARK: - View Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
     
+    // Dismiss the keyboard when the view disappears
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(true)
+        view.endEditing(true)
+    }
+    
+    // MARK: - Actions
+    
     @IBAction func createAction(sender: UIButton) {
-        
+        createProfile()
+    }
+    
+    // Dismiss the keyboard when the backgroud is tapped
+    @IBAction func backgroundTapped(sender: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
+    
+    // MARK: TextField Delegate Methods
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        textField.becomeFirstResponder()
+    }
+    
+    // MARK: Private Methods
+    
+    // Validate and create a BusinessProfile
+    private func createProfile() {
         if let errorMessage = validateTextFields() {
-            let alertController = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .Alert)
-            let okAction = UIAlertAction(title: "Ok", style: .Default, handler: nil)
-            alertController.addAction(okAction)
-            self.presentViewController(alertController, animated: true, completion: nil)
+            showErrorAlert(errorMessage)
         }
-        else {
-            
-            // Set the email and login status
-            NSUserDefaults.standardUserDefaults().setValue(emailTextField.text, forKey: "email")
-            NSUserDefaults.standardUserDefaults().setValue("business", forKey: "profileType")
-            
+        else {            
+            // Save password to Keychain
             myKeychainWrapper.mySetObject(passwordTextField.text, forKey:kSecValueData)
             myKeychainWrapper.writeToKeychain()
             
             saveBusinessProfile()
+            setUserDefaults()
             
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "isLoggedIn")
-            NSUserDefaults.standardUserDefaults().synchronize()
-            
-            // Send to BusinessProfileStoryboard
-            showBusinessProfile()
+            // Pop to the LoginVC where the profile will automatically load
+            navigationController?.popToRootViewControllerAnimated(false)
         }
     }
     
-    // Save profile data to CoreData
+    // Save profile data using CoreData. If successful, save to cloud
     private func saveBusinessProfile() {
-        
         var businessProfile: BusinessProfile!
         let coreDataStack = (UIApplication.sharedApplication().delegate as! AppDelegate).coreDataStack
-        let businessName = businessNameTextField.text!
-        let firstName = firstNameTextField.text!
-        let lastName = lastNameTextField.text!
-        let email = emailTextField.text!
         
+        // Create and insert new BusinessProfile
         coreDataStack.mainQueueContext.performBlockAndWait() {
             businessProfile = NSEntityDescription.insertNewObjectForEntityForName("BusinessProfile", inManagedObjectContext: coreDataStack.mainQueueContext) as! BusinessProfile
-            businessProfile.businessName = businessName
-            businessProfile.firstName = firstName
-            businessProfile.lastName = lastName
-            businessProfile.email = email
+            businessProfile.businessName = self.businessNameTextField.text!
+            businessProfile.firstName = self.firstNameTextField.text!
+            businessProfile.lastName = self.lastNameTextField.text!
+            businessProfile.email = self.emailTextField.text!
         }
         
         do {
@@ -76,12 +96,12 @@ class BusinessSignupVC: UIViewController {
         }
         catch let error {
             print(error)
+            showErrorAlert("\(error)")
         }
     }
     
     // Save profile data to cloud
     private func syncBusinessProfileToCloud() {
-        
         let businessProfileRecord = CKRecord(recordType: "BusinessProfile")
         businessProfileRecord.setValue(firstNameTextField.text, forKey: "firstName")
         businessProfileRecord.setValue(lastNameTextField.text, forKey: "lastName")
@@ -96,16 +116,8 @@ class BusinessSignupVC: UIViewController {
         })
     }
     
-    // Send the user to the Profile screen
-    func showBusinessProfile() {
-        
-        let storyboard = UIStoryboard(name: "BusinessProfileStoryboard", bundle: nil)
-        let viewController = storyboard.instantiateViewControllerWithIdentifier("BusinessProfileTabBarController") as? UITabBarController
-        presentViewController(viewController!, animated: true, completion: nil)
-    }
-
-    func validateTextFields() -> String? {
-        
+    // Make sure textfields contain text
+    private func validateTextFields() -> String? {
         var errorMessage: String?
         
         if businessNameTextField.text == "" {
@@ -125,5 +137,21 @@ class BusinessSignupVC: UIViewController {
         }
         
         return errorMessage
+    }
+    
+    // Show alert controller with error message
+    private func showErrorAlert(errorMessage: String) {
+        let alertController = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .Alert)
+        let okAction = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+        alertController.addAction(okAction)
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    // Set the user email, profile type, and logged in status in user defaults
+    private func setUserDefaults() {
+        NSUserDefaults.standardUserDefaults().setValue(emailTextField.text, forKey: "email")
+        NSUserDefaults.standardUserDefaults().setValue("business", forKey: "profileType")
+        NSUserDefaults.standardUserDefaults().setBool(true, forKey: "isLoggedIn")
+        NSUserDefaults.standardUserDefaults().synchronize()
     }
 }

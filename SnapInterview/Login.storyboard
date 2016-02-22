@@ -23,12 +23,18 @@
                                 <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="EjH-md-Ooz" id="PIB-F5-c4m"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bXj-lU-Ibb">
                                 <rect key="frame" x="83" y="125" width="218" height="30"/>
                                 <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="EjH-md-Ooz" id="C8t-1K-Jvo"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ovx-9K-DOa">
                                 <rect key="frame" x="173" y="163" width="38" height="30"/>
@@ -42,6 +48,10 @@
                         </subviews>
                         <color key="backgroundColor" red="0.59999999999999998" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="GL8-8k-JS8" appends="YES" id="W8Y-hy-23d"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Login" id="Yq6-mA-EzS">
                         <barButtonItem key="rightBarButtonItem" title="Sign Up" id="i3U-OK-xRh">
@@ -54,11 +64,14 @@
                     <connections>
                         <outlet property="emailTextField" destination="AGq-mR-oVp" id="WWr-yh-a6B"/>
                         <outlet property="passwordTextField" destination="bXj-lU-Ibb" id="RVA-W6-9wM"/>
-                        <segue destination="yX1-bn-gKz" kind="unwind" identifier="dismissLogin" unwindAction="unwindSegue:" id="QPf-nO-jkf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XMu-mI-wZJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="yX1-bn-gKz" userLabel="Exit" sceneMemberID="exit"/>
+                <tapGestureRecognizer id="GL8-8k-JS8">
+                    <connections>
+                        <action selector="backgroudTapped:" destination="EjH-md-Ooz" id="8hg-DS-IO1"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="679.5" y="-702.5"/>
         </scene>
@@ -84,7 +97,7 @@
                                 <rect key="frame" x="20" y="334" width="335" height="30"/>
                                 <state key="normal" title="Business"/>
                                 <connections>
-                                    <segue destination="tUS-FP-gW6" kind="show" id="x6R-jM-AG9"/>
+                                    <segue destination="tUS-FP-gW6" kind="show" identifier="showBusinessSignup" id="x6R-jM-AG9"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ef0-G4-mPX">
@@ -131,22 +144,34 @@
                                 <rect key="frame" x="45" y="120" width="284" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="tUS-FP-gW6" id="N0X-tu-Tbn"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aPa-39-bWC">
                                 <rect key="frame" x="45" y="158" width="284" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="tUS-FP-gW6" id="eWW-WC-HnQ"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jsB-xk-2Ru">
                                 <rect key="frame" x="45" y="196" width="284" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="tUS-FP-gW6" id="1Mc-XT-K9w"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="drA-n6-eaC">
                                 <rect key="frame" x="45" y="234" width="284" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="tUS-FP-gW6" id="Eov-vg-Dfu"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bxO-O3-4X2">
                                 <rect key="frame" x="164" y="272" width="46" height="30"/>
@@ -160,9 +185,16 @@
                                 <rect key="frame" x="45" y="82" width="284" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="tUS-FP-gW6" id="xgo-t4-zKC"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.59999999999999998" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="v54-D7-aek" appends="YES" id="Plv-fR-XaM"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Sign Up" id="zbR-va-u1E"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
@@ -175,6 +207,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xgh-hi-dd0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="v54-D7-aek">
+                    <connections>
+                        <action selector="backgroundTapped:" destination="tUS-FP-gW6" id="mZD-gm-Tdz"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1766.5" y="-998.5"/>
         </scene>
@@ -194,22 +231,34 @@
                                 <rect key="frame" x="45" y="88" width="284" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="gwG-Ob-UeL" id="9lu-Fn-fnD"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WrI-mT-MGE">
                                 <rect key="frame" x="45" y="126" width="284" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="gwG-Ob-UeL" id="dSf-52-yae"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NHh-Og-kjw">
                                 <rect key="frame" x="45" y="164" width="284" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="gwG-Ob-UeL" id="fQR-2A-2T8"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JdT-1Q-7qQ">
                                 <rect key="frame" x="45" y="202" width="284" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="gwG-Ob-UeL" id="49i-ez-g3Q"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qGW-9h-6yD">
                                 <rect key="frame" x="164" y="240" width="46" height="30"/>
@@ -220,6 +269,10 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.59999999999999998" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="pty-di-PHc" appends="YES" id="wct-6W-Wkf"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Sign Up" id="AKZ-Oi-Dww"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
@@ -231,6 +284,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4rX-Wz-blc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="pty-di-PHc">
+                    <connections>
+                        <action selector="backgroundTapped:" destination="gwG-Ob-UeL" id="BuK-ED-J67"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1766.5" y="-254.5"/>
         </scene>

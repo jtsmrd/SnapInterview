@@ -20,10 +20,16 @@
         <attribute name="desc" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="businessProfile" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BusinessProfile" inverseName="interviews" inverseEntity="BusinessProfile" syncable="YES"/>
+        <relationship name="questions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="InterviewQuestion" syncable="YES"/>
+    </entity>
+    <entity name="InterviewQuestion" representedClassName=".InterviewQuestion" syncable="YES">
+        <attribute name="question" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="timeLimitInSeconds" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
     </entity>
     <elements>
         <element name="BusinessProfile" positionX="-63" positionY="18" width="128" height="135"/>
         <element name="IndividualProfile" positionX="-63" positionY="-18" width="128" height="120"/>
-        <element name="Interview" positionX="-54" positionY="45" width="128" height="105"/>
+        <element name="Interview" positionX="-54" positionY="45" width="128" height="120"/>
+        <element name="InterviewQuestion" positionX="-54" positionY="54" width="128" height="75"/>
     </elements>
 </model>

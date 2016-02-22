@@ -1,5 +1,5 @@
 //
-//  Interview+CoreDataProperties.swift
+//  InterviewQuestion+CoreDataProperties.swift
 //  SnapInterview
 //
 //  Created by JT Smrdel on 2/21/16.
@@ -12,11 +12,8 @@
 import Foundation
 import CoreData
 
-extension Interview {
+extension InterviewQuestion {
 
-    @NSManaged var createDate: NSDate?
-    @NSManaged var desc: String?
-    @NSManaged var title: String?
-    @NSManaged var businessProfile: BusinessProfile?
-    @NSManaged var questions: NSSet?
+    @NSManaged var question: String?
+    @NSManaged var timeLimitInSeconds: NSNumber?
 }

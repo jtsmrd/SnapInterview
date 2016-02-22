@@ -25,7 +25,13 @@ class BusinessInterviewTVC: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        
         businessProfile = fetchBusinessProfile()
+        tableView.reloadData()
     }
 
     // Load from CoreData, return an IndividualProfile
@@ -113,9 +119,17 @@ class BusinessInterviewTVC: UITableViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
         if segue.identifier == "createInterview" {
             let createInterviewVC = segue.destinationViewController as! CreateInterviewVC
             createInterviewVC.businessProfile = businessProfile
+        }
+        else if segue.identifier == "showDetail" {
+            if let row = tableView.indexPathForSelectedRow?.row {
+                let item = interviews[row]
+                let interviewDetailVC = segue.destinationViewController as! BusinessInterviewDetailVC
+                interviewDetailVC.interview = item as! Interview
+            }
         }
     }
 }
