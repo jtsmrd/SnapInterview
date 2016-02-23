@@ -20,6 +20,7 @@ class BusinessSignupVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     let myKeychainWrapper = KeychainWrapper()
+    var businessProfileCKRecordID: String!
     
     // MARK: - View Life Cycle
     
@@ -66,12 +67,11 @@ class BusinessSignupVC: UIViewController, UITextFieldDelegate {
             // Save password to Keychain
             myKeychainWrapper.mySetObject(passwordTextField.text, forKey:kSecValueData)
             myKeychainWrapper.writeToKeychain()
-            
-            saveBusinessProfile()
+            syncBusinessProfileToCloud()
             setUserDefaults()
             
             // Pop to the LoginVC where the profile will automatically load
-            navigationController?.popToRootViewControllerAnimated(false)
+            //navigationController?.popToRootViewControllerAnimated(false)
         }
     }
     
@@ -87,11 +87,15 @@ class BusinessSignupVC: UIViewController, UITextFieldDelegate {
             businessProfile.firstName = self.firstNameTextField.text!
             businessProfile.lastName = self.lastNameTextField.text!
             businessProfile.email = self.emailTextField.text!
+            businessProfile.businessProfileCKRecordID = self.businessProfileCKRecordID
         }
         
         do {
             try coreDataStack.saveChanges()
-            syncBusinessProfileToCloud()
+            
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.navigationController?.popToRootViewControllerAnimated(false)
+            })
         }
         catch let error {
             print(error)
@@ -109,9 +113,15 @@ class BusinessSignupVC: UIViewController, UITextFieldDelegate {
         
         let publicDatabase = CKContainer.defaultContainer().publicCloudDatabase
         publicDatabase.saveRecord(businessProfileRecord, completionHandler: { (record, error) -> Void in
-            if let error = error {
-                print(error)
-            }
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                if let error = error {
+                    print(error)
+                }
+                else if let record = record {
+                    self.businessProfileCKRecordID = String(record.recordID)
+                    self.saveBusinessProfile()
+                }
+            })
         })
     }
     

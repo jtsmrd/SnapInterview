@@ -20,6 +20,7 @@ class CreateInterviewVC: UIViewController, UITextFieldDelegate, UITableViewDeleg
     var businessProfile: BusinessProfile!
     var interviewStore = InterviewStore()
     var interviewQuestions: [InterviewQuestion] = []
+    var businessProfileCKR: String!
     
     // MARK: - View Life Cycle Methods
     
@@ -74,10 +75,29 @@ class CreateInterviewVC: UIViewController, UITextFieldDelegate, UITableViewDeleg
         
         do {
             try coreDataStack.saveChanges()
+            syncInterviewToCloud()
         }
         catch let error {
             print(error)
         }
+    }
+    
+    // Save interview data to cloud
+    private func syncInterviewToCloud() {
+        
+        let busProfRecordID = CKRecordID(recordName: businessProfileCKR)
+        let interviewRecord = CKRecord(recordType: "Interview")
+        interviewRecord.setValue(titleTextField.text, forKey: "title")
+        interviewRecord.setValue(descriptionTextView.text, forKey: "desc")
+        let businessProfileReference = CKReference(recordID: busProfRecordID, action: .DeleteSelf)
+        interviewRecord.setObject(businessProfileReference, forKey: "businessProfile")
+        
+        let publicDatabase = CKContainer.defaultContainer().publicCloudDatabase
+        publicDatabase.saveRecord(interviewRecord, completionHandler: { (record, error) -> Void in
+            if let error = error {
+                print(error)
+            }
+        })
     }
     
     private func validateTextFields() -> String? {

@@ -2,6 +2,7 @@
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15D21" minimumToolsVersion="Xcode 7.0">
     <entity name="BusinessProfile" representedClassName=".BusinessProfile" syncable="YES">
         <attribute name="businessName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="businessProfileCKRecordID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
@@ -28,7 +29,7 @@
         <relationship name="interview" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Interview" inverseName="interviewQuestions" inverseEntity="Interview" syncable="YES"/>
     </entity>
     <elements>
-        <element name="BusinessProfile" positionX="-63" positionY="18" width="128" height="135"/>
+        <element name="BusinessProfile" positionX="-63" positionY="18" width="128" height="150"/>
         <element name="IndividualProfile" positionX="-63" positionY="-18" width="128" height="120"/>
         <element name="Interview" positionX="-54" positionY="45" width="128" height="120"/>
         <element name="InterviewQuestion" positionX="-54" positionY="54" width="128" height="90"/>

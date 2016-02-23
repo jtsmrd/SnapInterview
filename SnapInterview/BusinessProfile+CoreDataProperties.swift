@@ -2,7 +2,7 @@
 //  BusinessProfile+CoreDataProperties.swift
 //  SnapInterview
 //
-//  Created by JT Smrdel on 2/19/16.
+//  Created by JT Smrdel on 2/23/16.
 //  Copyright © 2016 SmrdelJT. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -19,5 +19,6 @@ extension BusinessProfile {
     @NSManaged var firstName: String?
     @NSManaged var lastName: String?
     @NSManaged var profileImageKey: String?
+    @NSManaged var businessProfileCKRecordID: String?
     @NSManaged var interviews: NSSet?
 }

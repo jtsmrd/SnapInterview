@@ -1,0 +1,24 @@
+Business Profile Planning:
+
+[Profile Tab]
+
+Done - Add and edit profile information
+
+[Interview Tab]
+
+Done - Create and save separate interviews, displayed in a table view
+Done - Interviews will have a job position title, a job position description, and job related questions that include their own time limits.
+- Ability to edit interviews.
+- Merge the add interview screen and the interview details screen
+- Implement deleting and reordering interviews, and questions within interviews
+- Sync interviews in the cloud
+
+[Candidate Tab]
+
+- Contains a table view with all candidates that have an interview
+- Selecting a candidate will display their info and their interview video if it was completed
+- Ability to further contact candidate
+
+[Search Tab]
+
+- Ability to search for individuals and invite them to a selected interview

@@ -18,5 +18,6 @@ class BusinessProfile: NSManagedObject {
         email = ""
         businessName = ""
         profileImageKey = ""
+        businessProfileCKRecordID = ""
     }
 }
