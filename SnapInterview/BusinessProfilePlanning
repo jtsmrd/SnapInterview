@@ -12,6 +12,7 @@ Done - Interviews will have a job position title, a job position description, an
 - Merge the add interview screen and the interview details screen
 - Implement deleting and reordering interviews, and questions within interviews
 - Sync interviews in the cloud
+- Fix Interview-BusinessProfile reference: Not deleting child interviews
 
 [Candidate Tab]
 

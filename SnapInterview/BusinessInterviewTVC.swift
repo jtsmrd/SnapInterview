@@ -76,7 +76,7 @@ class BusinessInterviewTVC: UITableViewController {
         if segue.identifier == "createInterview" {
             let createInterviewVC = segue.destinationViewController as! CreateInterviewVC
             createInterviewVC.businessProfile = businessProfile
-            createInterviewVC.businessProfileCKR = businessProfile.businessProfileCKRecordID
+            createInterviewVC.businessProfileCKRecordID = businessProfile.businessProfileCKRecordID
         }
         else if segue.identifier == "showDetail" {
             if let row = tableView.indexPathForSelectedRow?.row {

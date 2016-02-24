@@ -1,16 +1,22 @@
 //
-//  InterviewTableViewController.swift
+//  SelectInterviewTVC.swift
 //  SnapInterview
 //
-//  Created by JT Smrdel on 2/9/16.
+//  Created by JT Smrdel on 2/23/16.
 //  Copyright © 2016 SmrdelJT. All rights reserved.
 //
 
 import UIKit
+import CoreData
+import CloudKit
 
-class IndividualInterviewTVC: UITableViewController {
-
-    var interviewStore = InterviewStore()
+class SelectInterviewTVC: UITableViewController {
+    
+    // MARK: - Variables, Outlets, and Constants
+    
+    var interviews: NSArray!
+    var businessProfile: BusinessProfile!
+    let userEmail = NSUserDefaults.standardUserDefaults().valueForKey("email") as? String
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,12 +25,34 @@ class IndividualInterviewTVC: UITableViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        businessProfile = fetchBusinessProfile()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    // MARK: - Private Methods
+    
+    // Load from CoreData, return an IndividualProfile
+    private func fetchBusinessProfile() -> BusinessProfile {
+        var businessProfile: BusinessProfile!
+        let coreDataStack = (UIApplication.sharedApplication().delegate as! AppDelegate).coreDataStack
+        let fetchRequest = NSFetchRequest(entityName: "BusinessProfile")
+        fetchRequest.predicate = NSPredicate(format: "email = %@", userEmail!)
+        coreDataStack.mainQueueContext.performBlockAndWait() {
+            do {
+                let records = try coreDataStack.mainQueueContext.executeFetchRequest(fetchRequest) as? [BusinessProfile]
+                businessProfile = records![0]
+                self.interviews = businessProfile.interviews?.allObjects
+                
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.tableView.reloadData()
+                })
+            }
+            catch let error {
+                print(error)
+            }
+        }
+        return businessProfile
     }
 
     // MARK: - Table view data source
@@ -36,21 +64,16 @@ class IndividualInterviewTVC: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return interviewStore.allInterviews.count
+        return interviews.count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCellWithIdentifier("InterviewCell", forIndexPath: indexPath)
-
-        // Configure the cell...
-        let item = interviewStore.allInterviews[indexPath.row]
-        cell.textLabel?.text = item.interviewTitle
-
+        let item = interviews[indexPath.row] as! Interview
+        cell.textLabel?.text = item.title
         return cell
     }
-
 
     /*
     // Override to support conditional editing of the table view.
@@ -60,28 +83,24 @@ class IndividualInterviewTVC: UITableViewController {
     }
     */
 
-    
+    /*
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        
         if editingStyle == .Delete {
             // Delete the row from the data source
-            let interview = interviewStore.allInterviews[indexPath.row]
-            interviewStore.removeItem(interview)            
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    
+    */
 
-    
+    /*
     // Override to support rearranging the table view.
     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-        
-        interviewStore.moveItemAtIndex(fromIndexPath.row, toIndex: toIndexPath.row)
-    }
 
+    }
+    */
 
     /*
     // Override to support conditional rearranging of the table view.
@@ -91,18 +110,14 @@ class IndividualInterviewTVC: UITableViewController {
     }
     */
 
-    
+    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        if segue.identifier == "showInterviewDetail" {
-            if let rowIndex = tableView.indexPathForSelectedRow?.row {
-                let interview = interviewStore.allInterviews[rowIndex]
-                let interviewDetailViewController = segue.destinationViewController as! IndividualInterviewDetailVC
-                interviewDetailViewController.interview = interview
-            }
-        }
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
     }
+    */
+
 }

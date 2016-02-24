@@ -118,7 +118,7 @@ class BusinessSignupVC: UIViewController, UITextFieldDelegate {
                     print(error)
                 }
                 else if let record = record {
-                    self.businessProfileCKRecordID = String(record.recordID)
+                    self.businessProfileCKRecordID = String(record.recordID.recordName)
                     self.saveBusinessProfile()
                 }
             })

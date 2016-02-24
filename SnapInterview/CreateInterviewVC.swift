@@ -20,7 +20,8 @@ class CreateInterviewVC: UIViewController, UITextFieldDelegate, UITableViewDeleg
     var businessProfile: BusinessProfile!
     var interviewStore = InterviewStore()
     var interviewQuestions: [InterviewQuestion] = []
-    var businessProfileCKR: String!
+    var businessProfileCKRecordID: String!
+    var interviewRecordID: CKRecordID!
     
     // MARK: - View Life Cycle Methods
     
@@ -85,11 +86,11 @@ class CreateInterviewVC: UIViewController, UITextFieldDelegate, UITableViewDeleg
     // Save interview data to cloud
     private func syncInterviewToCloud() {
         
-        let busProfRecordID = CKRecordID(recordName: businessProfileCKR)
+        let businessProfileRecordID = CKRecordID(recordName: businessProfileCKRecordID)
         let interviewRecord = CKRecord(recordType: "Interview")
         interviewRecord.setValue(titleTextField.text, forKey: "title")
         interviewRecord.setValue(descriptionTextView.text, forKey: "desc")
-        let businessProfileReference = CKReference(recordID: busProfRecordID, action: .DeleteSelf)
+        let businessProfileReference = CKReference(recordID: businessProfileRecordID, action: .DeleteSelf)
         interviewRecord.setObject(businessProfileReference, forKey: "businessProfile")
         
         let publicDatabase = CKContainer.defaultContainer().publicCloudDatabase
@@ -97,7 +98,30 @@ class CreateInterviewVC: UIViewController, UITextFieldDelegate, UITableViewDeleg
             if let error = error {
                 print(error)
             }
+            else if let record = record {
+                self.interviewRecordID = record.recordID
+                self.saveInterviewQuestions()
+            }
         })
+    }
+    
+    private func saveInterviewQuestions() {
+        if interviewQuestions.count > 0 {
+            for question in interviewQuestions {
+                let questionRecord = CKRecord(recordType: "Question")
+                questionRecord.setValue(question.question, forKey: "question")
+                questionRecord.setValue(question.timeLimitInSeconds, forKey: "timeLimitInSeconds")
+                let interviewReference = CKReference(recordID: interviewRecordID, action: .DeleteSelf)
+                questionRecord.setObject(interviewReference, forKey: "interview")
+                
+                let publicDatabase = CKContainer.defaultContainer().publicCloudDatabase
+                publicDatabase.saveRecord(questionRecord, completionHandler: { (record, error) -> Void in
+                    if let error = error {
+                        print(error)
+                    }
+                })
+            }
+        }
     }
     
     private func validateTextFields() -> String? {
