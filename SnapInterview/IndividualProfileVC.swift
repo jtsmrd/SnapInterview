@@ -12,62 +12,29 @@ import CloudKit
 
 class IndividualProfileVC: UIViewController {
     
+    // MARK: - Variables, Outlets, and Constants
+    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var firstNameLabel: UILabel!
     @IBOutlet weak var lastNameLabel: UILabel!    
     @IBOutlet weak var titleLabel: UILabel!
-    
     var imageStore: ImageStore!
     var individualProfile: IndividualProfile!
     let userEmail = NSUserDefaults.standardUserDefaults().valueForKey("email") as? String
     
+    // MARK: - View Life Cycle Methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         imageStore = (UIApplication.sharedApplication().delegate as! AppDelegate).imageStore
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
         setupView()
     }
     
-    private func setupView() {
-        
-        individualProfile = fetchIndividualProfile()
-        
-        firstNameLabel.text = individualProfile.firstName
-        lastNameLabel.text = individualProfile.lastName
-        titleLabel.text = individualProfile.jobTitle
-        
-        // If a profile picture exists, load it
-        if let imageKey = individualProfile.profileImageKey {
-            imageView.image = imageStore.imageForKey(imageKey)
-        }
-    }
-    
-    // Load from CoreData, return an IndividualProfile
-    private func fetchIndividualProfile() -> IndividualProfile {
-        
-        var individualProfile: IndividualProfile!
-        let coreDataStack = (UIApplication.sharedApplication().delegate as! AppDelegate).coreDataStack
-        let fetchRequest = NSFetchRequest(entityName: "IndividualProfile")
-        fetchRequest.predicate = NSPredicate(format: "email = %@", userEmail!)
-        
-        coreDataStack.mainQueueContext.performBlockAndWait() {
-            do {
-                let records = try coreDataStack.mainQueueContext.executeFetchRequest(fetchRequest) as? [IndividualProfile]
-                
-                individualProfile = records![0]
-            }
-            catch let error {
-                print(error)
-            }
-        }
-        
-        return individualProfile
-    }
+    // MARK: - Actions
     
     @IBAction func logoutAction() {
         
@@ -81,8 +48,42 @@ class IndividualProfileVC: UIViewController {
     
     // Reload the InvidualProfile
     @IBAction func unwindAfterIndividualProfileEdit(segue: UIStoryboardSegue) {
-
+        
     }
+    
+    // MARK: - Private Methods
+
+    private func setupView() {
+        individualProfile = fetchIndividualProfile()
+        firstNameLabel.text = individualProfile.firstName
+        lastNameLabel.text = individualProfile.lastName
+        titleLabel.text = individualProfile.jobTitle
+        
+        // If a profile picture exists, load it
+        if let imageKey = individualProfile.profileImageKey {
+            imageView.image = imageStore.imageForKey(imageKey)
+        }
+    }
+    
+    // Load from CoreData, return an IndividualProfile
+    private func fetchIndividualProfile() -> IndividualProfile {
+        var individualProfile: IndividualProfile!
+        let coreDataStack = (UIApplication.sharedApplication().delegate as! AppDelegate).coreDataStack
+        let fetchRequest = NSFetchRequest(entityName: "IndividualProfile")
+        fetchRequest.predicate = NSPredicate(format: "email = %@", userEmail!)
+        coreDataStack.mainQueueContext.performBlockAndWait() {
+            do {
+                let records = try coreDataStack.mainQueueContext.executeFetchRequest(fetchRequest) as? [IndividualProfile]
+                individualProfile = records![0]
+            }
+            catch let error {
+                print(error)
+            }
+        }
+        return individualProfile
+    }    
+    
+    // MARK: - Navigation Methods
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showEdit" {            

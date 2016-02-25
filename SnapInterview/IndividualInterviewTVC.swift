@@ -10,7 +10,11 @@ import UIKit
 
 class IndividualInterviewTVC: UITableViewController {
 
+    // MARK: - Variables, Outlets, and Constants
+    
     var interviewStore = InterviewStore()
+    
+    // MARK: - View Life Cycle Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,35 +26,30 @@ class IndividualInterviewTVC: UITableViewController {
         self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    // MARK: - Table view data source
+    // MARK: - Actions
+    
+    
+    
+    // MARK: - Private Methods
+    
+    
+    
+    // MARK: - Table View Datasource Methods
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return interviewStore.allInterviews.count
     }
-
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCellWithIdentifier("InterviewCell", forIndexPath: indexPath)
-
-        // Configure the cell...
         let item = interviewStore.allInterviews[indexPath.row]
         cell.textLabel?.text = item.interviewTitle
-
         return cell
     }
-
 
     /*
     // Override to support conditional editing of the table view.
@@ -59,7 +58,6 @@ class IndividualInterviewTVC: UITableViewController {
         return true
     }
     */
-
     
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -74,14 +72,10 @@ class IndividualInterviewTVC: UITableViewController {
         }    
     }
     
-
-    
     // Override to support rearranging the table view.
     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-        
         interviewStore.moveItemAtIndex(fromIndexPath.row, toIndex: toIndexPath.row)
     }
-
 
     /*
     // Override to support conditional rearranging of the table view.
@@ -90,13 +84,11 @@ class IndividualInterviewTVC: UITableViewController {
         return true
     }
     */
-
     
-    // MARK: - Navigation
+    // MARK: - Navigation Methods
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
         if segue.identifier == "showInterviewDetail" {
             if let rowIndex = tableView.indexPathForSelectedRow?.row {
                 let interview = interviewStore.allInterviews[rowIndex]

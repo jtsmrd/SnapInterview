@@ -69,9 +69,6 @@ class BusinessSignupVC: UIViewController, UITextFieldDelegate {
             myKeychainWrapper.writeToKeychain()
             syncBusinessProfileToCloud()
             setUserDefaults()
-            
-            // Pop to the LoginVC where the profile will automatically load
-            //navigationController?.popToRootViewControllerAnimated(false)
         }
     }
     
@@ -92,7 +89,6 @@ class BusinessSignupVC: UIViewController, UITextFieldDelegate {
         
         do {
             try coreDataStack.saveChanges()
-            
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.navigationController?.popToRootViewControllerAnimated(false)
             })

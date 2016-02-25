@@ -18,8 +18,8 @@ class IndividualSignupVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    
     let myKeychainWrapper = KeychainWrapper()
+    var individualProfileCKRecordID: String!
     
     // MARK: - View Life Cycle
     
@@ -66,12 +66,8 @@ class IndividualSignupVC: UIViewController, UITextFieldDelegate {
             // Save password to Keychain
             myKeychainWrapper.mySetObject(passwordTextField.text, forKey:kSecValueData)
             myKeychainWrapper.writeToKeychain()
-            
-            saveIndividualProfile()
+            syncIndividualProfileToCloud()
             setUserDefaults()
-            
-            // Pop to the LoginVC where the profile will automatically load
-            navigationController?.popToRootViewControllerAnimated(false)
         }
     }
     
@@ -86,11 +82,14 @@ class IndividualSignupVC: UIViewController, UITextFieldDelegate {
             individualProfile.firstName = self.firstNameTextField.text!
             individualProfile.lastName = self.lastNameTextField.text!
             individualProfile.email = self.emailTextField.text!
+            individualProfile.individualProfileCKRecordID = self.individualProfileCKRecordID
         }
         
         do {
             try coreDataStack.saveChanges()
-            syncIndividualProfileToCloud()
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.navigationController?.popToRootViewControllerAnimated(false)
+            })
         }
         catch let error {
             print(error)
@@ -109,6 +108,10 @@ class IndividualSignupVC: UIViewController, UITextFieldDelegate {
         publicDatabase.saveRecord(individualProfileRecord, completionHandler: { (record, error) -> Void in
             if let error = error {
                 print(error)
+            }
+            else if let record = record {
+                self.individualProfileCKRecordID = String(record.recordID.recordName)
+                self.saveIndividualProfile()
             }
         })
     }
