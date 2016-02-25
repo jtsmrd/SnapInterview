@@ -434,10 +434,22 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kfj-h4-Idi">
                                 <rect key="frame" x="131" y="319" width="112" height="30"/>
-                                <state key="normal" title="Send Interview"/>
+                                <state key="normal" title="Select Interview"/>
                                 <connections>
-                                    <action selector="sendInterviewAction:" destination="f92-d3-3SL" eventType="touchUpInside" id="7zO-e8-LI5"/>
-                                    <segue destination="acl-XL-Qkc" kind="show" identifier="showInterviews" id="S9Q-Ry-5Jm"/>
+                                    <segue destination="acl-XL-Qkc" kind="show" identifier="selectInterview" id="S9Q-Ry-5Jm"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No Interview Selected" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uAC-TN-Uw1">
+                                <rect key="frame" x="20" y="357" width="335" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J0p-ck-auG">
+                                <rect key="frame" x="125" y="410" width="125" height="30"/>
+                                <state key="normal" title="Confirm Interview"/>
+                                <connections>
+                                    <action selector="confirmInterviewAction:" destination="f92-d3-3SL" eventType="touchUpInside" id="sQU-zr-iMz"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -448,6 +460,7 @@
                     <connections>
                         <outlet property="firstNameLabel" destination="niR-54-9gq" id="eqH-QA-DKU"/>
                         <outlet property="lastNameLabel" destination="VJf-cO-HBO" id="tsA-gO-9sW"/>
+                        <outlet property="selectedInterviewLabel" destination="uAC-TN-Uw1" id="feJ-rX-OVP"/>
                         <outlet property="titleLabel" destination="pfj-Mi-4Jw" id="jgR-60-dxj"/>
                     </connections>
                 </viewController>

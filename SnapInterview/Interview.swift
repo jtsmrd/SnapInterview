@@ -16,5 +16,6 @@ class Interview: NSManagedObject {
         title = ""
         desc = ""
         createDate = NSDate()
+        interviewCKRecordID = ""
     }
 }

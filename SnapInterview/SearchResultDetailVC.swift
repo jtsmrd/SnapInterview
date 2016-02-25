@@ -8,14 +8,17 @@
 
 import UIKit
 import CloudKit
+import CoreData
 
-class SearchResultDetailVC: UIViewController {
+class SearchResultDetailVC: UIViewController, SelectInterviewTVCDelegate {
 
     // MARK: - Variables, Outlets, and Constants
     
     @IBOutlet weak var firstNameLabel: UILabel!
     @IBOutlet weak var lastNameLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var selectedInterviewLabel: UILabel!    
+    var selectedInterview: Interview!
     var individualProfile: CKRecord!
     
     // MARK: - View Life Cycle Methods
@@ -35,12 +38,59 @@ class SearchResultDetailVC: UIViewController {
     
     // MARK: - Actions
     
-    @IBAction func sendInterviewAction(sender: UIButton) {
-        
+    @IBAction func confirmInterviewAction(sender: UIButton) {
+        confirmInterview()
     }
     
     // MARK: - Private Methods
+    
+    private func confirmInterview() {
+        saveInterviewToIndividualProfile()
+    }
+    
+    private func saveToPendingInterviews() {
+        
+    }
+    
+    private func saveInterviewToIndividualProfile() {
+        let publicDatabase = CKContainer.defaultContainer().publicCloudDatabase
+        let interviewReference = CKReference(recordID: CKRecordID.init(recordName: selectedInterview.interviewCKRecordID!), action: .None)
+        var referenceList: [CKReference] = []
+        
+        if individualProfile.objectForKey("interviews") != nil {
+            var references = individualProfile.objectForKey("interviews") as! [CKReference]
+            references.append(interviewReference)
+            individualProfile.setObject(references, forKey: "interviews")
+        }
+        else {
+            referenceList.append(interviewReference)
+            individualProfile.setObject(referenceList, forKey: "interviews")
+        }
+        
+        publicDatabase.saveRecord(individualProfile) { (record, error) -> Void in
+            if let error = error {
+                print(error)
+            }
+        }
+    }
+    
+    // MARK: - CreateQuestionVC Delegate Methods
+    
+    func controller(controller: SelectInterviewTVC, SelectedInterview interview: Interview) {
+        selectedInterview = interview
+        selectedInterviewLabel.text = selectedInterview.title
+    }
+    
+    // MARK: - Navigation Methods
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "selectInterview" {
+            let selectInterviewTVC = segue.destinationViewController as! SelectInterviewTVC
+            selectInterviewTVC.delegate = self
+        }
+    }
+    
+    
     // MARK: - Delegate Methods
     // MARK: - Datasource Methods
-    // MARK: - Navigation Methods
 }

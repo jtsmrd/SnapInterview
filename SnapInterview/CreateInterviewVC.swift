@@ -21,7 +21,7 @@ class CreateInterviewVC: UIViewController, UITextFieldDelegate, UITableViewDeleg
     var interviewStore = InterviewStore()
     var interviewQuestions: [InterviewQuestion] = []
     var businessProfileCKRecordID: String!
-    var interviewRecordID: CKRecordID!
+    var interviewCKRecordID: CKRecordID!
     
     // MARK: - View Life Cycle Methods
     
@@ -46,8 +46,7 @@ class CreateInterviewVC: UIViewController, UITextFieldDelegate, UITableViewDeleg
             self.presentViewController(alertController, animated: true, completion: nil)
         }
         else {
-            saveInterview()
-            navigationController?.popViewControllerAnimated(true)
+            syncInterviewToCloud()
         }
     }
     
@@ -72,11 +71,12 @@ class CreateInterviewVC: UIViewController, UITextFieldDelegate, UITableViewDeleg
             interview.desc = description
             interview.businessProfile = self.businessProfile
             interview.interviewQuestions = NSSet.init(array: self.interviewQuestions)
+            interview.interviewCKRecordID = self.interviewCKRecordID.recordName
         }
         
         do {
             try coreDataStack.saveChanges()
-            syncInterviewToCloud()
+            navigationController?.popViewControllerAnimated(true)
         }
         catch let error {
             print(error)
@@ -99,8 +99,11 @@ class CreateInterviewVC: UIViewController, UITextFieldDelegate, UITableViewDeleg
                 print(error)
             }
             else if let record = record {
-                self.interviewRecordID = record.recordID
-                self.saveInterviewQuestions()
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.interviewCKRecordID = record.recordID
+                    self.saveInterviewQuestions()
+                    self.saveInterview()
+                })
             }
         })
     }
@@ -111,7 +114,7 @@ class CreateInterviewVC: UIViewController, UITextFieldDelegate, UITableViewDeleg
                 let questionRecord = CKRecord(recordType: "Question")
                 questionRecord.setValue(question.question, forKey: "question")
                 questionRecord.setValue(question.timeLimitInSeconds, forKey: "timeLimitInSeconds")
-                let interviewReference = CKReference(recordID: interviewRecordID, action: .DeleteSelf)
+                let interviewReference = CKReference(recordID: interviewCKRecordID, action: .DeleteSelf)
                 questionRecord.setObject(interviewReference, forKey: "interview")
                 
                 let publicDatabase = CKContainer.defaultContainer().publicCloudDatabase

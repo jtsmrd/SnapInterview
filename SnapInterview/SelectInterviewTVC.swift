@@ -10,6 +10,11 @@ import UIKit
 import CoreData
 import CloudKit
 
+protocol SelectInterviewTVCDelegate {
+    
+    func controller(controller: SelectInterviewTVC, SelectedInterview interview: Interview)
+}
+
 class SelectInterviewTVC: UITableViewController {
     
     // MARK: - Variables, Outlets, and Constants
@@ -17,6 +22,7 @@ class SelectInterviewTVC: UITableViewController {
     var interviews: NSArray!
     var businessProfile: BusinessProfile!
     let userEmail = NSUserDefaults.standardUserDefaults().valueForKey("email") as? String
+    var delegate: SelectInterviewTVCDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,7 +80,13 @@ class SelectInterviewTVC: UITableViewController {
         cell.textLabel?.text = item.title
         return cell
     }
-
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let interview = interviews[indexPath.row]
+        delegate?.controller(self, SelectedInterview: interview as! Interview)
+        navigationController?.popViewControllerAnimated(true)
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

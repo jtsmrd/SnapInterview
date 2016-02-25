@@ -23,3 +23,13 @@ Done - Interviews will have a job position title, a job position description, an
 [Search Tab]
 
 - Ability to search for individuals and invite them to a selected interview
+
+
+
+******************************************************************************
+GENERAL TODOS:
+
+- Update cloud entity names to be plaural
+- Update core data entity names to be plaural
+- Create constants at the top of each controller class for segue identifiers and cell identifiers
+- Add properties to core data entities that reference their coresponding cloud record
