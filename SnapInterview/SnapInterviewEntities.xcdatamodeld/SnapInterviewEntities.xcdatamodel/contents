@@ -16,6 +16,7 @@
         <attribute name="jobTitle" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="profileImageKey" attributeType="String" syncable="YES"/>
+        <relationship name="interviews" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Interview" inverseName="individualProfile" inverseEntity="Interview" syncable="YES"/>
     </entity>
     <entity name="Interview" representedClassName=".Interview" syncable="YES">
         <attribute name="createDate" optional="YES" attributeType="Date" syncable="YES"/>
@@ -23,6 +24,7 @@
         <attribute name="interviewCKRecordID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="businessProfile" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BusinessProfile" inverseName="interviews" inverseEntity="BusinessProfile" syncable="YES"/>
+        <relationship name="individualProfile" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="IndividualProfile" inverseName="interviews" inverseEntity="IndividualProfile" syncable="YES"/>
         <relationship name="interviewQuestions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="InterviewQuestion" inverseName="interview" inverseEntity="InterviewQuestion" syncable="YES"/>
     </entity>
     <entity name="InterviewQuestion" representedClassName=".InterviewQuestion" syncable="YES">
@@ -33,8 +35,8 @@
     </entity>
     <elements>
         <element name="BusinessProfile" positionX="-63" positionY="18" width="128" height="150"/>
-        <element name="IndividualProfile" positionX="-63" positionY="-18" width="128" height="135"/>
-        <element name="Interview" positionX="-54" positionY="45" width="128" height="135"/>
+        <element name="IndividualProfile" positionX="-63" positionY="-18" width="128" height="150"/>
+        <element name="Interview" positionX="-54" positionY="45" width="128" height="150"/>
         <element name="InterviewQuestion" positionX="-54" positionY="54" width="128" height="105"/>
     </elements>
 </model>

@@ -14,7 +14,7 @@ class BusinessInterviewTVC: UITableViewController {
 
     // MARK: - Variables, Outlets, and Constants
     
-    var interviews: NSArray!
+    var interviews: [Interview] = []
     var businessProfile: BusinessProfile!
     let userEmail = NSUserDefaults.standardUserDefaults().valueForKey("email") as? String
     var businessProfileCKR: CKRecord!
@@ -43,7 +43,7 @@ class BusinessInterviewTVC: UITableViewController {
             do {
                 let records = try coreDataStack.mainQueueContext.executeFetchRequest(fetchRequest) as? [BusinessProfile]
                 businessProfile = records![0]
-                self.interviews = businessProfile.interviews?.allObjects
+                self.interviews = businessProfile.interviews?.allObjects as! [Interview]
             }
             catch let error {
                 print(error)
@@ -64,7 +64,7 @@ class BusinessInterviewTVC: UITableViewController {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("InterviewCell", forIndexPath: indexPath)
-        let item = interviews[indexPath.row] as! Interview
+        let item = interviews[indexPath.row]
         cell.textLabel?.text = item.title
         return cell
     }
@@ -82,7 +82,7 @@ class BusinessInterviewTVC: UITableViewController {
             if let row = tableView.indexPathForSelectedRow?.row {
                 let item = interviews[row]
                 let interviewDetailVC = segue.destinationViewController as! BusinessInterviewDetailVC
-                interviewDetailVC.interview = item as! Interview
+                interviewDetailVC.interview = item
             }
         }
     }

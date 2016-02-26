@@ -17,7 +17,7 @@ class IndividualInterviewDetailVC: UIViewController, UIImagePickerControllerDele
     @IBOutlet weak var interviewTitleLabel: UILabel!
     @IBOutlet weak var interviewDescriptionLabel: UILabel!
     @IBOutlet weak var dateCreatedLabel: UILabel!
-    var interview: TestInterview!
+    var interview: Interview!
     var videoStore = VideoStore()
     let dateFormatter: NSDateFormatter = {
         let formatter = NSDateFormatter()
@@ -35,9 +35,9 @@ class IndividualInterviewDetailVC: UIViewController, UIImagePickerControllerDele
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        interviewTitleLabel.text = interview.interviewTitle
-        interviewDescriptionLabel.text = interview.interviewDescription
-        dateCreatedLabel.text = dateFormatter.stringFromDate(interview.dateCreated)
+        interviewTitleLabel.text = interview.title
+        interviewDescriptionLabel.text = interview.desc
+        dateCreatedLabel.text = dateFormatter.stringFromDate(interview.createDate!)
     }
     
     // MARK: - Actions

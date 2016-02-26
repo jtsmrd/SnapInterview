@@ -54,7 +54,8 @@ class IndividualProfileVC: UIViewController {
     // MARK: - Private Methods
 
     private func setupView() {
-        individualProfile = fetchIndividualProfile()
+        individualProfile = DataMethods.fetchIndividualProfile(userEmail!)
+        
         firstNameLabel.text = individualProfile.firstName
         lastNameLabel.text = individualProfile.lastName
         titleLabel.text = individualProfile.jobTitle

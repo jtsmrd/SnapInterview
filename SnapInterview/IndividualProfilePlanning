@@ -1,0 +1,29 @@
+Individual Profile Planning:
+
+[Profile Tab]
+
+Done - Add and edit profile information
+
+[Interview Tab]
+
+- Save interviews from the cloud to coredata
+
+[Candidate Tab]
+
+- Contains a table view with all candidates that have an interview
+- Selecting a candidate will display their info and their interview video if it was completed
+- Ability to further contact candidate
+
+[Search Tab]
+
+- Ability to search for individuals and invite them to a selected interview
+
+
+
+******************************************************************************
+GENERAL TODOS:
+
+- Update cloud entity names to be plaural
+- Update core data entity names to be plaural
+- Create constants at the top of each controller class for segue identifiers and cell identifiers
+- Add properties to core data entities that reference their coresponding cloud record
