@@ -66,30 +66,12 @@ class IndividualProfileVC: UIViewController {
         }
     }
     
-    // Load from CoreData, return an IndividualProfile
-    private func fetchIndividualProfile() -> IndividualProfile {
-        var individualProfile: IndividualProfile!
-        let coreDataStack = (UIApplication.sharedApplication().delegate as! AppDelegate).coreDataStack
-        let fetchRequest = NSFetchRequest(entityName: "IndividualProfile")
-        fetchRequest.predicate = NSPredicate(format: "email = %@", userEmail!)
-        coreDataStack.mainQueueContext.performBlockAndWait() {
-            do {
-                let records = try coreDataStack.mainQueueContext.executeFetchRequest(fetchRequest) as? [IndividualProfile]
-                individualProfile = records![0]
-            }
-            catch let error {
-                print(error)
-            }
-        }
-        return individualProfile
-    }    
-    
     // MARK: - Navigation Methods
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showEdit" {            
             let destinationVC = segue.destinationViewController as! EditIndividualProfileVC
-            destinationVC.individualProfile = fetchIndividualProfile()
+            destinationVC.individualProfile = individualProfile
         }
     }
 }

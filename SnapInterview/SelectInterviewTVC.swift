@@ -33,43 +33,20 @@ class SelectInterviewTVC: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        businessProfile = fetchBusinessProfile()
+        businessProfile = DataMethods.fetchBusinessProfile(userEmail!)
+        interviews = businessProfile.interviews?.allObjects
+        tableView.reloadData()
     }
 
     // MARK: - Private Methods
-    
-    // Load from CoreData, return an IndividualProfile
-    private func fetchBusinessProfile() -> BusinessProfile {
-        var businessProfile: BusinessProfile!
-        let coreDataStack = (UIApplication.sharedApplication().delegate as! AppDelegate).coreDataStack
-        let fetchRequest = NSFetchRequest(entityName: "BusinessProfile")
-        fetchRequest.predicate = NSPredicate(format: "email = %@", userEmail!)
-        coreDataStack.mainQueueContext.performBlockAndWait() {
-            do {
-                let records = try coreDataStack.mainQueueContext.executeFetchRequest(fetchRequest) as? [BusinessProfile]
-                businessProfile = records![0]
-                self.interviews = businessProfile.interviews?.allObjects
-                
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.tableView.reloadData()
-                })
-            }
-            catch let error {
-                print(error)
-            }
-        }
-        return businessProfile
-    }
 
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return interviews.count
     }
 

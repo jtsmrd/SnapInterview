@@ -63,17 +63,14 @@ class CreateInterviewVC: UIViewController, UITextFieldDelegate, UITableViewDeleg
     private func saveInterview() {
         var interview: Interview!
         let coreDataStack = (UIApplication.sharedApplication().delegate as! AppDelegate).coreDataStack
-        let title = titleTextField.text
-        let description = descriptionTextView.text
         coreDataStack.mainQueueContext.performBlockAndWait() {
             interview = NSEntityDescription.insertNewObjectForEntityForName("Interview", inManagedObjectContext: coreDataStack.mainQueueContext) as! Interview
-            interview.title = title
-            interview.desc = description
+            interview.title = self.titleTextField.text
+            interview.desc = self.descriptionTextView.text
             interview.businessProfile = self.businessProfile
             interview.interviewQuestions = NSSet.init(array: self.interviewQuestions)
             interview.interviewCKRecordID = self.interviewCKRecordID.recordName
         }
-        
         do {
             try coreDataStack.saveChanges()
             navigationController?.popViewControllerAnimated(true)
@@ -84,8 +81,7 @@ class CreateInterviewVC: UIViewController, UITextFieldDelegate, UITableViewDeleg
     }
     
     // Save interview data to cloud
-    private func syncInterviewToCloud() {
-        
+    private func syncInterviewToCloud() {        
         let businessProfileRecordID = CKRecordID(recordName: businessProfileCKRecordID)
         let interviewRecord = CKRecord(recordType: "Interview")
         interviewRecord.setValue(titleTextField.text, forKey: "title")

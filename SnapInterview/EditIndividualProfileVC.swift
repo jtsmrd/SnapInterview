@@ -19,8 +19,6 @@ class EditIndividualProfileVC: UIViewController, UIImagePickerControllerDelegate
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var imageView: UIImageView!
     var individualProfile: IndividualProfile!
-    var photoURL: NSURL?
-    var currentRecord: CKRecord!
     var imageStore: ImageStore!
     
     // MARK: - View Life Cycle Methods
@@ -37,7 +35,10 @@ class EditIndividualProfileVC: UIViewController, UIImagePickerControllerDelegate
     // MARK: - Actions
     
     @IBAction func saveAction(sender: UIButton) {
-        saveIndividualProfile()
+        individualProfile.firstName = firstNameTextField.text!
+        individualProfile.lastName = lastNameTextField.text!
+        individualProfile.jobTitle = titleTextField.text!
+        DataMethods.saveAndSyncIndividualProfile(individualProfile)
     }
     
     @IBAction func addEditImage(sender: UIButton) {
@@ -56,54 +57,6 @@ class EditIndividualProfileVC: UIViewController, UIImagePickerControllerDelegate
     
     private func loadProfileImage() {
         imageView.image = imageStore.imageForKey(individualProfile.profileImageKey!)
-    }
-    
-    // Save profile data to CoreData
-    private func saveIndividualProfile() {
-        let firstName = firstNameTextField.text!
-        let lastName = lastNameTextField.text!
-        let title = titleTextField.text!
-        let coreDataStack = (UIApplication.sharedApplication().delegate as! AppDelegate).coreDataStack
-        individualProfile.firstName = firstName
-        individualProfile.lastName = lastName
-        individualProfile.jobTitle = title
-        
-        do {
-            try coreDataStack.saveChanges()
-            syncIndividualProfileToCloud()
-        }
-        catch let error {
-            print(error)
-        }
-    }
-    
-    private func syncIndividualProfileToCloud() {
-        var record: CKRecord!
-        let predicate = NSPredicate(format: "email = %@", individualProfile.email!)
-        let query = CKQuery(recordType: "IndividualProfile", predicate: predicate)
-        let publicDatabase = CKContainer.defaultContainer().publicCloudDatabase
-        publicDatabase.performQuery(query, inZoneWithID: nil, completionHandler: { (records, error) -> Void in
-            if let error = error {
-                print(error)
-            }
-            else {
-                if records!.count > 0 {
-                    record = records![0]
-                    record.setValue(self.firstNameTextField.text, forKey: "firstName")
-                    record.setValue(self.lastNameTextField.text, forKey: "lastName")
-                    record.setValue(self.titleTextField.text, forKey: "jobTitle")
-                    if let imageID = self.individualProfile.profileImageKey {
-                        let imageAsset = CKAsset(fileURL: self.imageStore.imageURLForKey(imageID))
-                        record.setValue(imageAsset, forKey: "individualProfileImage")
-                    }
-                    publicDatabase.saveRecord(record, completionHandler: { (record, error) -> Void in
-                        if let error = error {
-                            print(error)
-                        }
-                    })
-                }
-            }
-        })
     }
     
     // MARK: - Image Picker Delegate Methods

@@ -27,30 +27,14 @@ class BusinessInterviewTVC: UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
-        businessProfile = fetchBusinessProfile()
+        businessProfile = DataMethods.fetchBusinessProfile(userEmail!)
+        interviews = businessProfile.interviews?.allObjects as! [Interview]
         tableView.reloadData()
     }
     
     // MARK: - Private Methods
 
-    // Load from CoreData, return an IndividualProfile
-    private func fetchBusinessProfile() -> BusinessProfile {
-        var businessProfile: BusinessProfile!
-        let coreDataStack = (UIApplication.sharedApplication().delegate as! AppDelegate).coreDataStack
-        let fetchRequest = NSFetchRequest(entityName: "BusinessProfile")
-        fetchRequest.predicate = NSPredicate(format: "email = %@", userEmail!)
-        coreDataStack.mainQueueContext.performBlockAndWait() {
-            do {
-                let records = try coreDataStack.mainQueueContext.executeFetchRequest(fetchRequest) as? [BusinessProfile]
-                businessProfile = records![0]
-                self.interviews = businessProfile.interviews?.allObjects as! [Interview]
-            }
-            catch let error {
-                print(error)
-            }
-        }
-        return businessProfile
-    }
+    
     
     // MARK: - Table View Data Source Methods
 

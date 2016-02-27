@@ -50,7 +50,7 @@ class BusinessProfileVC: UIViewController {
     // MARK: - Private Methods
     
     private func setupView() {
-        businessProfile = fetchBusinessProfile()
+        businessProfile = DataMethods.fetchBusinessProfile(userEmail!)
         firstNameLabel.text = businessProfile.firstName
         lastNameLabel.text = businessProfile.lastName
         businessNameLabel.text = businessProfile.businessName
@@ -61,30 +61,12 @@ class BusinessProfileVC: UIViewController {
         }
     }
     
-    // Load from CoreData, return an IndividualProfile
-    private func fetchBusinessProfile() -> BusinessProfile {
-        var businessProfile: BusinessProfile!
-        let coreDataStack = (UIApplication.sharedApplication().delegate as! AppDelegate).coreDataStack
-        let fetchRequest = NSFetchRequest(entityName: "BusinessProfile")
-        fetchRequest.predicate = NSPredicate(format: "email = %@", userEmail!)
-        coreDataStack.mainQueueContext.performBlockAndWait() {
-            do {
-                let records = try coreDataStack.mainQueueContext.executeFetchRequest(fetchRequest) as? [BusinessProfile]
-                businessProfile = records![0]
-            }
-            catch let error {
-                print(error)
-            }
-        }
-        return businessProfile
-    }
-    
     // MARK: - Navigation Methods
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showEdit" {
             let destinationVC = segue.destinationViewController as! EditBusinessProfileVC
-            destinationVC.businessProfile = fetchBusinessProfile()
+            destinationVC.businessProfile = businessProfile
         }
     }
 }

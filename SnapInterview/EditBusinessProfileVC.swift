@@ -53,7 +53,10 @@ class EditBusinessProfileVC: UIViewController, UITextFieldDelegate, UIImagePicke
     }
     
     @IBAction func saveAction(sender: UIButton) {
-        saveBusinessProfile()
+        businessProfile.firstName = firstNameTextField.text!
+        businessProfile.lastName = lastNameTextField.text!
+        businessProfile.businessName = businessNameTextField.text!
+        DataMethods.saveAndSyncBusinessProfile(businessProfile)
     }
     
     @IBAction func cancelAction(sender: UIButton) {
@@ -64,50 +67,6 @@ class EditBusinessProfileVC: UIViewController, UITextFieldDelegate, UIImagePicke
     
     private func loadProfileImage() {
         imageView.image = imageStore.imageForKey(businessProfile.profileImageKey!)
-    }
-    
-    // Save profile data to CoreData
-    private func saveBusinessProfile() {
-        let coreDataStack = (UIApplication.sharedApplication().delegate as! AppDelegate).coreDataStack
-        businessProfile.firstName = firstNameTextField.text!
-        businessProfile.lastName = lastNameTextField.text!
-        businessProfile.businessName = businessNameTextField.text!
-        
-        do {
-            try coreDataStack.saveChanges()
-            syncBusinessProfileToCloud()
-        }
-        catch let error {
-            print(error)
-        }
-    }
-    
-    private func syncBusinessProfileToCloud() {
-        var record: CKRecord!
-        let predicate = NSPredicate(format: "email = %@", businessProfile.email!)
-        let query = CKQuery(recordType: "BusinessProfile", predicate: predicate)
-        CKContainer.defaultContainer().publicCloudDatabase.performQuery(query, inZoneWithID: nil, completionHandler: { (records, error) -> Void in
-            if let error = error {
-                print(error)
-            }
-            else {
-                if records!.count > 0 {
-                    record = records![0]
-                    record.setValue(self.firstNameTextField.text, forKey: "firstName")
-                    record.setValue(self.lastNameTextField.text, forKey: "lastName")
-                    record.setValue(self.businessNameTextField.text, forKey: "businessName")
-                    if let imageID = self.businessProfile.profileImageKey {
-                        let imageAsset = CKAsset(fileURL: self.imageStore.imageURLForKey(imageID))
-                        record.setValue(imageAsset, forKey: "businessProfileImage")
-                    }
-                    CKContainer.defaultContainer().publicCloudDatabase.saveRecord(record, completionHandler: { (record, error) -> Void in
-                        if let error = error {
-                            print(error)
-                        }
-                    })
-                }
-            }
-        })
     }
     
     // MARK: TextField Delegate Methods
