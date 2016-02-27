@@ -21,7 +21,7 @@ class CreateInterviewVC: UIViewController, UITextFieldDelegate, UITableViewDeleg
     var interviewStore = InterviewStore()
     var interviewQuestions: [InterviewQuestion] = []
     var businessProfileCKRecordID: String!
-    var interviewCKRecordID: CKRecordID!
+    var interviewTemplateCKRecordID: CKRecordID!
     
     // MARK: - View Life Cycle Methods
     
@@ -46,7 +46,7 @@ class CreateInterviewVC: UIViewController, UITextFieldDelegate, UITableViewDeleg
             self.presentViewController(alertController, animated: true, completion: nil)
         }
         else {
-            syncInterviewToCloud()
+            syncInterviewTemplateToCloud()
         }
     }
     
@@ -60,16 +60,16 @@ class CreateInterviewVC: UIViewController, UITextFieldDelegate, UITableViewDeleg
     
     // MARK: - Private Methods
     
-    private func saveInterview() {
-        var interview: Interview!
+    private func saveInterviewTemplate() {
+        var interviewTemplate: InterviewTemplate!
         let coreDataStack = (UIApplication.sharedApplication().delegate as! AppDelegate).coreDataStack
         coreDataStack.mainQueueContext.performBlockAndWait() {
-            interview = NSEntityDescription.insertNewObjectForEntityForName("Interview", inManagedObjectContext: coreDataStack.mainQueueContext) as! Interview
-            interview.title = self.titleTextField.text
-            interview.desc = self.descriptionTextView.text
-            interview.businessProfile = self.businessProfile
-            interview.interviewQuestions = NSSet.init(array: self.interviewQuestions)
-            interview.interviewCKRecordID = self.interviewCKRecordID.recordName
+            interviewTemplate = NSEntityDescription.insertNewObjectForEntityForName("InterviewTemplate", inManagedObjectContext: coreDataStack.mainQueueContext) as! InterviewTemplate
+            interviewTemplate.jobTitle = self.titleTextField.text
+            interviewTemplate.jobDescription = self.descriptionTextView.text
+            interviewTemplate.businessProfile = self.businessProfile
+            interviewTemplate.interviewQuestions = NSSet.init(array: self.interviewQuestions)
+            interviewTemplate.cKRecordName = self.interviewTemplateCKRecordID.recordName
         }
         do {
             try coreDataStack.saveChanges()
@@ -80,38 +80,38 @@ class CreateInterviewVC: UIViewController, UITextFieldDelegate, UITableViewDeleg
         }
     }
     
-    // Save interview data to cloud
-    private func syncInterviewToCloud() {        
+    // Save interview template to cloud
+    private func syncInterviewTemplateToCloud() {
         let businessProfileRecordID = CKRecordID(recordName: businessProfileCKRecordID)
-        let interviewRecord = CKRecord(recordType: "Interview")
-        interviewRecord.setValue(titleTextField.text, forKey: "title")
-        interviewRecord.setValue(descriptionTextView.text, forKey: "desc")
+        let interviewTemplate = CKRecord(recordType: "InterviewTemplate")
+        interviewTemplate.setValue(titleTextField.text, forKey: "jobTitle")
+        interviewTemplate.setValue(descriptionTextView.text, forKey: "jobDescription")
         let businessProfileReference = CKReference(recordID: businessProfileRecordID, action: .DeleteSelf)
-        interviewRecord.setObject(businessProfileReference, forKey: "businessProfile")
+        interviewTemplate.setObject(businessProfileReference, forKey: "businessProfile")
         
         let publicDatabase = CKContainer.defaultContainer().publicCloudDatabase
-        publicDatabase.saveRecord(interviewRecord, completionHandler: { (record, error) -> Void in
+        publicDatabase.saveRecord(interviewTemplate, completionHandler: { (record, error) -> Void in
             if let error = error {
                 print(error)
             }
             else if let record = record {
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.interviewCKRecordID = record.recordID
-                    self.saveInterviewQuestions()
-                    self.saveInterview()
+                    self.interviewTemplateCKRecordID = record.recordID
+                    self.saveInterviewTemplateQuestions()
+                    self.saveInterviewTemplate()
                 })
             }
         })
     }
     
-    private func saveInterviewQuestions() {
+    private func saveInterviewTemplateQuestions() {
         if interviewQuestions.count > 0 {
             for question in interviewQuestions {
                 let questionRecord = CKRecord(recordType: "Question")
                 questionRecord.setValue(question.question, forKey: "question")
                 questionRecord.setValue(question.timeLimitInSeconds, forKey: "timeLimitInSeconds")
-                let interviewReference = CKReference(recordID: interviewCKRecordID, action: .DeleteSelf)
-                questionRecord.setObject(interviewReference, forKey: "interview")
+                let interviewTemplateReference = CKReference(recordID: interviewTemplateCKRecordID, action: .DeleteSelf)
+                questionRecord.setObject(interviewTemplateReference, forKey: "interviewTemplate")
                 
                 let publicDatabase = CKContainer.defaultContainer().publicCloudDatabase
                 publicDatabase.saveRecord(questionRecord, completionHandler: { (record, error) -> Void in

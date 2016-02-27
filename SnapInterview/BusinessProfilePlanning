@@ -14,7 +14,7 @@ Done - Interviews will have a job position title, a job position description, an
 - Sync interviews in the cloud
 - Fix Interview-BusinessProfile reference: Not deleting child interviews
 
-[Candidate Tab]
+[Pending Interviews Tab]
 
 - Contains a table view with all candidates that have an interview
 - Selecting a candidate will display their info and their interview video if it was completed

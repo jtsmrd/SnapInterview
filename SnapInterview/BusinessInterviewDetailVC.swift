@@ -15,7 +15,7 @@ class BusinessInterviewDetailVC: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var tableView: UITableView!
-    var interview: Interview!
+    var interviewTemplate: InterviewTemplate!
     
     // MARK: - View Life Cycle Methods
     
@@ -35,8 +35,8 @@ class BusinessInterviewDetailVC: UIViewController, UITableViewDelegate, UITableV
     // MARK: - Private Methods
     
     private func setupView() {
-        titleLabel.text = interview.title
-        descriptionTextView.text = interview.desc
+        titleLabel.text = interviewTemplate.jobTitle
+        descriptionTextView.text = interviewTemplate.jobDescription
     }
     
     // MARK: - Table View Datasource Methods
@@ -46,12 +46,12 @@ class BusinessInterviewDetailVC: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (interview.interviewQuestions?.allObjects.count)!
+        return (interviewTemplate.interviewQuestions?.allObjects.count)!
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("QuestionCell", forIndexPath: indexPath)
-        let item = interview.interviewQuestions?.allObjects[indexPath.row] as! InterviewQuestion
+        let item = interviewTemplate.interviewQuestions?.allObjects[indexPath.row] as! InterviewQuestion
         cell.textLabel?.text = item.question
         return cell
     }

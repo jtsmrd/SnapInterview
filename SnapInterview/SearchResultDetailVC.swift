@@ -18,7 +18,7 @@ class SearchResultDetailVC: UIViewController, SelectInterviewTVCDelegate {
     @IBOutlet weak var lastNameLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var selectedInterviewLabel: UILabel!    
-    var selectedInterview: Interview!
+    var selectedInterviewTemplate: InterviewTemplate!
     var individualProfile: CKRecord!
     
     // MARK: - View Life Cycle Methods
@@ -45,7 +45,7 @@ class SearchResultDetailVC: UIViewController, SelectInterviewTVCDelegate {
     // MARK: - Private Methods
     
     private func confirmInterview() {
-        saveInterviewToIndividualProfile()
+        //saveInterviewToIndividualProfile()
     }
     
     private func saveToPendingInterviews() {
@@ -54,18 +54,17 @@ class SearchResultDetailVC: UIViewController, SelectInterviewTVCDelegate {
     
     private func saveInterviewToIndividualProfile() {
         let publicDatabase = CKContainer.defaultContainer().publicCloudDatabase
-        let interviewReference = CKReference(recordID: CKRecordID.init(recordName: selectedInterview.interviewCKRecordID!), action: .None)
+        let interviewReference = CKReference(recordID: CKRecordID.init(recordName: selectedInterviewTemplate.cKRecordName!), action: .None)
         var referenceList: [CKReference] = []
         
         if individualProfile.objectForKey("interviews") != nil {
-            var references = individualProfile.objectForKey("interviews") as! [CKReference]
-            references.append(interviewReference)
-            individualProfile.setObject(references, forKey: "interviews")
+            referenceList = individualProfile.objectForKey("interviews") as! [CKReference]
+            referenceList.append(interviewReference)
         }
         else {
-            referenceList.append(interviewReference)
-            individualProfile.setObject(referenceList, forKey: "interviews")
+            referenceList.append(interviewReference)            
         }
+        individualProfile.setObject(referenceList, forKey: "interviews")
         
         publicDatabase.saveRecord(individualProfile) { (record, error) -> Void in
             if let error = error {
@@ -76,9 +75,9 @@ class SearchResultDetailVC: UIViewController, SelectInterviewTVCDelegate {
     
     // MARK: - CreateQuestionVC Delegate Methods
     
-    func controller(controller: SelectInterviewTVC, SelectedInterview interview: Interview) {
-        selectedInterview = interview
-        selectedInterviewLabel.text = selectedInterview.title
+    func controller(controller: SelectInterviewTVC, SelectedInterviewTemplate interviewTemplate: InterviewTemplate) {
+        selectedInterviewTemplate = interviewTemplate
+        selectedInterviewLabel.text = selectedInterviewTemplate.jobTitle
     }
     
     // MARK: - Navigation Methods

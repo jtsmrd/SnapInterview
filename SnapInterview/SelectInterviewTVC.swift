@@ -12,14 +12,14 @@ import CloudKit
 
 protocol SelectInterviewTVCDelegate {
     
-    func controller(controller: SelectInterviewTVC, SelectedInterview interview: Interview)
+    func controller(controller: SelectInterviewTVC, SelectedInterviewTemplate interviewTemplate: InterviewTemplate)
 }
 
 class SelectInterviewTVC: UITableViewController {
     
     // MARK: - Variables, Outlets, and Constants
     
-    var interviews: NSArray!
+    var interviewTemplates: [InterviewTemplate] = []
     var businessProfile: BusinessProfile!
     let userEmail = NSUserDefaults.standardUserDefaults().valueForKey("email") as? String
     var delegate: SelectInterviewTVCDelegate?
@@ -34,7 +34,7 @@ class SelectInterviewTVC: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         businessProfile = DataMethods.fetchBusinessProfile(userEmail!)
-        interviews = businessProfile.interviews?.allObjects
+        interviewTemplates = businessProfile.interviewTemplates?.allObjects as! [InterviewTemplate]
         tableView.reloadData()
     }
 
@@ -47,20 +47,20 @@ class SelectInterviewTVC: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return interviews.count
+        return interviewTemplates.count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("InterviewCell", forIndexPath: indexPath)
-        let item = interviews[indexPath.row] as! Interview
-        cell.textLabel?.text = item.title
+        let item = interviewTemplates[indexPath.row]
+        cell.textLabel?.text = item.jobTitle
         return cell
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let interview = interviews[indexPath.row]
-        delegate?.controller(self, SelectedInterview: interview as! Interview)
+        let interviewTemplate = interviewTemplates[indexPath.row]
+        delegate?.controller(self, SelectedInterviewTemplate: interviewTemplate)
         navigationController?.popViewControllerAnimated(true)
     }
     

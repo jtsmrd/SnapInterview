@@ -14,7 +14,7 @@ class BusinessInterviewTVC: UITableViewController {
 
     // MARK: - Variables, Outlets, and Constants
     
-    var interviews: [Interview] = []
+    var interviewTemplates: [InterviewTemplate] = []
     var businessProfile: BusinessProfile!
     let userEmail = NSUserDefaults.standardUserDefaults().valueForKey("email") as? String
     var businessProfileCKR: CKRecord!
@@ -28,7 +28,7 @@ class BusinessInterviewTVC: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         businessProfile = DataMethods.fetchBusinessProfile(userEmail!)
-        interviews = businessProfile.interviews?.allObjects as! [Interview]
+        interviewTemplates = businessProfile.interviewTemplates?.allObjects as! [InterviewTemplate]
         tableView.reloadData()
     }
     
@@ -43,13 +43,13 @@ class BusinessInterviewTVC: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return interviews.count
+        return interviewTemplates.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("InterviewCell", forIndexPath: indexPath)
-        let item = interviews[indexPath.row]
-        cell.textLabel?.text = item.title
+        let item = interviewTemplates[indexPath.row]
+        cell.textLabel?.text = item.jobTitle
         return cell
     }
     
@@ -64,9 +64,9 @@ class BusinessInterviewTVC: UITableViewController {
         }
         else if segue.identifier == "showDetail" {
             if let row = tableView.indexPathForSelectedRow?.row {
-                let item = interviews[row]
+                let item = interviewTemplates[row]
                 let interviewDetailVC = segue.destinationViewController as! BusinessInterviewDetailVC
-                interviewDetailVC.interview = item
+                interviewDetailVC.interviewTemplate = item
             }
         }
     }
