@@ -9,6 +9,7 @@
 import UIKit
 import CloudKit
 
+// Fetch BusinessProfile and send it to SearchResultDetailVC
 class IndividualSearchVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     // MARK: - Variables, Outlets, and Constants

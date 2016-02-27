@@ -45,31 +45,41 @@ class SearchResultDetailVC: UIViewController, SelectInterviewTVCDelegate {
     // MARK: - Private Methods
     
     private func confirmInterview() {
-        //saveInterviewToIndividualProfile()
+        saveInterviewToIndividualProfile()
     }
     
     private func saveToPendingInterviews() {
         
     }
     
-    // Update this for new Interview object
     private func saveInterviewToIndividualProfile() {
+        let interviewTemplateReference = CKReference(recordID: CKRecordID.init(recordName: selectedInterviewTemplate.cKRecordName!), action: .None)
+        let individualProfileReference = CKReference(record: individualProfile, action: .None)
+        let interview = CKRecord(recordType: "Interview")
+        interview.setObject(interviewTemplateReference, forKey: "interviewTemplate")
+        interview.setObject(individualProfileReference, forKey: "individualProfile")
         let publicDatabase = CKContainer.defaultContainer().publicCloudDatabase
-        let interviewReference = CKReference(recordID: CKRecordID.init(recordName: selectedInterviewTemplate.cKRecordName!), action: .None)
-        var referenceList: [CKReference] = []
+        var interviewReferenceList: [CKReference] = []
         
-        if individualProfile.objectForKey("interviews") != nil {
-            referenceList = individualProfile.objectForKey("interviews") as! [CKReference]
-            referenceList.append(interviewReference)
-        }
-        else {
-            referenceList.append(interviewReference)            
-        }
-        individualProfile.setObject(referenceList, forKey: "interviews")
-        
-        publicDatabase.saveRecord(individualProfile) { (record, error) -> Void in
+        publicDatabase.saveRecord(interview) { (record, error) -> Void in
             if let error = error {
                 print(error)
+            }
+            else if let interviewRecord = record {
+                if self.individualProfile.objectForKey("interviews") != nil {
+                    interviewReferenceList = self.individualProfile.objectForKey("interviews") as! [CKReference]
+                }
+                interviewReferenceList.append(CKReference(record: interviewRecord, action: .None))
+                self.individualProfile.setObject(interviewReferenceList, forKey: "interviews")
+                
+                publicDatabase.saveRecord(self.individualProfile) { (record, error) -> Void in
+                    if let error = error {
+                        print(error)
+                    }
+                    else {
+                        print("Success")
+                    }
+                }
             }
         }
     }
