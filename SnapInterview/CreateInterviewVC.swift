@@ -18,9 +18,8 @@ class CreateInterviewVC: UIViewController, UITextFieldDelegate, UITableViewDeleg
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var tableView: UITableView!
     var businessProfile: BusinessProfile!
-    var interviewStore = InterviewStore()
     var interviewQuestions: [InterviewQuestion] = []
-    var businessProfileCKRecordID: String!
+    var businessProfileCKRecordName: String!
     var interviewTemplateCKRecordID: CKRecordID!
     
     // MARK: - View Life Cycle Methods
@@ -82,7 +81,7 @@ class CreateInterviewVC: UIViewController, UITextFieldDelegate, UITableViewDeleg
     
     // Save interview template to cloud
     private func syncInterviewTemplateToCloud() {
-        let businessProfileRecordID = CKRecordID(recordName: businessProfileCKRecordID)
+        let businessProfileRecordID = CKRecordID(recordName: businessProfileCKRecordName)
         let interviewTemplate = CKRecord(recordType: "InterviewTemplate")
         interviewTemplate.setValue(titleTextField.text, forKey: "jobTitle")
         interviewTemplate.setValue(descriptionTextView.text, forKey: "jobDescription")

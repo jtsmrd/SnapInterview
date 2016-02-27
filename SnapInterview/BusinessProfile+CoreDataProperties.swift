@@ -15,7 +15,7 @@ import CoreData
 extension BusinessProfile {
 
     @NSManaged var businessName: String?
-    @NSManaged var businessProfileCKRecordID: String?
+    @NSManaged var cKRecordName: String?
     @NSManaged var email: String?
     @NSManaged var firstName: String?
     @NSManaged var lastName: String?

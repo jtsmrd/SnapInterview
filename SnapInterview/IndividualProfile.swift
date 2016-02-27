@@ -13,12 +13,11 @@ class IndividualProfile: NSManagedObject {
 
     override func awakeFromInsert() {
         super.awakeFromInsert()
-        
         firstName = ""
         lastName = ""
         email = ""
         jobTitle = ""
         profileImageKey = ""
-        individualProfileCKRecordID = ""
+        cKRecordName = ""
     }
 }

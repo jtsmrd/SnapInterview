@@ -19,7 +19,7 @@ class IndividualSignupVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     let myKeychainWrapper = KeychainWrapper()
-    var individualProfileCKRecordID: String!
+    var individualProfileCKRecordName: String!
     
     // MARK: - View Life Cycle
     
@@ -82,7 +82,7 @@ class IndividualSignupVC: UIViewController, UITextFieldDelegate {
             individualProfile.firstName = self.firstNameTextField.text!
             individualProfile.lastName = self.lastNameTextField.text!
             individualProfile.email = self.emailTextField.text!
-            individualProfile.individualProfileCKRecordID = self.individualProfileCKRecordID
+            individualProfile.cKRecordName = self.individualProfileCKRecordName
         }
         
         do {
@@ -110,7 +110,7 @@ class IndividualSignupVC: UIViewController, UITextFieldDelegate {
                 print(error)
             }
             else if let record = record {
-                self.individualProfileCKRecordID = String(record.recordID.recordName)
+                self.individualProfileCKRecordName = String(record.recordID.recordName)
                 self.saveIndividualProfile()
             }
         })

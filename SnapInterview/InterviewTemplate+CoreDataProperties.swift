@@ -19,4 +19,5 @@ extension InterviewTemplate {
     @NSManaged var cKRecordName: String?
     @NSManaged var businessProfile: BusinessProfile?
     @NSManaged var interviewQuestions: NSSet?
+    @NSManaged var interview: Interview?
 }

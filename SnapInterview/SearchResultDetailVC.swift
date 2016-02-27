@@ -52,6 +52,7 @@ class SearchResultDetailVC: UIViewController, SelectInterviewTVCDelegate {
         
     }
     
+    // Update this for new Interview object
     private func saveInterviewToIndividualProfile() {
         let publicDatabase = CKContainer.defaultContainer().publicCloudDatabase
         let interviewReference = CKReference(recordID: CKRecordID.init(recordName: selectedInterviewTemplate.cKRecordName!), action: .None)

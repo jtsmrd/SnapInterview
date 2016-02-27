@@ -12,10 +12,8 @@ import CoreData
 class Interview: NSManagedObject {
 
     override func awakeFromInsert() {
-        super.awakeFromInsert()        
-        title = ""
-        desc = ""
+        super.awakeFromInsert()
         createDate = NSDate()
-        interviewCKRecordID = ""
+        cKRecordName = ""
     }
 }

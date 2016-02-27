@@ -15,6 +15,6 @@ class InterviewQuestion: NSManagedObject {
         super.awakeFromInsert()
         question = ""
         timeLimitInSeconds = 0
-        interviewQuestionCKRecordID = ""
+        cKRecordName = ""
     }
 }

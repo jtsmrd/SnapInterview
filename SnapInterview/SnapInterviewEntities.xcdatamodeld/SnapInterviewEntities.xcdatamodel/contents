@@ -2,7 +2,7 @@
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15D21" minimumToolsVersion="Xcode 7.0">
     <entity name="BusinessProfile" representedClassName=".BusinessProfile" syncable="YES">
         <attribute name="businessName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="businessProfileCKRecordID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cKRecordName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
@@ -11,28 +11,27 @@
         <relationship name="interviewTemplates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="InterviewTemplate" inverseName="businessProfile" inverseEntity="InterviewTemplate" syncable="YES"/>
     </entity>
     <entity name="IndividualProfile" representedClassName=".IndividualProfile" syncable="YES">
+        <attribute name="cKRecordName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="individualProfileCKRecordID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="jobTitle" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="profileImageKey" attributeType="String" syncable="YES"/>
         <relationship name="interviews" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Interview" inverseName="individualProfile" inverseEntity="Interview" syncable="YES"/>
     </entity>
     <entity name="Interview" representedClassName=".Interview" syncable="YES">
+        <attribute name="cKRecordName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="completeDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="createDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="desc" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="interviewCKRecordID" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="videoDataKey" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="businessProfile" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BusinessProfile" inverseName="interviews" inverseEntity="BusinessProfile" syncable="YES"/>
         <relationship name="individualProfile" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="IndividualProfile" inverseName="interviews" inverseEntity="IndividualProfile" syncable="YES"/>
-        <relationship name="interviewQuestions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="InterviewQuestion" inverseName="interview" inverseEntity="InterviewQuestion" syncable="YES"/>
+        <relationship name="interviewTemplate" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="InterviewTemplate" inverseName="interview" inverseEntity="InterviewTemplate" syncable="YES"/>
     </entity>
     <entity name="InterviewQuestion" representedClassName=".InterviewQuestion" syncable="YES">
-        <attribute name="interviewQuestionCKRecordID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cKRecordName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="question" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="timeLimitInSeconds" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <relationship name="interview" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Interview" inverseName="interviewQuestions" inverseEntity="Interview" syncable="YES"/>
         <relationship name="interviewTemplate" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="InterviewTemplate" inverseName="interviewQuestions" inverseEntity="InterviewTemplate" syncable="YES"/>
     </entity>
     <entity name="InterviewTemplate" representedClassName=".InterviewTemplate" syncable="YES">
@@ -40,13 +39,14 @@
         <attribute name="jobDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="jobTitle" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="businessProfile" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BusinessProfile" inverseName="interviewTemplates" inverseEntity="BusinessProfile" syncable="YES"/>
+        <relationship name="interview" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Interview" inverseName="interviewTemplate" inverseEntity="Interview" syncable="YES"/>
         <relationship name="interviewQuestions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="InterviewQuestion" inverseName="interviewTemplate" inverseEntity="InterviewQuestion" syncable="YES"/>
     </entity>
     <elements>
         <element name="BusinessProfile" positionX="-63" positionY="18" width="128" height="165"/>
         <element name="IndividualProfile" positionX="-63" positionY="-18" width="128" height="150"/>
         <element name="Interview" positionX="-54" positionY="45" width="128" height="150"/>
-        <element name="InterviewQuestion" positionX="-54" positionY="54" width="128" height="120"/>
-        <element name="InterviewTemplate" positionX="-54" positionY="72" width="128" height="120"/>
+        <element name="InterviewQuestion" positionX="-54" positionY="54" width="128" height="105"/>
+        <element name="InterviewTemplate" positionX="-54" positionY="72" width="128" height="135"/>
     </elements>
 </model>

@@ -20,7 +20,7 @@ class BusinessSignupVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     let myKeychainWrapper = KeychainWrapper()
-    var businessProfileCKRecordID: String!
+    var businessProfileCKRecordName: String!
     
     // MARK: - View Life Cycle
     
@@ -84,7 +84,7 @@ class BusinessSignupVC: UIViewController, UITextFieldDelegate {
             businessProfile.firstName = self.firstNameTextField.text!
             businessProfile.lastName = self.lastNameTextField.text!
             businessProfile.email = self.emailTextField.text!
-            businessProfile.businessProfileCKRecordID = self.businessProfileCKRecordID
+            businessProfile.cKRecordName = self.businessProfileCKRecordName
         }
         
         do {
@@ -114,7 +114,7 @@ class BusinessSignupVC: UIViewController, UITextFieldDelegate {
                     print(error)
                 }
                 else if let record = record {
-                    self.businessProfileCKRecordID = String(record.recordID.recordName)
+                    self.businessProfileCKRecordName = String(record.recordID.recordName)
                     self.saveBusinessProfile()
                 }
             })

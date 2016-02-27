@@ -10,6 +10,7 @@ import UIKit
 import CloudKit
 import CoreData
 
+// Update to load interview details from InterviewTemplate
 class IndividualInterviewTVC: UITableViewController {
 
     // MARK: - Variables, Outlets, and Constants
@@ -27,7 +28,7 @@ class IndividualInterviewTVC: UITableViewController {
         // self.clearsSelectionOnViewWillAppear = false
         
         individualProfile = DataMethods.fetchIndividualProfile(userEmail!)
-        DataMethods.fetchAndStoreNewInterviews(individualProfile)
+        //DataMethods.fetchAndStoreNewInterviews(individualProfile)
         individualProfile = DataMethods.fetchIndividualProfile(userEmail!)
         interviews = individualProfile.interviews?.allObjects as! [Interview]
     }
@@ -52,8 +53,8 @@ class IndividualInterviewTVC: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("InterviewCell", forIndexPath: indexPath)
-        let item = interviews[indexPath.row]
-        cell.textLabel?.text = item.title
+        //let item = interviews[indexPath.row]
+//        cell.textLabel?.text = item.
         return cell
     }
 

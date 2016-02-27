@@ -14,9 +14,8 @@ import CoreData
 
 extension InterviewQuestion {
 
-    @NSManaged var interviewQuestionCKRecordID: String?
+    @NSManaged var cKRecordName: String?
     @NSManaged var question: String?
     @NSManaged var timeLimitInSeconds: NSNumber?
-    @NSManaged var interview: Interview?
     @NSManaged var interviewTemplate: InterviewTemplate?
 }

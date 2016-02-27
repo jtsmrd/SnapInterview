@@ -10,6 +10,7 @@ import UIKit
 import AVFoundation
 import AVKit
 
+// Update to load interview details from InterviewTemplate
 class IndividualInterviewDetailVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     // MARK: - Variables, Outlets, and Constants
@@ -35,8 +36,8 @@ class IndividualInterviewDetailVC: UIViewController, UIImagePickerControllerDele
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        interviewTitleLabel.text = interview.title
-        interviewDescriptionLabel.text = interview.desc
+        //interviewTitleLabel.text = interview.title
+        //interviewDescriptionLabel.text = interview.desc
         dateCreatedLabel.text = dateFormatter.stringFromDate(interview.createDate!)
     }
     

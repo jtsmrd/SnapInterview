@@ -46,7 +46,7 @@ class DataMethods {
     
     // Save IndividualProfile to the cloud
     static func syncIndividualProfileToCloud(individualProfile: IndividualProfile) {
-        publicDatabase.fetchRecordWithID(CKRecordID.init(recordName: individualProfile.individualProfileCKRecordID!)) { (record, error) -> Void in
+        publicDatabase.fetchRecordWithID(CKRecordID.init(recordName: individualProfile.cKRecordName!)) { (record, error) -> Void in
             if let error = error {
                 print(error)
             }
@@ -67,9 +67,9 @@ class DataMethods {
         }
     }
     
-    
+    // Fix to use InterviewTemplate data
     static func fetchAndStoreNewInterviews(individualProfile: IndividualProfile) {
-        publicDatabase.fetchRecordWithID(CKRecordID.init(recordName: individualProfile.individualProfileCKRecordID!)) { (record, error) -> Void in
+        publicDatabase.fetchRecordWithID(CKRecordID.init(recordName: individualProfile.cKRecordName!)) { (record, error) -> Void in
             if let error = error {
                 print(error)
             }
@@ -77,7 +77,7 @@ class DataMethods {
                 if profileRecord.objectForKey("interviews") != nil {
                     let interviewReferences = profileRecord.objectForKey("interviews") as! [CKReference]
                     for interviewReference in interviewReferences {
-                        let matches = (individualProfile.interviews!.allObjects as! [Interview]).filter { $0.interviewCKRecordID == interviewReference.recordID.recordName }
+                        let matches = (individualProfile.interviews!.allObjects as! [Interview]).filter { $0.cKRecordName == interviewReference.recordID.recordName }
                         if matches.isEmpty {
                             publicDatabase.fetchRecordWithID(interviewReference.recordID, completionHandler: { (record, error) -> Void in
                                 if let error = error {
@@ -88,10 +88,10 @@ class DataMethods {
                                     var interview: Interview!
                                     coreDataStack.mainQueueContext.performBlockAndWait({ () -> Void in
                                         interview = NSEntityDescription.insertNewObjectForEntityForName("Interview", inManagedObjectContext: coreDataStack.mainQueueContext) as! Interview
-                                        interview.title = interviewRecord.valueForKey("title") as? String
-                                        interview.desc = interviewRecord.valueForKey("description") as? String
+                                        //interview.title = interviewRecord.valueForKey("title") as? String
+                                        //interview.desc = interviewRecord.valueForKey("description") as? String
                                         interview.individualProfile = individualProfile
-                                        interview.interviewCKRecordID = interviewRecord.recordID.recordName
+                                        interview.cKRecordName = interviewRecord.recordID.recordName
                                     })
                                     do {
                                         try coreDataStack.saveChanges()
@@ -139,7 +139,7 @@ class DataMethods {
     
     // Save BusinessProfile to the cloud
     static func syncBusinessProfileToCloud(businessProfile: BusinessProfile) {
-        publicDatabase.fetchRecordWithID(CKRecordID.init(recordName: businessProfile.businessProfileCKRecordID!)) { (record, error) -> Void in
+        publicDatabase.fetchRecordWithID(CKRecordID.init(recordName: businessProfile.cKRecordName!)) { (record, error) -> Void in
             if let error = error {
                 print(error)
             }
