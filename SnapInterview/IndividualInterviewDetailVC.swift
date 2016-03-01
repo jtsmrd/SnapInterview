@@ -36,8 +36,8 @@ class IndividualInterviewDetailVC: UIViewController, UIImagePickerControllerDele
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        //interviewTitleLabel.text = interview.title
-        //interviewDescriptionLabel.text = interview.desc
+        interviewTitleLabel.text = interview.interviewTemplate?.jobTitle
+        interviewDescriptionLabel.text = interview.interviewTemplate?.jobDescription
         dateCreatedLabel.text = dateFormatter.stringFromDate(interview.createDate!)
     }
     

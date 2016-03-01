@@ -46,7 +46,8 @@ class DataMethods {
     
     // Save IndividualProfile to the cloud
     static func syncIndividualProfileToCloud(individualProfile: IndividualProfile) {
-        publicDatabase.fetchRecordWithID(CKRecordID.init(recordName: individualProfile.cKRecordName!)) { (record, error) -> Void in
+        let profileRecordID = CKRecordID(recordName: individualProfile.cKRecordName!)
+        publicDatabase.fetchRecordWithID(profileRecordID) { (record, error) -> Void in
             if let error = error {
                 print(error)
             }
@@ -69,7 +70,7 @@ class DataMethods {
     
     // Fix to use InterviewTemplate data
     static func fetchAndStoreNewInterviews(individualProfile: IndividualProfile) {
-        publicDatabase.fetchRecordWithID(CKRecordID.init(recordName: individualProfile.cKRecordName!)) { (record, error) -> Void in
+        publicDatabase.fetchRecordWithID(CKRecordID(recordName: individualProfile.cKRecordName!)) { (record, error) -> Void in
             if let error = error {
                 print(error)
             }
@@ -84,28 +85,64 @@ class DataMethods {
                                     print(error)
                                 }
                                 else if let interviewRecord = record {
-                                    
-                                    var interview: Interview!
-                                    coreDataStack.mainQueueContext.performBlockAndWait({ () -> Void in
-                                        interview = NSEntityDescription.insertNewObjectForEntityForName("Interview", inManagedObjectContext: coreDataStack.mainQueueContext) as! Interview
-                                        //interview.title = interviewRecord.valueForKey("title") as? String
-                                        //interview.desc = interviewRecord.valueForKey("description") as? String
-                                        interview.individualProfile = individualProfile
-                                        interview.cKRecordName = interviewRecord.recordID.recordName
-                                    })
-                                    do {
-                                        try coreDataStack.saveChanges()
-                                        NSLog("Interview saved")
-                                    }
-                                    catch let error {
-                                        print(error)
-                                    }
+                                    saveInterviewToCoreData(interviewRecord, individualProfile: individualProfile)
                                 }
                             })
                         }
                     }
                 }
             }
+        }
+    }
+    
+    static func saveInterviewToCoreData(interviewRecord: CKRecord, individualProfile: IndividualProfile) {
+        
+        var interview: Interview!
+        coreDataStack.mainQueueContext.performBlockAndWait() { () -> Void in
+            interview = NSEntityDescription.insertNewObjectForEntityForName("Interview", inManagedObjectContext: coreDataStack.mainQueueContext) as! Interview
+            //interview.individualProfile = individualProfile
+            interview.cKRecordName = interviewRecord.recordID.recordName
+        }
+        var allInterviews = individualProfile.interviews?.allObjects as! [Interview]
+        allInterviews.append(interview)
+        individualProfile.interviews = NSSet.init(array: allInterviews)
+        do {
+            try coreDataStack.saveChanges()
+            NSLog("Interview saved")
+            saveInterviewTemplateToCoreData(interviewRecord, interview: interview)
+        }
+        catch let error {
+            print(error)
+        }
+    }
+    
+    static func saveInterviewTemplateToCoreData(interviewRecord: CKRecord, interview: Interview) {
+        
+        if interviewRecord.objectForKey("interviewTemplate") != nil {
+            let interviewTemplateReference = interviewRecord.objectForKey("interviewTemplate") as! CKReference
+            publicDatabase.fetchRecordWithID(interviewTemplateReference.recordID, completionHandler: { (record, error) -> Void in
+                if let error = error {
+                    print(error)
+                }
+                else if let templateRecord = record {
+                    
+                    var interviewTemplate: InterviewTemplate!
+                    coreDataStack.mainQueueContext.performBlockAndWait({ () -> Void in
+                        interviewTemplate = NSEntityDescription.insertNewObjectForEntityForName("InterviewTemplate", inManagedObjectContext: coreDataStack.mainQueueContext) as! InterviewTemplate
+                        interviewTemplate.interview = interview
+                        interviewTemplate.cKRecordName = templateRecord.recordID.recordName
+                        interviewTemplate.jobTitle = templateRecord.objectForKey("jobTitle") as? String
+                        interviewTemplate.jobDescription = templateRecord.objectForKey("jobDescription") as? String
+                    })
+                    do {
+                        try coreDataStack.saveChanges()
+                        NSLog("Interview Template saved")
+                    }
+                    catch let error {
+                        print(error)
+                    }
+                }
+            })
         }
     }
     
@@ -117,7 +154,7 @@ class DataMethods {
         coreDataStack.mainQueueContext.performBlockAndWait() {
             do {
                 let records = try coreDataStack.mainQueueContext.executeFetchRequest(fetchRequest) as? [BusinessProfile]
-                businessProfile = records![0]                
+                businessProfile = records![0]
             }
             catch let error {
                 print(error)

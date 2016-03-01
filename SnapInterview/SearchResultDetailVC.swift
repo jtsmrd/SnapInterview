@@ -45,18 +45,37 @@ class SearchResultDetailVC: UIViewController, SelectInterviewTVCDelegate {
     // MARK: - Private Methods
     
     private func confirmInterview() {
-        saveInterviewToIndividualProfile()
+        //saveInterviewToIndividualProfile()
+        createInterviewData()
     }
     
     private func saveToPendingInterviews() {
         
     }
     
+    private func createInterviewData() {
+        var interviewDictionary = [String: AnyObject]()
+        var questionsDictionary = [Int: [String: AnyObject]]()
+        let interviewQuestions = selectedInterviewTemplate.interviewQuestions?.allObjects as! [InterviewQuestion]
+        interviewDictionary["InterviewTitle"] = selectedInterviewTemplate.jobTitle
+        interviewDictionary["InterviewDescription"] = selectedInterviewTemplate.jobDescription
+        
+        for var i = 0; i < interviewQuestions.count; i++ {
+            questionsDictionary[i] = [String: AnyObject]()
+            questionsDictionary[i]!["Question"] = interviewQuestions[i].question
+            questionsDictionary[i]!["TimeLimit"] = interviewQuestions[i].timeLimitInSeconds
+        }
+        
+        interviewDictionary["Questions"] = questionsDictionary
+        print(interviewDictionary)
+    }
+    
+    // Add json string containing interview template and questions
     private func saveInterviewToIndividualProfile() {
-        let interviewTemplateReference = CKReference(recordID: CKRecordID.init(recordName: selectedInterviewTemplate.cKRecordName!), action: .None)
+        //let interviewTemplateReference = CKReference(recordID: CKRecordID.init(recordName: selectedInterviewTemplate.cKRecordName!), action: .None)
         let individualProfileReference = CKReference(record: individualProfile, action: .None)
         let interview = CKRecord(recordType: "Interview")
-        interview.setObject(interviewTemplateReference, forKey: "interviewTemplate")
+        //interview.setObject(interviewTemplateReference, forKey: "interviewTemplate")
         interview.setObject(individualProfileReference, forKey: "individualProfile")
         let publicDatabase = CKContainer.defaultContainer().publicCloudDatabase
         var interviewReferenceList: [CKReference] = []
