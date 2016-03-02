@@ -39,21 +39,21 @@ class VideoStore: NSObject {
         }
     }
     
-//    func videoForKey(key: String) -> UIImage? {
-//        
-//        if let existingImage = cache.objectForKey(key) as? UIImage {
-//            return existingImage
-//        }
-//        
-//        let imageURL = imageURLForKey(key)
-//        
-//        guard let imageFromDisk = UIImage(contentsOfFile: imageURL.path!) else {
-//            return nil
-//        }
-//        
-//        cache.setObject(imageFromDisk, forKey: key)
-//        return imageFromDisk
-//    }
+    func videoForKey(key: String) -> NSData? {
+        
+        if let existingVideo = cache.objectForKey(key) as? NSData {
+            return existingVideo
+        }
+        
+        let videoURL = videoURLForKey(key)
+        
+        guard let videoFromDisk = NSData(contentsOfFile: videoURL.path!) else {
+            return nil
+        }
+        
+        cache.setObject(videoFromDisk, forKey: key)
+        return videoFromDisk
+    }
     
     func deleteVideoForKey(key: String) {
         

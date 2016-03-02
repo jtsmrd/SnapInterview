@@ -45,38 +45,56 @@ class SearchResultDetailVC: UIViewController, SelectInterviewTVCDelegate {
     // MARK: - Private Methods
     
     private func confirmInterview() {
-        //saveInterviewToIndividualProfile()
-        createInterviewData()
+        saveInterviewToIndividualProfile()
     }
     
     private func saveToPendingInterviews() {
         
     }
     
-    private func createInterviewData() {
+    func convertDictionaryToString(dictionary: [String:AnyObject]) -> String {
+        var dictionaryString: String!
+        do {
+            let theJSONData = try NSJSONSerialization.dataWithJSONObject(
+                dictionary, options: NSJSONWritingOptions(rawValue: 0))
+            
+            dictionaryString = NSString(data: theJSONData,
+                encoding: NSASCIIStringEncoding) as! String
+        }
+        catch {
+            print("error")
+        }
+        return dictionaryString
+    }
+    
+    private func createInterviewData() -> String {
         var interviewDictionary = [String: AnyObject]()
-        var questionsDictionary = [Int: [String: AnyObject]]()
+        var questionsDictionary = [String: [String: AnyObject]]()
         let interviewQuestions = selectedInterviewTemplate.interviewQuestions?.allObjects as! [InterviewQuestion]
         interviewDictionary["InterviewTitle"] = selectedInterviewTemplate.jobTitle
         interviewDictionary["InterviewDescription"] = selectedInterviewTemplate.jobDescription
         
         for var i = 0; i < interviewQuestions.count; i++ {
-            questionsDictionary[i] = [String: AnyObject]()
-            questionsDictionary[i]!["Question"] = interviewQuestions[i].question
-            questionsDictionary[i]!["TimeLimit"] = interviewQuestions[i].timeLimitInSeconds
+            questionsDictionary["\(i)"] = [String: AnyObject]()
+            questionsDictionary["\(i)"]!["Question"] = interviewQuestions[i].question
+            questionsDictionary["\(i)"]!["TimeLimit"] = interviewQuestions[i].timeLimitInSeconds
         }
         
         interviewDictionary["Questions"] = questionsDictionary
         print(interviewDictionary)
+        let dictionaryString = convertDictionaryToString(interviewDictionary)
+        
+        return dictionaryString
     }
     
-    // Add json string containing interview template and questions
     private func saveInterviewToIndividualProfile() {
-        //let interviewTemplateReference = CKReference(recordID: CKRecordID.init(recordName: selectedInterviewTemplate.cKRecordName!), action: .None)
+        let interviewDetailsData = createInterviewData()
+        let businessProfileReference = CKReference(recordID: CKRecordID.init(recordName: (selectedInterviewTemplate.businessProfile?.cKRecordName)!), action: .None)
         let individualProfileReference = CKReference(record: individualProfile, action: .None)
         let interview = CKRecord(recordType: "Interview")
-        //interview.setObject(interviewTemplateReference, forKey: "interviewTemplate")
+        interview.setObject(businessProfileReference, forKey: "businessProfile")
         interview.setObject(individualProfileReference, forKey: "individualProfile")
+        interview.setObject(interviewDetailsData, forKey: "interviewDetailsData")
         let publicDatabase = CKContainer.defaultContainer().publicCloudDatabase
         var interviewReferenceList: [CKReference] = []
         

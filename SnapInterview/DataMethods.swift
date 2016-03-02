@@ -55,9 +55,9 @@ class DataMethods {
                 record.setValue(individualProfile.firstName, forKey: "firstName")
                 record.setValue(individualProfile.lastName, forKey: "lastName")
                 record.setValue(individualProfile.jobTitle, forKey: "jobTitle")
-                if ((individualProfile.profileImageKey?.isEmpty) == nil) {
+                if individualProfile.profileImageKey != nil {
                     let imageAsset = CKAsset(fileURL: imageStore.imageURLForKey(individualProfile.profileImageKey!))
-                    record.setValue(imageAsset, forKey: "individualProfileImage")
+                    record.setValue(imageAsset, forKey: "profileImage")
                 }
                 publicDatabase.saveRecord(record, completionHandler: { (record, error) -> Void in
                     if let error = error {

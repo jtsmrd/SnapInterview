@@ -9,6 +9,8 @@
 import UIKit
 import AVFoundation
 import AVKit
+import CloudKit
+import CoreData
 
 // Update to load interview details from InterviewTemplate
 class IndividualInterviewDetailVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -51,9 +53,14 @@ class IndividualInterviewDetailVC: UIViewController, UIImagePickerControllerDele
         if UIImagePickerController.isSourceTypeAvailable(.Camera) {
             imagePicker.sourceType = .Camera
             imagePicker.mediaTypes = ["public.movie"]
+            imagePicker.cameraCaptureMode = UIImagePickerControllerCameraCaptureMode.Video
+            imagePicker.cameraDevice = UIImagePickerControllerCameraDevice.Front
+//            imagePicker.cameraOverlayView
+            
         }
         else {
-            imagePicker.sourceType = .PhotoLibrary
+            imagePicker.mediaTypes = ["public.movie"]
+            imagePicker.sourceType = .SavedPhotosAlbum
         }
         imagePicker.delegate = self
         
@@ -64,21 +71,50 @@ class IndividualInterviewDetailVC: UIViewController, UIImagePickerControllerDele
     @IBAction func playInterview() {
         
         let videoPlayer = AVPlayerViewController()
-        videoPlayer.player = AVPlayer(URL: videoURL)
+        videoPlayer.player = AVPlayer(URL: videoStore.videoURLForKey(interview.videoDataKey!))
         videoPlayer.player?.play()
         presentViewController(videoPlayer, animated: true, completion: nil)
     }
     
     // MARK: - Private Methods
     
+    private func saveInterviewToCloud() {
+        let publicDatabase = CKContainer.defaultContainer().publicCloudDatabase
+        publicDatabase.fetchRecordWithID(CKRecordID.init(recordName: interview.cKRecordName!)) { (record, error) -> Void in
+            if let error = error {
+                print(error)
+            }
+            else if let record = record {
+                let videoAsset = CKAsset(fileURL: self.videoStore.videoURLForKey(self.interview.videoDataKey!))
+                record.setValue(videoAsset, forKey: "videoData")
+                publicDatabase.saveRecord(record, completionHandler: { (record, error) -> Void in
+                    if let error = error {
+                        print(error)
+                    }
+                })
+            }
+        }
+    }
     
     
     // MARK: - Image Picker Delegate Methods
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         videoURL = info[UIImagePickerControllerMediaURL] as! NSURL
-        //videoStore.setVideo(videoURL, forKey: "video1.mov")
-        //print(videoURL)
+        let videoKey = NSUUID().UUIDString
+        interview.videoDataKey = videoKey + ".mov"
+        videoStore.setVideo(videoURL, forKey: interview.videoDataKey!)
+        
+        let coreDataStack = (UIApplication.sharedApplication().delegate as! AppDelegate).coreDataStack
+        do {
+            try coreDataStack.saveChanges()
+        }
+        catch let error {
+            print(error)
+        }
+        
+        saveInterviewToCloud()
+        
         dismissViewControllerAnimated(true, completion: nil)
     }
 }

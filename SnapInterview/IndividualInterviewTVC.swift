@@ -31,7 +31,12 @@ class IndividualInterviewTVC: UITableViewController {
         // self.clearsSelectionOnViewWillAppear = false
         
         individualProfile = DataMethods.fetchIndividualProfile(userEmail!)
-        fetchAndStoreNewInterviews(individualProfile)
+        NSLog("begin")
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            self.fetchAndStoreNewInterviews(self.individualProfile)
+        }
+        NSLog("end")
+        
         interviews = individualProfile.interviews?.allObjects as! [Interview]
     }
 
@@ -68,7 +73,23 @@ class IndividualInterviewTVC: UITableViewController {
         }
     }
     
+    func convertStringToDictionary(text: String) -> [String:AnyObject]? {
+        if let data = text.dataUsingEncoding(NSUTF8StringEncoding) {
+            do {
+                let json = try NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers) as? [String:AnyObject]
+                return json
+            } catch {
+                print("Something went wrong")
+            }
+        }
+        return nil
+    }
+    
     func saveInterviewToCoreData(interviewRecord: CKRecord, individualProfile: IndividualProfile) {
+        
+        let interviewDetailsData = interviewRecord.objectForKey("interviewDetailsData") as? String
+        let interviewDetailsDictionary = convertStringToDictionary(interviewDetailsData!)
+        print(interviewDetailsDictionary)
         
         var interview: Interview!
         coreDataStack.mainQueueContext.performBlockAndWait() { () -> Void in
@@ -79,11 +100,22 @@ class IndividualInterviewTVC: UITableViewController {
         var allInterviews = individualProfile.interviews?.allObjects as! [Interview]
         allInterviews.append(interview)
         individualProfile.interviews = NSSet.init(array: allInterviews)
+        
+        // ************ LEFT OFF HERE
+        
+        var interviewTemplate: InterviewTemplate!
+        coreDataStack.mainQueueContext.performBlockAndWait() { () -> Void in
+            interviewTemplate = NSEntityDescription.insertNewObjectForEntityForName("InterviewTemplate", inManagedObjectContext: self.coreDataStack.mainQueueContext) as! InterviewTemplate
+            interviewTemplate.jobTitle = interviewDetailsDictionary!["InterviewTitle"] as? String
+            interviewTemplate.jobDescription = interviewDetailsDictionary!["InterviewDescription"] as? String
+            interviewTemplate.interview = interview
+        }
+        
         do {
             try coreDataStack.saveChanges()
-            NSLog("Interview saved")
-            saveInterviewTemplateToCoreData(interviewRecord, interview: interview)
-            
+//            NSLog("Interview saved")
+//            saveInterviewTemplateToCoreData(interviewRecord, interview: interview)
+//            
             interviews = individualProfile.interviews?.allObjects as! [Interview]
             NSLog("Interviews accessed")
             tableView.reloadData()
