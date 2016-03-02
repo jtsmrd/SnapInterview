@@ -39,6 +39,8 @@
 		F67104381C729F36002C66BF /* IndividualProfileStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F67104371C729F36002C66BF /* IndividualProfileStoryboard.storyboard */; };
 		F671043C1C72A443002C66BF /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F671043B1C72A443002C66BF /* Login.storyboard */; };
 		F671043E1C72A6CB002C66BF /* BusinessProfileStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F671043D1C72A6CB002C66BF /* BusinessProfileStoryboard.storyboard */; };
+		F67CDEED1C87B3BA003077B6 /* ActiveInterviewsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67CDEEC1C87B3BA003077B6 /* ActiveInterviewsTVC.swift */; };
+		F67CDEEF1C87B3F9003077B6 /* InterviewDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67CDEEE1C87B3F9003077B6 /* InterviewDetailVC.swift */; };
 		F698000D1C60447500008CA9 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F698000C1C60447500008CA9 /* LoginVC.swift */; };
 		F698000F1C6156C200008CA9 /* IndividualSignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F698000E1C6156C200008CA9 /* IndividualSignupVC.swift */; };
 		F69800131C61761F00008CA9 /* KeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = F69800121C61761F00008CA9 /* KeychainWrapper.m */; };
@@ -87,6 +89,8 @@
 		F67104371C729F36002C66BF /* IndividualProfileStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = IndividualProfileStoryboard.storyboard; sourceTree = "<group>"; };
 		F671043B1C72A443002C66BF /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		F671043D1C72A6CB002C66BF /* BusinessProfileStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BusinessProfileStoryboard.storyboard; sourceTree = "<group>"; };
+		F67CDEEC1C87B3BA003077B6 /* ActiveInterviewsTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveInterviewsTVC.swift; sourceTree = "<group>"; };
+		F67CDEEE1C87B3F9003077B6 /* InterviewDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterviewDetailVC.swift; sourceTree = "<group>"; };
 		F698000C1C60447500008CA9 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		F698000E1C6156C200008CA9 /* IndividualSignupVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndividualSignupVC.swift; sourceTree = "<group>"; };
 		F69800101C61761E00008CA9 /* SnapInterview-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SnapInterview-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -271,6 +275,8 @@
 				F66029811C7D3DEF00C2077E /* IndividualSearchVC.swift */,
 				F66029831C7D4B1100C2077E /* SearchResultDetailVC.swift */,
 				F66029891C7D559200C2077E /* SelectInterviewTVC.swift */,
+				F67CDEEC1C87B3BA003077B6 /* ActiveInterviewsTVC.swift */,
+				F67CDEEE1C87B3F9003077B6 /* InterviewDetailVC.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -433,6 +439,7 @@
 				F62ED8DF1C5AD328000FB4FA /* AppDelegate.swift in Sources */,
 				F65441CF1C762EC0000627FE /* BusinessProfile.swift in Sources */,
 				F65441D31C763820000627FE /* EditBusinessProfileVC.swift in Sources */,
+				F67CDEED1C87B3BA003077B6 /* ActiveInterviewsTVC.swift in Sources */,
 				F66029821C7D3DEF00C2077E /* IndividualSearchVC.swift in Sources */,
 				F60109D81C7397BD007F8957 /* IndividualProfile.swift in Sources */,
 				F69800131C61761F00008CA9 /* KeychainWrapper.m in Sources */,
@@ -443,6 +450,7 @@
 				F66183E71C8147D90053EE1B /* IndividualProfile+CoreDataProperties.swift in Sources */,
 				F60109DA1C73E408007F8957 /* EditIndividualProfileVC.swift in Sources */,
 				F660298A1C7D559200C2077E /* SelectInterviewTVC.swift in Sources */,
+				F67CDEEF1C87B3F9003077B6 /* InterviewDetailVC.swift in Sources */,
 				F62ED8E11C5AD328000FB4FA /* IndividualProfileVC.swift in Sources */,
 				F66183D91C8138EE0053EE1B /* InterviewTemplate.swift in Sources */,
 				F66029701C7A395300C2077E /* BusinessInterviewDetailVC.swift in Sources */,

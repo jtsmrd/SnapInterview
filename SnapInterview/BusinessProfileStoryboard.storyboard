@@ -349,11 +349,12 @@
                         <segue destination="ngS-gp-d1d" kind="relationship" relationship="viewControllers" id="okn-F2-3vN"/>
                         <segue destination="mSf-XO-Scm" kind="relationship" relationship="viewControllers" id="SvA-9R-li3"/>
                         <segue destination="p86-Xb-veP" kind="relationship" relationship="viewControllers" id="uXh-qR-ZgJ"/>
+                        <segue destination="R9O-Qm-DtB" kind="relationship" relationship="viewControllers" id="shj-TY-U8a"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9BJ-ME-MNq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-191" y="61"/>
+            <point key="canvasLocation" x="-217.5" y="492.5"/>
         </scene>
         <!--Search-->
         <scene sceneID="307-K4-1z0">
@@ -631,6 +632,77 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Ll-iJ-rnP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="444.5" y="1211.5"/>
+        </scene>
+        <!--Active InterviewsTVC-->
+        <scene sceneID="ddF-rA-Zda">
+            <objects>
+                <tableViewController id="SXh-6z-3z1" customClass="ActiveInterviewsTVC" customModule="SnapInterview" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="dI6-ac-vNH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="InterviewCell" id="H0S-dg-xVr">
+                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="H0S-dg-xVr" id="Id2-nl-nG0">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="rR5-b1-icf" kind="show" identifier="showInterviewDetails" id="liz-LI-d4p"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="SXh-6z-3z1" id="jdK-25-s4m"/>
+                            <outlet property="delegate" destination="SXh-6z-3z1" id="6i2-xu-XnU"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="1Yx-tw-0Xk"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KTG-QF-bw2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="932.5" y="2209.5"/>
+        </scene>
+        <!--Interview DetailVC-->
+        <scene sceneID="cra-Sk-5Be">
+            <objects>
+                <viewController id="rR5-b1-icf" customClass="InterviewDetailVC" customModule="SnapInterview" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1mN-bJ-L9T"/>
+                        <viewControllerLayoutGuide type="bottom" id="EUY-qo-FM3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xXi-Kg-Zfm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gXZ-a0-93K" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1459.5" y="2209.5"/>
+        </scene>
+        <!--Active Interviews-->
+        <scene sceneID="Lgj-pV-H3u">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="R9O-Qm-DtB" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Active Interviews" id="Wkb-K5-DtP"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="CUZ-Uv-VH3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="SXh-6z-3z1" kind="relationship" relationship="rootViewController" id="T7K-jS-Yac"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Ga-Zc-eyn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="444.5" y="2209.5"/>
         </scene>
     </scenes>
 </document>
