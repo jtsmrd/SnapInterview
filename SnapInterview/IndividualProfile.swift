@@ -18,5 +18,6 @@ class IndividualProfile: NSManagedObject {
         email = ""
         jobTitle = ""
         cKRecordName = ""
+        profileImageKey = ""
     }
 }

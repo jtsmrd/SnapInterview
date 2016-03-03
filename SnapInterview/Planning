@@ -16,16 +16,17 @@ Done - Build on to profile data, store with core data efficiently, and also stor
 Done - Re-design storyboard to include the business profile
 Done - Implement editing for profile data
 Done - Create the Interview object
-- Implement the interview scene using a table view
-- Implement the interview details scene
-- Start interview recording from InterviewDetaiViewController. Save to doc dir
+Done - Implement the interview scene using a table view
+Done - Implement the interview details scene
+Done - Start interview recording from InterviewDetaiViewController. Save to doc dir
 Done - Move coredatastack context to appdelegate
-** Keep class level IndividualProfile variable in memory throughout the class.
+Done - Keep class level IndividualProfile variable in memory throughout the class.
+Done - Add ability to create interviews from business profile - core data and cloud
+- Add ability to show/edit interview details
+- Add page tutorial for new users at startup (swipe left and right at signup screen)
 
 TODAY:
 
-Add ability to create interviews from business profile - core data and cloud
-Add ability to show/edit interview details
 
 https://github.com/nofelmahmood/Seam.git
 https://github.com/alexbutenko/simplechat.git

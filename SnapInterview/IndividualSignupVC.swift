@@ -57,6 +57,11 @@ class IndividualSignupVC: UIViewController, UITextFieldDelegate {
     
     // MARK: Private Methods
     
+    // Create Firebase account with email/password for authentication
+    private func createFirebaseUserAccount() {
+        
+    }
+    
     // Validate and create an IndividualProfile
     private func createProfile() {
         if let errorMessage = validateTextFields() {
