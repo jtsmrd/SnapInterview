@@ -19,5 +19,6 @@ class BusinessProfile: NSManagedObject {
         businessName = ""
         profileImageKey = ""
         cKRecordName = ""
+        
     }
 }
