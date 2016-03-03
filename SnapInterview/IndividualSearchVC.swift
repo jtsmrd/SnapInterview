@@ -65,7 +65,7 @@ class IndividualSearchVC: UIViewController, UITableViewDelegate, UITableViewData
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showIndividualDetails" {
             let searchResultDetailVC = segue.destinationViewController as! SearchResultDetailVC
-            searchResultDetailVC.individualProfile = individualProfiles[tableView.indexPathForSelectedRow!.row]
+            searchResultDetailVC.individualProfileCKRecord = individualProfiles[tableView.indexPathForSelectedRow!.row]
         }
     }
 }

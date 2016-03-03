@@ -266,6 +266,7 @@
 		F65AC7BD1C74D366000A94BF /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				F67CDEEC1C87B3BA003077B6 /* ActiveInterviewsTVC.swift */,
 				F660296F1C7A395300C2077E /* BusinessInterviewDetailVC.swift */,
 				F65441D41C7644B3000627FE /* BusinessInterviewTVC.swift */,
 				F65441D01C7630BD000627FE /* BusinessProfileVC.swift */,
@@ -273,10 +274,9 @@
 				F66029771C7A6FC300C2077E /* CreateQuestionVC.swift */,
 				F65441D21C763820000627FE /* EditBusinessProfileVC.swift */,
 				F66029811C7D3DEF00C2077E /* IndividualSearchVC.swift */,
+				F67CDEEE1C87B3F9003077B6 /* InterviewDetailVC.swift */,
 				F66029831C7D4B1100C2077E /* SearchResultDetailVC.swift */,
 				F66029891C7D559200C2077E /* SelectInterviewTVC.swift */,
-				F67CDEEC1C87B3BA003077B6 /* ActiveInterviewsTVC.swift */,
-				F67CDEEE1C87B3F9003077B6 /* InterviewDetailVC.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";

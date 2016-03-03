@@ -23,11 +23,15 @@ class BusinessInterviewTVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let tabBarViewControllers = self.tabBarController?.viewControllers
+        let businessProfileVC = tabBarViewControllers![0] as! BusinessProfileVC
+        businessProfile = businessProfileVC.businessProfile
+        interviewTemplates = businessProfile.interviewTemplates?.allObjects as! [InterviewTemplate]
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
-        businessProfile = DataMethods.fetchBusinessProfile(userEmail!)
         interviewTemplates = businessProfile.interviewTemplates?.allObjects as! [InterviewTemplate]
         tableView.reloadData()
     }

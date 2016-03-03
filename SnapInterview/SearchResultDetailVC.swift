@@ -19,19 +19,26 @@ class SearchResultDetailVC: UIViewController, SelectInterviewTVCDelegate {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var selectedInterviewLabel: UILabel!    
     var selectedInterviewTemplate: InterviewTemplate!
-    var individualProfile: CKRecord!
+    var individualProfileCKRecord: CKRecord!
+    var businessProfile: BusinessProfile!
+    var interviewCKRecordName: String!
     
     // MARK: - View Life Cycle Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let firstName = individualProfile.objectForKey("firstName") as? String {
+        
+        let tabBarViewControllers = self.tabBarController?.viewControllers
+        let businessProfileVC = tabBarViewControllers![0] as! BusinessProfileVC
+        businessProfile = businessProfileVC.businessProfile
+        
+        if let firstName = individualProfileCKRecord.objectForKey("firstName") as? String {
             firstNameLabel.text = firstName
         }
-        if let lastName = individualProfile.objectForKey("lastName") as? String {
+        if let lastName = individualProfileCKRecord.objectForKey("lastName") as? String {
             lastNameLabel.text = lastName
         }
-        if let title = individualProfile.objectForKey("jobTitle") as? String {
+        if let title = individualProfileCKRecord.objectForKey("jobTitle") as? String {
             titleLabel.text = title
         }
     }
@@ -48,8 +55,25 @@ class SearchResultDetailVC: UIViewController, SelectInterviewTVCDelegate {
         saveInterviewToIndividualProfile()
     }
     
-    private func saveToPendingInterviews() {
-        
+    private func saveToActiveInterviews() {
+        // Create new Interview, set BusinessProfile, IndividualProfile, InterviewTemplate, and cKRecordName
+        let coreDataStack = (UIApplication.sharedApplication().delegate as! AppDelegate).coreDataStack
+        var interview: Interview!
+        coreDataStack.mainQueueContext.performBlockAndWait() { () -> Void in
+            interview = NSEntityDescription.insertNewObjectForEntityForName("Interview", inManagedObjectContext: coreDataStack.mainQueueContext) as! Interview
+            interview.businessProfile = self.businessProfile
+            interview.interviewTemplate = self.selectedInterviewTemplate
+            interview.cKRecordName = self.interviewCKRecordName
+        }
+        var allInterviews = businessProfile.interviews?.allObjects as! [Interview]
+        allInterviews.append(interview)
+        businessProfile.interviews = NSSet.init(array: allInterviews)
+        do {
+            try coreDataStack.saveChanges()
+        }
+        catch let error {
+            print(error)
+        }
     }
     
     func convertDictionaryToString(dictionary: [String:AnyObject]) -> String {
@@ -90,7 +114,7 @@ class SearchResultDetailVC: UIViewController, SelectInterviewTVCDelegate {
     private func saveInterviewToIndividualProfile() {
         let interviewDetailsData = createInterviewData()
         let businessProfileReference = CKReference(recordID: CKRecordID.init(recordName: (selectedInterviewTemplate.businessProfile?.cKRecordName)!), action: .None)
-        let individualProfileReference = CKReference(record: individualProfile, action: .None)
+        let individualProfileReference = CKReference(record: individualProfileCKRecord, action: .None)
         let interview = CKRecord(recordType: "Interview")
         interview.setObject(businessProfileReference, forKey: "businessProfile")
         interview.setObject(individualProfileReference, forKey: "individualProfile")
@@ -103,17 +127,21 @@ class SearchResultDetailVC: UIViewController, SelectInterviewTVCDelegate {
                 print(error)
             }
             else if let interviewRecord = record {
-                if self.individualProfile.objectForKey("interviews") != nil {
-                    interviewReferenceList = self.individualProfile.objectForKey("interviews") as! [CKReference]
+                
+                self.interviewCKRecordName = interviewRecord.recordID.recordName
+                
+                if self.individualProfileCKRecord.objectForKey("interviews") != nil {
+                    interviewReferenceList = self.individualProfileCKRecord.objectForKey("interviews") as! [CKReference]
                 }
                 interviewReferenceList.append(CKReference(record: interviewRecord, action: .None))
-                self.individualProfile.setObject(interviewReferenceList, forKey: "interviews")
+                self.individualProfileCKRecord.setObject(interviewReferenceList, forKey: "interviews")
                 
-                publicDatabase.saveRecord(self.individualProfile) { (record, error) -> Void in
+                publicDatabase.saveRecord(self.individualProfileCKRecord) { (record, error) -> Void in
                     if let error = error {
                         print(error)
                     }
                     else {
+                        self.saveToActiveInterviews()
                         print("Success")
                     }
                 }
