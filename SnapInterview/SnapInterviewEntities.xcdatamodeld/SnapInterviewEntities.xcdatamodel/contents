@@ -2,20 +2,24 @@
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15D21" minimumToolsVersion="Xcode 7.0">
     <entity name="BusinessProfile" representedClassName=".BusinessProfile" syncable="YES">
         <attribute name="businessName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="cKRecordName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="businessProfileCKRecordName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="businessProfileFirebaseUID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="profileImageCKRecordName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="profileImageKey" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="interviews" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Interview" inverseName="businessProfile" inverseEntity="Interview" syncable="YES"/>
         <relationship name="interviewTemplates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="InterviewTemplate" inverseName="businessProfile" inverseEntity="InterviewTemplate" syncable="YES"/>
     </entity>
     <entity name="IndividualProfile" representedClassName=".IndividualProfile" syncable="YES">
-        <attribute name="cKRecordName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="jobTitle" attributeType="String" syncable="YES"/>
+        <attribute name="individualProfileCKRecordName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="individualProfileFirebaseUID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="profession" attributeType="String" syncable="YES"/>
+        <attribute name="profileImageCKRecordName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="profileImageKey" attributeType="String" syncable="YES"/>
         <relationship name="interviews" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Interview" inverseName="individualProfile" inverseEntity="Interview" syncable="YES"/>
     </entity>
@@ -43,8 +47,8 @@
         <relationship name="interviewQuestions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="InterviewQuestion" inverseName="interviewTemplate" inverseEntity="InterviewQuestion" syncable="YES"/>
     </entity>
     <elements>
-        <element name="BusinessProfile" positionX="-63" positionY="18" width="128" height="165"/>
-        <element name="IndividualProfile" positionX="-63" positionY="-18" width="128" height="150"/>
+        <element name="BusinessProfile" positionX="-63" positionY="18" width="128" height="195"/>
+        <element name="IndividualProfile" positionX="-63" positionY="-18" width="128" height="180"/>
         <element name="Interview" positionX="-54" positionY="45" width="128" height="150"/>
         <element name="InterviewQuestion" positionX="-54" positionY="54" width="128" height="105"/>
         <element name="InterviewTemplate" positionX="-54" positionY="72" width="128" height="135"/>

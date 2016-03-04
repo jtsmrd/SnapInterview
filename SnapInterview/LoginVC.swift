@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class LoginVC: UIViewController, UITextFieldDelegate {
     
@@ -14,8 +15,6 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var emailTextField: UITextField!      
     @IBOutlet weak var passwordTextField: UITextField!
-    
-    let myKeychainWrapper = KeychainWrapper()
     
     // MARK: - View Life Cycle
     
@@ -25,8 +24,10 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        //******** HANDLE THIS
         if isLoggedIn() {
-            showProfile()
+            //showProfile()
         }
         
         // If there's a login email, populate the email text field
@@ -69,56 +70,59 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     
     // Set the login status and show the profile
     private func login() {
-        if checkLogin(emailTextField.text!, password: passwordTextField.text!) {
-            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "isLoggedIn")
-            NSUserDefaults.standardUserDefaults().synchronize()
-            showProfile()
-        }
-        else {
-            alert("Login Failed", message: "Incorrect email/password combination")
+        let firebase = Firebase(url: "https://snapinterview.firebaseio.com")
+        firebase.authUser(emailTextField.text!, password: passwordTextField.text!) {
+            error, authData in
+            if error != nil {
+                self.alert("Login Failed", message: "Invalid username/password combination.")
+            }
+            else {
+                NSUserDefaults.standardUserDefaults().setBool(true, forKey: "isLoggedIn")
+                NSUserDefaults.standardUserDefaults().synchronize()
+                self.showProfile(authData.uid)
+            }
         }
     }
     
     // Show the correct profile
-    private func showProfile() {
-        let profileType = NSUserDefaults.standardUserDefaults().valueForKey("profileType") as? String
-        
-        if profileType == "individual" {
-            showIndividualProfile()
-        }
-        else if profileType == "business" {
-            showBusinessProfile()
+    private func showProfile(profileUID: String) {
+        var profileType: String!
+        let firebase = Firebase(url: "https://snapinterview.firebaseio.com/users/\(profileUID)")
+        firebase.observeEventType(.Value) { (snapshot: FDataSnapshot!) -> Void in
+            if let record = snapshot.value {
+                profileType = record["profileType"] as! String
+                
+                if profileType == "Individual" {
+                    self.showIndividualProfile(profileUID)
+                }
+                else if profileType == "Business" {
+                    self.showBusinessProfile(profileUID)
+                }
+            }
         }
     }
     
     // Show IndividualProfile Storyboard
-    private func showIndividualProfile() {
+    private func showIndividualProfile(profileUID: String) {
         let storyboard = UIStoryboard(name: "IndividualProfileStoryboard", bundle: nil)
         let viewController = storyboard.instantiateViewControllerWithIdentifier("IndividualProfileTabBarController") as? UITabBarController
+        let individualProfileVC = viewController?.viewControllers![0] as! IndividualProfileVC
+        individualProfileVC.profileFirebaseUID = profileUID
         presentViewController(viewController!, animated: false, completion: nil)
     }
     
     // Show BusinessProfile Storyboard
-    private func showBusinessProfile() {
+    private func showBusinessProfile(profileUID: String) {
         let storyboard = UIStoryboard(name: "BusinessProfileStoryboard", bundle: nil)
         let viewController = storyboard.instantiateViewControllerWithIdentifier("BusinessProfileTabBarController") as? UITabBarController
+        let businessProfileVC = viewController?.viewControllers![0] as! BusinessProfileVC
+        businessProfileVC.profileFirebaseUID = profileUID
         presentViewController(viewController!, animated: false, completion: nil)
     }
     
     // Check the isLoggedIn status in NSUserDefaults
     private func isLoggedIn() -> Bool {
         return NSUserDefaults.standardUserDefaults().boolForKey("isLoggedIn")
-    }
-    
-    // Check the email from NSUserDefaults and the password from the keychain
-    private func checkLogin(email: String, password: String ) -> Bool {
-        if password == myKeychainWrapper.myObjectForKey("v_Data") as? String &&
-            email == NSUserDefaults.standardUserDefaults().valueForKey("email") as? String {
-                return true
-        }
-        else {
-            return false
-        }
     }
     
     // Show alert controller

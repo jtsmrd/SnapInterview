@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import CloudKit
+import Firebase
 
 class BusinessSignupVC: UIViewController, UITextFieldDelegate {
 
@@ -19,8 +20,8 @@ class BusinessSignupVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    let myKeychainWrapper = KeychainWrapper()
     var businessProfileCKRecordName: String!
+    var businessProfileFirebaseUID: String!
     
     // MARK: - View Life Cycle
     
@@ -58,17 +59,33 @@ class BusinessSignupVC: UIViewController, UITextFieldDelegate {
     
     // MARK: - Private Methods
     
+    // Create Firebase account with email/password for authentication
+    private func createFirebaseUserAccount() {
+        let firebase = Firebase(url:"https://snapinterview.firebaseio.com")
+        
+        firebase.createUser(emailTextField.text, password: passwordTextField.text,
+            withValueCompletionBlock: { error, result in
+                
+                if error != nil {
+                    print(error)
+                } else {
+                    self.businessProfileFirebaseUID = result["uid"] as? String
+                    let newUserProfileType = [
+                        "profileType" : "Business"
+                    ]
+                    firebase.childByAppendingPath("users").childByAppendingPath(self.businessProfileFirebaseUID).setValue(newUserProfileType)
+                    self.syncBusinessProfileToCloud()
+                }
+        })
+    }
+    
     // Validate and create a BusinessProfile
     private func createProfile() {
         if let errorMessage = validateTextFields() {
             showErrorAlert(errorMessage)
         }
-        else {            
-            // Save password to Keychain
-            myKeychainWrapper.mySetObject(passwordTextField.text, forKey:kSecValueData)
-            myKeychainWrapper.writeToKeychain()
-            syncBusinessProfileToCloud()
-            setUserDefaults()
+        else {
+            createFirebaseUserAccount()
         }
     }
     
@@ -84,11 +101,13 @@ class BusinessSignupVC: UIViewController, UITextFieldDelegate {
             businessProfile.firstName = self.firstNameTextField.text!
             businessProfile.lastName = self.lastNameTextField.text!
             businessProfile.email = self.emailTextField.text!
-            businessProfile.cKRecordName = self.businessProfileCKRecordName
+            businessProfile.businessProfileCKRecordName = self.businessProfileCKRecordName
+            businessProfile.businessProfileFirebaseUID = self.businessProfileFirebaseUID
         }
         
         do {
             try coreDataStack.saveChanges()
+            setUserDefaults()
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.navigationController?.popToRootViewControllerAnimated(false)
             })
@@ -155,7 +174,6 @@ class BusinessSignupVC: UIViewController, UITextFieldDelegate {
     // Set the user email, profile type, and logged in status in user defaults
     private func setUserDefaults() {
         NSUserDefaults.standardUserDefaults().setValue(emailTextField.text, forKey: "email")
-        NSUserDefaults.standardUserDefaults().setValue("business", forKey: "profileType")
         NSUserDefaults.standardUserDefaults().setBool(true, forKey: "isLoggedIn")
         NSUserDefaults.standardUserDefaults().synchronize()
     }

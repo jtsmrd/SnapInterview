@@ -20,7 +20,7 @@ class IndividualProfileVC: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     var imageStore: ImageStore!
     var individualProfile: IndividualProfile!
-    let userEmail = NSUserDefaults.standardUserDefaults().valueForKey("email") as? String
+    var profileFirebaseUID: String!
     
     // MARK: - View Life Cycle Methods
     
@@ -54,11 +54,11 @@ class IndividualProfileVC: UIViewController {
     // MARK: - Private Methods
 
     private func setupView() {
-        individualProfile = DataMethods.fetchIndividualProfile(userEmail!)
+        individualProfile = DataMethods.fetchIndividualProfile(profileFirebaseUID!)
         
         firstNameLabel.text = individualProfile.firstName
         lastNameLabel.text = individualProfile.lastName
-        titleLabel.text = individualProfile.jobTitle
+        titleLabel.text = individualProfile.profession
         
         // If a profile picture exists, load it
         if let imageKey = individualProfile.profileImageKey {

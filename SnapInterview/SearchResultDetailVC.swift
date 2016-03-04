@@ -113,7 +113,7 @@ class SearchResultDetailVC: UIViewController, SelectInterviewTVCDelegate {
     
     private func saveInterviewToIndividualProfile() {
         let interviewDetailsData = createInterviewData()
-        let businessProfileReference = CKReference(recordID: CKRecordID.init(recordName: (selectedInterviewTemplate.businessProfile?.cKRecordName)!), action: .None)
+        let businessProfileReference = CKReference(recordID: CKRecordID.init(recordName: (selectedInterviewTemplate.businessProfile?.businessProfileCKRecordName)!), action: .None)
         let individualProfileReference = CKReference(record: individualProfileCKRecord, action: .None)
         let interview = CKRecord(recordType: "Interview")
         interview.setObject(businessProfileReference, forKey: "businessProfile")

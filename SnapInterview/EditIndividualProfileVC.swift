@@ -28,7 +28,7 @@ class EditIndividualProfileVC: UIViewController, UIImagePickerControllerDelegate
         imageStore = (UIApplication.sharedApplication().delegate as! AppDelegate).imageStore
         firstNameTextField.text = individualProfile.firstName
         lastNameTextField.text = individualProfile.lastName
-        titleTextField.text = individualProfile.jobTitle
+        titleTextField.text = individualProfile.profession
         loadProfileImage()
     }
     
@@ -37,7 +37,7 @@ class EditIndividualProfileVC: UIViewController, UIImagePickerControllerDelegate
     @IBAction func saveAction(sender: UIButton) {
         individualProfile.firstName = firstNameTextField.text!
         individualProfile.lastName = lastNameTextField.text!
-        individualProfile.jobTitle = titleTextField.text!
+        individualProfile.profession = titleTextField.text!
         DataMethods.saveAndSyncIndividualProfile(individualProfile)
     }
     

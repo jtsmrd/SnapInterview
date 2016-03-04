@@ -16,9 +16,7 @@ class IndividualInterviewTVC: UITableViewController {
     // MARK: - Variables, Outlets, and Constants
     
     var individualProfile: IndividualProfile!
-    let userEmail = NSUserDefaults.standardUserDefaults().valueForKey("email") as? String
     var interviews: [Interview] = []
-    
     let publicDatabase = CKContainer.defaultContainer().publicCloudDatabase
     let coreDataStack = (UIApplication.sharedApplication().delegate as! AppDelegate).coreDataStack
     
@@ -30,12 +28,13 @@ class IndividualInterviewTVC: UITableViewController {
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
-        individualProfile = DataMethods.fetchIndividualProfile(userEmail!)
-        NSLog("begin")
+        let tabBarViewControllers = self.tabBarController?.viewControllers
+        let individualProfileVC = tabBarViewControllers![0] as! IndividualProfileVC
+        individualProfile = individualProfileVC.individualProfile
+        
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
             self.fetchAndStoreNewInterviews(self.individualProfile)
         }
-        NSLog("end")
         
         interviews = individualProfile.interviews?.allObjects as! [Interview]
     }
@@ -48,7 +47,7 @@ class IndividualInterviewTVC: UITableViewController {
     
     // Fix to use InterviewTemplate data
     func fetchAndStoreNewInterviews(individualProfile: IndividualProfile) {
-        publicDatabase.fetchRecordWithID(CKRecordID(recordName: individualProfile.cKRecordName!)) { (record, error) -> Void in
+        publicDatabase.fetchRecordWithID(CKRecordID(recordName: individualProfile.individualProfileCKRecordName!)) { (record, error) -> Void in
             if let error = error {
                 print(error)
             }
@@ -100,8 +99,6 @@ class IndividualInterviewTVC: UITableViewController {
         var allInterviews = individualProfile.interviews?.allObjects as! [Interview]
         allInterviews.append(interview)
         individualProfile.interviews = NSSet.init(array: allInterviews)
-        
-        // ************ LEFT OFF HERE
         
         var interviewTemplate: InterviewTemplate!
         coreDataStack.mainQueueContext.performBlockAndWait() { () -> Void in

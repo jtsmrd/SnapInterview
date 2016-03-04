@@ -12,13 +12,14 @@ import CoreData
 class BusinessProfile: NSManagedObject {
 
     override func awakeFromInsert() {
-        super.awakeFromInsert()        
+        super.awakeFromInsert()
+        businessName = ""
+        businessProfileCKRecordName = ""
+        email = ""
         firstName = ""
         lastName = ""
-        email = ""
-        businessName = ""
         profileImageKey = ""
-        cKRecordName = ""
-        
+        businessProfileFirebaseUID = ""
+        profileImageCKRecordName = ""
     }
 }

@@ -21,7 +21,6 @@ class SelectInterviewTVC: UITableViewController {
     
     var interviewTemplates: [InterviewTemplate] = []
     var businessProfile: BusinessProfile!
-    let userEmail = NSUserDefaults.standardUserDefaults().valueForKey("email") as? String
     var delegate: SelectInterviewTVCDelegate?
     
     override func viewDidLoad() {
@@ -33,7 +32,9 @@ class SelectInterviewTVC: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        businessProfile = DataMethods.fetchBusinessProfile(userEmail!)
+        let tabBarViewControllers = self.tabBarController?.viewControllers
+        let businessProfileVC = tabBarViewControllers![0] as! BusinessProfileVC
+        businessProfile = businessProfileVC.businessProfile
         interviewTemplates = businessProfile.interviewTemplates?.allObjects as! [InterviewTemplate]
         tableView.reloadData()
     }

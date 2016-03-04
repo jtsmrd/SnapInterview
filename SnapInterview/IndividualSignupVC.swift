@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import CloudKit
+import Firebase
 
 class IndividualSignupVC: UIViewController, UITextFieldDelegate {
     
@@ -18,8 +19,8 @@ class IndividualSignupVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    let myKeychainWrapper = KeychainWrapper()
     var individualProfileCKRecordName: String!
+    var individualProfileFirebaseUID: String!
     
     // MARK: - View Life Cycle
     
@@ -59,7 +60,22 @@ class IndividualSignupVC: UIViewController, UITextFieldDelegate {
     
     // Create Firebase account with email/password for authentication
     private func createFirebaseUserAccount() {
+        let firebase = Firebase(url:"https://snapinterview.firebaseio.com")
         
+        firebase.createUser(emailTextField.text, password: passwordTextField.text,
+            withValueCompletionBlock: { error, result in
+                
+                if error != nil {
+                    print(error)
+                } else {
+                    self.individualProfileFirebaseUID = result["uid"] as? String
+                    let newUserProfileType = [
+                        "profileType" : "Individual"
+                    ]
+                    firebase.childByAppendingPath("users").childByAppendingPath(self.individualProfileFirebaseUID).setValue(newUserProfileType)
+                    self.syncIndividualProfileToCloud()
+                }
+        })
     }
     
     // Validate and create an IndividualProfile
@@ -68,11 +84,7 @@ class IndividualSignupVC: UIViewController, UITextFieldDelegate {
             showErrorAlert(errorMessage)
         }
         else {
-            // Save password to Keychain
-            myKeychainWrapper.mySetObject(passwordTextField.text, forKey:kSecValueData)
-            myKeychainWrapper.writeToKeychain()
-            syncIndividualProfileToCloud()
-            setUserDefaults()
+            createFirebaseUserAccount()
         }
     }
     
@@ -87,11 +99,13 @@ class IndividualSignupVC: UIViewController, UITextFieldDelegate {
             individualProfile.firstName = self.firstNameTextField.text!
             individualProfile.lastName = self.lastNameTextField.text!
             individualProfile.email = self.emailTextField.text!
-            individualProfile.cKRecordName = self.individualProfileCKRecordName
+            individualProfile.individualProfileCKRecordName = self.individualProfileCKRecordName
+            individualProfile.individualProfileFirebaseUID = self.individualProfileFirebaseUID
         }
         
         do {
             try coreDataStack.saveChanges()
+            setUserDefaults()
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.navigationController?.popToRootViewControllerAnimated(false)
             })
@@ -152,7 +166,6 @@ class IndividualSignupVC: UIViewController, UITextFieldDelegate {
     // Set the user email, profile type, and logged in status in user defaults
     private func setUserDefaults() {
         NSUserDefaults.standardUserDefaults().setValue(emailTextField.text, forKey: "email")
-        NSUserDefaults.standardUserDefaults().setValue("individual", forKey: "profileType")
         NSUserDefaults.standardUserDefaults().setBool(true, forKey: "isLoggedIn")
         NSUserDefaults.standardUserDefaults().synchronize()
     }

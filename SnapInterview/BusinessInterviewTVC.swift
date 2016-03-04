@@ -16,7 +16,6 @@ class BusinessInterviewTVC: UITableViewController {
     
     var interviewTemplates: [InterviewTemplate] = []
     var businessProfile: BusinessProfile!
-    let userEmail = NSUserDefaults.standardUserDefaults().valueForKey("email") as? String
     var businessProfileCKR: CKRecord!
     
     // MARK: - View Life Cycle Methods
@@ -64,7 +63,7 @@ class BusinessInterviewTVC: UITableViewController {
         if segue.identifier == "createInterview" {
             let createInterviewVC = segue.destinationViewController as! CreateInterviewVC
             createInterviewVC.businessProfile = businessProfile
-            createInterviewVC.businessProfileCKRecordName = businessProfile.cKRecordName
+            createInterviewVC.businessProfileCKRecordName = businessProfile.businessProfileCKRecordName
         }
         else if segue.identifier == "showDetail" {
             if let row = tableView.indexPathForSelectedRow?.row {

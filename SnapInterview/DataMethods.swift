@@ -17,10 +17,10 @@ class DataMethods {
     static let coreDataStack = (UIApplication.sharedApplication().delegate as! AppDelegate).coreDataStack
     
     // Load from CoreData, return an IndividualProfile
-    static func fetchIndividualProfile(userEmail: String) -> IndividualProfile {
+    static func fetchIndividualProfile(profileFirebaseUID: String) -> IndividualProfile {
         var individualProfile: IndividualProfile!
         let fetchRequest = NSFetchRequest(entityName: "IndividualProfile")
-        fetchRequest.predicate = NSPredicate(format: "email = %@", userEmail)
+        fetchRequest.predicate = NSPredicate(format: "individualProfileFirebaseUID = %@", profileFirebaseUID)
         coreDataStack.mainQueueContext.performBlockAndWait() {
             do {
                 let records = try coreDataStack.mainQueueContext.executeFetchRequest(fetchRequest) as? [IndividualProfile]
@@ -46,7 +46,7 @@ class DataMethods {
     
     // Save IndividualProfile to the cloud
     static func syncIndividualProfileToCloud(individualProfile: IndividualProfile) {
-        let profileRecordID = CKRecordID(recordName: individualProfile.cKRecordName!)
+        let profileRecordID = CKRecordID(recordName: individualProfile.individualProfileCKRecordName!)
         publicDatabase.fetchRecordWithID(profileRecordID) { (record, error) -> Void in
             if let error = error {
                 print(error)
@@ -54,7 +54,7 @@ class DataMethods {
             else if let record = record {
                 record.setValue(individualProfile.firstName, forKey: "firstName")
                 record.setValue(individualProfile.lastName, forKey: "lastName")
-                record.setValue(individualProfile.jobTitle, forKey: "jobTitle")
+                record.setValue(individualProfile.profession, forKey: "jobTitle")
                 if individualProfile.profileImageKey != nil {
                     let imageAsset = CKAsset(fileURL: imageStore.imageURLForKey(individualProfile.profileImageKey!))
                     record.setValue(imageAsset, forKey: "profileImage")
@@ -70,7 +70,7 @@ class DataMethods {
     
     // Fix to use InterviewTemplate data
     static func fetchAndStoreNewInterviews(individualProfile: IndividualProfile) {
-        publicDatabase.fetchRecordWithID(CKRecordID(recordName: individualProfile.cKRecordName!)) { (record, error) -> Void in
+        publicDatabase.fetchRecordWithID(CKRecordID(recordName: individualProfile.individualProfileCKRecordName!)) { (record, error) -> Void in
             if let error = error {
                 print(error)
             }
@@ -147,10 +147,10 @@ class DataMethods {
     }
     
     // Load from CoreData, return an IndividualProfile
-    static func fetchBusinessProfile(userEmail: String) -> BusinessProfile {
+    static func fetchBusinessProfile(profileFirebaseUID: String) -> BusinessProfile {
         var businessProfile: BusinessProfile!
         let fetchRequest = NSFetchRequest(entityName: "BusinessProfile")
-        fetchRequest.predicate = NSPredicate(format: "email = %@", userEmail)
+        fetchRequest.predicate = NSPredicate(format: "businessProfileFirebaseUID = %@", profileFirebaseUID)
         coreDataStack.mainQueueContext.performBlockAndWait() {
             do {
                 let records = try coreDataStack.mainQueueContext.executeFetchRequest(fetchRequest) as? [BusinessProfile]
@@ -176,7 +176,7 @@ class DataMethods {
     
     // Save BusinessProfile to the cloud
     static func syncBusinessProfileToCloud(businessProfile: BusinessProfile) {
-        publicDatabase.fetchRecordWithID(CKRecordID.init(recordName: businessProfile.cKRecordName!)) { (record, error) -> Void in
+        publicDatabase.fetchRecordWithID(CKRecordID.init(recordName: businessProfile.businessProfileCKRecordName!)) { (record, error) -> Void in
             if let error = error {
                 print(error)
             }

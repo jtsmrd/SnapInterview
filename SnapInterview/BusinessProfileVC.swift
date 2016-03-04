@@ -20,7 +20,7 @@ class BusinessProfileVC: UIViewController {
     @IBOutlet weak var lastNameLabel: UILabel!
     var imageStore: ImageStore!
     var businessProfile: BusinessProfile!
-    let userEmail = NSUserDefaults.standardUserDefaults().valueForKey("email") as? String
+    var profileFirebaseUID: String!
     
     // MARK: - View Life Cycle Methods
     
@@ -50,7 +50,7 @@ class BusinessProfileVC: UIViewController {
     // MARK: - Private Methods
     
     private func setupView() {
-        businessProfile = DataMethods.fetchBusinessProfile(userEmail!)
+        businessProfile = DataMethods.fetchBusinessProfile(profileFirebaseUID!)
         firstNameLabel.text = businessProfile.firstName
         lastNameLabel.text = businessProfile.lastName
         businessNameLabel.text = businessProfile.businessName

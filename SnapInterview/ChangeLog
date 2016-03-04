@@ -1,0 +1,6 @@
+CHANGE LOG
+
+- Implemented sign up and login authentication using Firebase
+- Added a property to IndividualProfile and BusinessProfile to reference the UID of the authenticated Firebase user
+- Modified the fetchIndividualProfile() and fetchBusinessProfile() to use the Firebase user UID instead of email
+- Passed IndividualProfile object between tabs
